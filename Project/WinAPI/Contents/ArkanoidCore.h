@@ -16,8 +16,8 @@ public:
 	ArkanoidCore& operator=(ArkanoidCore&& _Other) noexcept = delete;
 
 protected:
-	void Start() override;
-	void Update() override;
+	void BeginPlay() override;
+	void Tick(float _DelatTime) override;
 	void End() override;
 
 private:

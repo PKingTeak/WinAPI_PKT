@@ -159,20 +159,24 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineMath.h" />
     <ClInclude Include="EngineString.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="FTransform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineDebug.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EngineMath.cpp" />
     <ClCompile Include="EngineString.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FTransform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
