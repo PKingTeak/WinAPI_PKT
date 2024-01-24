@@ -3,6 +3,7 @@
 #include "TitleLevel.h"
 #include "PlayLevel.h"
 ArkanoidCore::ArkanoidCore()
+	:EngineCore()
 {
 }
 
@@ -13,6 +14,9 @@ ArkanoidCore::~ArkanoidCore()
 // 게임시작
 void ArkanoidCore::BeginPlay()
 {
+	CreateLevel<UTitleLevel>("TitleLevel");
+
+	ChangeLevel("TitleLevel");
 	//MainWindow.SetTitle();
 	//MainWindow.SetScale();
 

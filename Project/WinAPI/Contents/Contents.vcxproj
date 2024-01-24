@@ -160,6 +160,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TitleLevel.cpp" />
     <ClCompile Include="User.cpp">
       <SubType>
       </SubType>
@@ -170,6 +171,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TitleLevel.h" />
     <ClInclude Include="User.h">
       <SubType>
       </SubType>

@@ -5,7 +5,7 @@ ULevel::ULevel()
 {
 }
 
-ULevel::~ULevel()
+ULevel::~ULevel() //모든 엑터를 지우기 위해서 돌리는 순환문
 {
 	for (std::pair<const int, std::list<AActor*>>& OrderListPair : AllActor)
 	{
@@ -22,9 +22,8 @@ ULevel::~ULevel()
 		}
 	}
 }
-//동적 할당을 했기 때문에 지워줘야된다 
 
-void ULevel::ActorTick(float _DeltaTime)
+void ULevel::ActorTick(float _DeltaTime) 
 {
 	for (std::pair<const int, std::list<AActor*>>& OrderListPair : AllActor)
 	{
@@ -40,3 +39,5 @@ void ULevel::ActorTick(float _DeltaTime)
 		}
 	}
 }
+
+
