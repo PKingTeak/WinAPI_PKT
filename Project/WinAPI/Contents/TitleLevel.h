@@ -3,6 +3,7 @@
 
 // 설명 :
 class UTitleLevel : public ULevel
+	//레벨을 관리해주는 클래스 core에 직접 영향을 주는
 {
 public:
 	// constrcuter destructer

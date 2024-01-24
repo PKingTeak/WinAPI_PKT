@@ -156,6 +156,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Stage1.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ArkanoidCore.cpp">
       <SubType>
       </SubType>
@@ -167,6 +171,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Stage1.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ArkanoidCore.h">
       <SubType>
       </SubType>
