@@ -19,9 +19,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineCore", "EngineCore\En
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Level4", "Level4", "{F91A5488-1DA0-4B5A-9C7A-6F0EF5854076}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Contents", "Contents\Contents.vcxproj", "{C1412427-0C70-4B8A-88BD-4977852ADC11}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Arkanoid", "Contents\Contents.vcxproj", "{C1412427-0C70-4B8A-88BD-4977852ADC11}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "App", "App\App.vcxproj", "{A22DA2DB-9AE3-48F5-B9FA-1C854C4ADEB8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MYAPP", "App\App.vcxproj", "{A22DA2DB-9AE3-48F5-B9FA-1C854C4ADEB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

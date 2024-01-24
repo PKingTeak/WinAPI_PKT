@@ -6,7 +6,7 @@ HINSTANCE EngineWindow::hInstance;
 
 
 LRESULT CALLBACK EngineWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{ //윈도우 핸들을 받기위한 거기 때문에 
+{
 	switch (message)
 	{
 	case WM_PAINT:
@@ -32,11 +32,12 @@ void EngineWindow::Init(HINSTANCE _hInst)
 }
 
 
-EngineWindow::EngineWindow() 
+EngineWindow::EngineWindow()
 {
+
 }
 
-EngineWindow::~EngineWindow() 
+EngineWindow::~EngineWindow()
 {
 }
 
@@ -86,7 +87,7 @@ void EngineWindow::Open(std::string_view _Title /*= "Title"*/)
 
 }
 
-unsigned __int64 EngineWindow::WindowMessageLoop()
+unsigned __int64 EngineWindow::WindowMessageLoop(void(*_Update)(), void(*_End)())
 {
 	MSG msg = {};
 
@@ -99,6 +100,16 @@ unsigned __int64 EngineWindow::WindowMessageLoop()
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
+
+		if (nullptr != _Update)
+		{
+			_Update();
+		}
+	}
+
+	if (nullptr != _Update)
+	{
+		_End();
 	}
 
 	return msg.wParam;

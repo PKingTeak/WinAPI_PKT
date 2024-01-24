@@ -16,9 +16,9 @@ public:
 	ArkanoidCore& operator=(ArkanoidCore&& _Other) noexcept = delete;
 
 protected:
-	void EngineStart();
-	void EngineUpdate();
-	void EngineEnd();
+	void Start() override;
+	void Update() override;
+	void End() override;
 
 private:
 
