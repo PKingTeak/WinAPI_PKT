@@ -16,19 +16,23 @@ public:
 	//FTransform& operator=(FTransform&& _Other) noexcept = delete;
 
 public:
-	void SetScale(FVector _Value)
+	void SetScale(FVector _Value) //크기 설정
 	{
 		Scale = _Value;
-	}
-	FVector GetScale()
+	} 
+	FVector GetScale() //크기 표시
 	{
 		return Scale;
 	}
-	void SetPosition(FVector _Value)
+	void SetPosition(FVector _Value) //위치 설정
 	{
 		Position = _Value;
 	}
-	FVector GetPosition()
+	void AddPosition(FVector _Value) // 위치 변동
+	{
+		Position += _Value;
+	}
+	FVector GetPosition() //위치 출력
 	{
 		return Position;
 	}

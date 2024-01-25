@@ -156,7 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Stage1.cpp">
+    <ClCompile Include="Stage1Level.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -164,14 +164,13 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TitleLevel.cpp" />
     <ClCompile Include="User.cpp">
       <SubType>
       </SubType>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Stage1.h">
+    <ClInclude Include="Stage1Level.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -179,7 +178,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TitleLevel.h" />
     <ClInclude Include="User.h">
       <SubType>
       </SubType>

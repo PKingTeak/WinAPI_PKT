@@ -1,12 +1,13 @@
 #include "EngineCore.h"
 #include <Windows.h>
 #include "Level.h"
+#include "EnginePlatform/EngineInput.h"
 
 
 EngineCore* GEngine = nullptr;
 
 EngineCore::EngineCore()
-	: MainWindow()
+	: MainWindow() // 이거의 의도 이해 안됨 질문)
 {
 }
 
@@ -16,10 +17,12 @@ EngineCore::~EngineCore()
 
 void EngineCore::EngineTick()
 {
+	float DeltaTime = GEngine->MainTimer.TimeCheck(); //이걸로 엔진Tick과Tick사이의 시간을 잰다 .
 	if (nullptr == GEngine->CurLevel)
 	{
 		MsgBoxAssert("엔진을 시작할 레벨이 지정되지 않았습니다 치명적인 오류입니다");
 	}
+	//현재 보여지고 있는 레벨에 관련된 
 
 	// 레벨이 먼저 틱을 돌리고
 	GEngine->CurLevel->Tick(0.0f);
@@ -53,9 +56,10 @@ void EngineCore::EngineStart(HINSTANCE _hInstance, EngineCore* _UserCore)
 	EngineWindow::WindowMessageLoop(EngineTick, EngineEnd);
 }
 
-void EngineCore::CoreInit(HINSTANCE _HINSTANCE)
+void EngineCore::CoreInit(HINSTANCE _HINSTANCE) //윈도우 클래스 등록 
 {
-	if (true == EngineInit)
+	if (true == EngineInit) //이미 있다면 그냥 반환 엔진 코어는 하나만 존재해야 되니까
+
 	{
 		return;
 	}

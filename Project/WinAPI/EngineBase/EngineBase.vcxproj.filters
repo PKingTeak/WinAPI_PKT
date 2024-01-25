@@ -10,7 +10,12 @@
     <ClInclude Include="EngineMath.h">
       <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="FTransform.h" />
+    <ClInclude Include="EngineTime.h">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="FTransform.h">
+      <Filter>Transform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineDebug.cpp">
@@ -22,7 +27,12 @@
     <ClCompile Include="EngineMath.cpp">
       <Filter>Math</Filter>
     </ClCompile>
-    <ClCompile Include="FTransform.cpp" />
+    <ClCompile Include="EngineTime.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="FTransform.cpp">
+      <Filter>Transform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Debug">
@@ -33,6 +43,12 @@
     </Filter>
     <Filter Include="Math">
       <UniqueIdentifier>{648fc53c-eb5f-4a01-b0f8-7b4e20c74745}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Time">
+      <UniqueIdentifier>{cd1a78b3-88ef-4efe-90fb-06d8ea730eef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Transform">
+      <UniqueIdentifier>{f18ffe48-c563-477d-87e5-0ec5f64f6f6c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
