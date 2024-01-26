@@ -165,7 +165,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="EngineTime.h" />
-    <ClInclude Include="FTransform.h" />
+    <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineDebug.cpp">
@@ -178,7 +178,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="EngineTime.cpp" />
-    <ClCompile Include="FTransform.cpp" />
+    <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

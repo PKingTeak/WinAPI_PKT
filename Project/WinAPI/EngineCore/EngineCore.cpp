@@ -15,22 +15,76 @@ EngineCore::~EngineCore()
 {
 }
 
-void EngineCore::EngineTick()
+void EngineCore::CoreTick() //프레임제한을 위한 함수 
 {
+	float DeltaTime = MainTimer.TimeCheck();
+	double dDeltaTime = MainTimer.GetDeltaTime();
 
-	float DeltaTime = GEngine->MainTimer.TimeCheck();
+
+	// 100프레임으로 실행되는 컴퓨터가 있다면
+	// 0.01이 나와야 한다.
+	// float Time;
+	// Time += 0.01f;
+	// 
+	// 우리는 50프레임으로 제한하고 싶다.
+	// 0.02가 나와야 한다.
+	// FrameTime = 1 / 50.0; =>
+	// FrameTime = 0.02;
+	// CurFrameTime += 0.01;
+	// 0.01             0.02
+	// CurFrameTime <= FrameTime
+	// CurFrameTime += 0.01;
+	// 0.0203000        0.02
+	// CurFrameTime <= FrameTime
+	// 돌아야한다.
+	// 0.0003000
+	// CurFrameTime -= FrameTime;
+
+	if (1 <= Frame)
+	{
+		CurFrameTime += DeltaTime; //CurFrameTime에 현재 시간을 넣어준다. 
+		if (CurFrameTime <= FrameTime)
+		{
+			return; //내가 정한 프레임의 시간보다 작으면 다시 돌린다 
+			//그 이유는 프레임이 더 높다는 뜻이다. 
+		}
+		CurFrameTime -= FrameTime; //해당 프레임을 출력후 다시 if문을 돌리기 위해 값을빼준다.
+		DeltaTime = FrameTime; //그리고 DeltaTime을 다시 정해준 것으로 돌려준다. 
+		//오차를 없애기 위해 
+	}
+
 	EngineInput::KeyCheckTick(DeltaTime);
-	if (nullptr == GEngine->CurLevel)
+
+	if (nullptr == CurLevel)
 	{
 		MsgBoxAssert("엔진을 시작할 레벨이 지정되지 않았습니다 치명적인 오류입니다");
 	}
 
 	// 레벨이 먼저 틱을 돌리고
-	GEngine->CurLevel->Tick(DeltaTime);
-	GEngine->CurLevel->ActorTick(DeltaTime);
+	CurLevel->Tick(DeltaTime);
+	// 액터와 부가적인 오브젝트들의 틱도 돌리고 => 행동하고
+	CurLevel->LevelTick(DeltaTime);
+	// 랜더러들의 랜더를 통해서 화면에 그림도 그린다 => 그리고
+	CurLevel->LevelRender(DeltaTime);
+	// 정리한다.(죽어야할 오브젝트들은 다 파괴한다)
+	CurLevel->LevelRelease(DeltaTime);
+
 
 	//HDC WindowDC = GEngine->MainWindow.GetWindowDC();
 	//Rectangle(WindowDC, -200, -200, 3000, 3000);
+}
+
+void EngineCore::EngineTick()
+{
+
+	// 렉이라는 현상은 프레임사이에 한번에 많은 시간을 소모하는 함수를 호출하면
+	// 델타타임이 증가하는 현상을 말한다.
+	// EX) for문 1000만번 돌리는데 5초가 걸렸다.
+	//    5.0
+	//    => 한번에 5.0초 동안 가야할 양을 한프레임만에 이동해버리니까 순간이동하듯이 보이게 된다.
+
+	GEngine->CoreTick();
+
 }
 
 void EngineCore::EngineEnd()

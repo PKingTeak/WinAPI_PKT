@@ -13,7 +13,7 @@
     <ClInclude Include="EngineTime.h">
       <Filter>Time</Filter>
     </ClInclude>
-    <ClInclude Include="FTransform.h">
+    <ClInclude Include="Transform.h">
       <Filter>Transform</Filter>
     </ClInclude>
   </ItemGroup>
@@ -30,7 +30,7 @@
     <ClCompile Include="EngineTime.cpp">
       <Filter>Time</Filter>
     </ClCompile>
-    <ClCompile Include="FTransform.cpp">
+    <ClCompile Include="Transform.cpp">
       <Filter>Transform</Filter>
     </ClCompile>
   </ItemGroup>

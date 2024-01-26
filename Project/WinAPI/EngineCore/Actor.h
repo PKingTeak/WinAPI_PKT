@@ -1,8 +1,9 @@
 #pragma once
-#include <EngineBase\FTransform.h>
+#include <EngineBase\Transform.h>
 #include "TickObject.h"
 #include "NameObject.h"
 #include "Level.h"
+#include "ImageRenderer.h"
 
 class ULevel;
 
@@ -54,15 +55,21 @@ public:
 		return World;
 	}
 
+	UImageRenderer* CreateImageRenderer(int Order = 0); 
+
 protected:
 
 private:
-	ULevel* World;
-	FTransform Transform;
+	std::list<UImageRenderer*> Renderers; //모든 렌더러를 관리해주는 것  Actor에서 관리하는 이유는
+
+	ULevel* World = nullptr;
+	FTransform Transform = FTransform(); //위치 값 랜더러는 위치를 가지기 때문에 엑터 안에도 위치를 가진다 
 
 	void SetWorld(ULevel* _Value)
 	{
 		World = _Value;
 	}
 };
+
+
 

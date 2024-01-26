@@ -4,10 +4,12 @@
     <ClCompile Include="ArkanoidCore.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="Stage1Level.cpp" />
+    <ClCompile Include="Bullet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArkanoidCore.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="Stage1Level.h" />
+    <ClInclude Include="Bullet.h" />
   </ItemGroup>
 </Project>
