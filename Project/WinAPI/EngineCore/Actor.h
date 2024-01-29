@@ -2,10 +2,12 @@
 #include <EngineBase\Transform.h>
 #include "TickObject.h"
 #include "NameObject.h"
-#include "Level.h"
 #include "ImageRenderer.h"
+#include "Level.h"
 
 class ULevel;
+class UActorComponent;
+class UImageRenderer;
 
 // 설명 : A가 붙은 오브젝트는 화면에 위치가 존재해야한다.
 // Level->SpawnActor를 통해서 만들면
@@ -55,21 +57,22 @@ public:
 		return World;
 	}
 
-	UImageRenderer* CreateImageRenderer(int Order = 0); 
+	UImageRenderer* CreateImageRenderer(int Order = 0);
+
+	void Destroy(float _DestroyTime /*= 0.0f*/) override;
+	void DestroyUpdate(float _DeltaTime) override;
 
 protected:
 
 private:
-	std::list<UImageRenderer*> Renderers; //모든 렌더러를 관리해주는 것  Actor에서 관리하는 이유는
+	std::list<UImageRenderer*> Renderers;
 
 	ULevel* World = nullptr;
-	FTransform Transform = FTransform(); //위치 값 랜더러는 위치를 가지기 때문에 엑터 안에도 위치를 가진다 
+	FTransform Transform = FTransform();
 
 	void SetWorld(ULevel* _Value)
 	{
 		World = _Value;
 	}
 };
-
-
 
