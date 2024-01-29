@@ -22,10 +22,10 @@ void User::BeginPlay()
 
 
 	{
-		PlayerRenderer = CreateImageRenderer(0);				  
-		PlayerRenderer->SetPosition({ 0, 500 });				  
-		PlayerRenderer->SetScale({ 0,50 });						  
-		//이건 랜더러의 크기이고 								  
+		PlayerRenderer = CreateImageRenderer(0);				  		//좌표 이동 기준점 은 무조건 0으로 해야된다 이유는 랜더는 원래 있던 곳에서 똑같이 겹쳐야 하기 때문
+		PlayerRenderer->SetPosition({ 0, 500 });				  		//좌표 이동 기준점 은 무조건 0으로 해야된다 이유는 랜더는 원래 있던 곳에서 똑같이 겹쳐야 하기 때문
+		PlayerRenderer->SetScale({ 0,50 });						  		//좌표 이동 기준점 은 무조건 0으로 해야된다 이유는 랜더는 원래 있던 곳에서 똑같이 겹쳐야 하기 때문
+		//이건 랜더러의 크기이고 								  		//좌표 이동 기준점 은 무조건 0으로 해야된다 이유는 랜더는 원래 있던 곳에서 똑같이 겹쳐야 하기 때문
 	}
 	SetActorLocation({ 200, 500 });
 	SetActorScale({ 100, 50 });
