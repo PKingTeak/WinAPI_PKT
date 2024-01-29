@@ -25,6 +25,9 @@
     <ClInclude Include="ImageRenderer.h">
       <Filter>Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>Image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -51,6 +54,9 @@
     <ClCompile Include="ImageRenderer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Image</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -67,6 +73,9 @@
     </Filter>
     <Filter Include="Component">
       <UniqueIdentifier>{19428e24-373f-4044-9ace-5221f29aa013}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Image">
+      <UniqueIdentifier>{b6ad4a0d-6cfa-40c1-ba40-cdca9d72b2e5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

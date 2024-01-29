@@ -169,6 +169,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Image.h" />
     <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="NameObject.h" />
@@ -182,6 +183,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="NameObject.cpp" />

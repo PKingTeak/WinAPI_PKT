@@ -22,9 +22,9 @@ void User::BeginPlay()
 
 
 	{
-		PlayerRenderer = CreateImageRenderer(0);
-		PlayerRenderer->SetPosition({ 200, 500 });
-		PlayerRenderer->SetScale({ 100,50 });
+	//	PlayerRenderer = CreateImageRenderer(0);
+	//	PlayerRenderer->SetPosition({ 200, 500 });
+	//	PlayerRenderer->SetScale({ 100,50 });
 		//이건 랜더러의 크기이고 	
 	}
 	SetActorLocation({ 200, 500 });

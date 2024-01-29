@@ -16,6 +16,15 @@
     <ClInclude Include="Transform.h">
       <Filter>Transform</Filter>
     </ClInclude>
+    <ClInclude Include="EngineDirectory.h">
+      <Filter>File</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineFile.h">
+      <Filter>File</Filter>
+    </ClInclude>
+    <ClInclude Include="EnginePath.h">
+      <Filter>File</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineDebug.cpp">
@@ -33,6 +42,15 @@
     <ClCompile Include="Transform.cpp">
       <Filter>Transform</Filter>
     </ClCompile>
+    <ClCompile Include="EngineDirectory.cpp">
+      <Filter>File</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineFile.cpp">
+      <Filter>File</Filter>
+    </ClCompile>
+    <ClCompile Include="EnginePath.cpp">
+      <Filter>File</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Debug">
@@ -49,6 +67,9 @@
     </Filter>
     <Filter Include="Transform">
       <UniqueIdentifier>{f18ffe48-c563-477d-87e5-0ec5f64f6f6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File">
+      <UniqueIdentifier>{34f46e06-32b0-4d87-bd1f-f73970e76bc6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
