@@ -26,6 +26,7 @@ protected:
 
 private:
 	FVector Dir = FVector::Zero;
+	UImageRenderer* BulletRender;
 	float Speed = 300.0f;
 };
 

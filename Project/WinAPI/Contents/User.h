@@ -22,6 +22,8 @@ protected:
 private:
 	void AutoShot(float _DeltaTime);
 	UImageRenderer* PlayerRenderer;
+	float time = 0.0f;
+
 
 	//사실 총쏘는 기능은 필요 없다. 
 	// float QSkillColl = 0.0f; 

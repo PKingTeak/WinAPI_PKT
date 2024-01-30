@@ -15,8 +15,10 @@ void ABullet::BeginPlay()
 {
 	
 	{
-		UImageRenderer* Renderer = CreateImageRenderer(0); //-모양의 총알
-		Renderer->SetScale({ 50, 10 });
+		UImageRenderer* BulletRender = CreateImageRenderer(0); //-모양의 총알
+		BulletRender->SetScale({ 50, 10 });
+		BulletRender->SetImage("TestImage.bmp");
+
 	}
 
 	Destroy(2.0f); //파괴 2초후에 사실 필요 없는기능
