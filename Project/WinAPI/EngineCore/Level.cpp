@@ -104,7 +104,7 @@ void ULevel::LevelRelease(float _DeltaTime)
 		}
 	}
 
-
+	
 	// 선생님은 절대로 실행도중 삭제를 하지 않습니다.
 	for (std::pair<const int, std::list<AActor*>>& OrderListPair : AllActor)
 	{

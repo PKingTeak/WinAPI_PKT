@@ -6,16 +6,16 @@
 
 EngineCore* GEngine = nullptr;
 
-EngineCore::EngineCore()
+EngineCore::EngineCore() 
 	: MainWindow()
 {
 }
 
-EngineCore::~EngineCore()
+EngineCore::~EngineCore() 
 {
 }
 
-void EngineCore::CoreTick() //프레임제한을 위한 함수 
+void EngineCore::CoreTick()
 {
 	float DeltaTime = MainTimer.TimeCheck();
 	double dDeltaTime = MainTimer.GetDeltaTime();
@@ -42,15 +42,18 @@ void EngineCore::CoreTick() //프레임제한을 위한 함수
 
 	if (1 <= Frame)
 	{
-		CurFrameTime += DeltaTime; //CurFrameTime에 현재 시간을 넣어준다. 
+		//               5.0f
+		CurFrameTime += DeltaTime;
+
+		//  0.00001        0.016666675
 		if (CurFrameTime <= FrameTime)
 		{
-			return; //내가 정한 프레임의 시간보다 작으면 다시 돌린다 
-			//그 이유는 프레임이 더 높다는 뜻이다. 
-		}
-		CurFrameTime -= FrameTime; //해당 프레임을 출력후 다시 if문을 돌리기 위해 값을빼준다.
-		DeltaTime = FrameTime; //그리고 DeltaTime을 다시 정해준 것으로 돌려준다. 
-		//오차를 없애기 위해 
+			return;
+		} 
+
+		//  0.0167         0.016666675
+		CurFrameTime -= FrameTime;
+		DeltaTime = FrameTime;
 	}
 
 	EngineInput::KeyCheckTick(DeltaTime);
@@ -110,9 +113,9 @@ void EngineCore::EngineStart(HINSTANCE _hInstance, EngineCore* _UserCore)
 	EngineCore* Ptr = _UserCore;
 	GEngine = Ptr;
 	Ptr->MainTimer.TimeCheckStart();
-	Ptr->CoreInit(_hInstance);
+	Ptr->CoreInit(_hInstance); 
 	Ptr->BeginPlay();
-	EngineWindow::WindowMessageLoop(EngineTick, EngineEnd);
+	UEngineWindow::WindowMessageLoop(EngineTick, EngineEnd);
 }
 
 void EngineCore::CoreInit(HINSTANCE _HINSTANCE)
@@ -122,7 +125,7 @@ void EngineCore::CoreInit(HINSTANCE _HINSTANCE)
 		return;
 	}
 
-	EngineWindow::Init(_HINSTANCE);
+	UEngineWindow::Init(_HINSTANCE);
 	MainWindow.Open();
 
 	this->AllLevel;

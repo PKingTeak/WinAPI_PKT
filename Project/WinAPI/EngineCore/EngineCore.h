@@ -23,7 +23,7 @@ public:
 
 	// 하나는 무조건 만들어지고 사라질일이 없을것이므ㅗ.
 	// 코어가 윈도우를 가지고
-	EngineWindow MainWindow;
+	UEngineWindow MainWindow;
 	EngineTime MainTimer;
 
 	static void EngineStart(HINSTANCE _hInstance, EngineCore* _UserCore);
@@ -61,10 +61,9 @@ protected:
 	EngineCore();
 
 private:
-	int Frame = -1; //프레임이 0이 되는것은 말이 안된다. 
-	float FrameTime = 0.0f; //내가 지정할 프레임을 계산한 시간값
-	float CurFrameTime = 0.0f; //내가 cpu에서 받아올 시간값 
-
+	int Frame = -1;
+	float FrameTime = 0.0f;
+	float CurFrameTime = 0.0f;
 
 	bool EngineInit = false;
 	std::map<std::string, ULevel*> AllLevel;

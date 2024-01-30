@@ -168,6 +168,8 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="EngineTime.h" />
+    <ClInclude Include="NameObject.h" />
+    <ClInclude Include="PathObject.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +186,8 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="EngineTime.cpp" />
+    <ClCompile Include="NameObject.cpp" />
+    <ClCompile Include="PathObject.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

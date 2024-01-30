@@ -160,6 +160,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="WindowImage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineInput.cpp" />
@@ -167,6 +168,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="WindowImage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EngineBase\EngineBase.vcxproj">

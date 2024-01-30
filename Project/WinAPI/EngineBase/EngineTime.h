@@ -30,7 +30,7 @@ public:
 protected:
 
 private:
-	__int64 Count64; //왜 있는거지?
+	__int64 Count64;
 	LARGE_INTEGER Count;
 	LARGE_INTEGER PrevTime;
 	LARGE_INTEGER CurTime;

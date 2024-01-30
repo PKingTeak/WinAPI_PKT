@@ -1,11 +1,11 @@
 #include "Actor.h"
 #include "ImageRenderer.h"
 
-AActor::AActor()
+AActor::AActor() 
 {
 }
 
-AActor::~AActor()
+AActor::~AActor() 
 {
 	for (UImageRenderer* ImageRenderer : Renderers)
 	{
