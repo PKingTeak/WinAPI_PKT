@@ -2,7 +2,7 @@
 #include "User.h"
 #include "Stage1Level.h"
 ArkanoidCore::ArkanoidCore()
-	:EngineCore()
+	:UEngineCore()
 {
 }
 

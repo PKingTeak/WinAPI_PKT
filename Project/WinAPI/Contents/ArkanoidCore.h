@@ -2,7 +2,7 @@
 #include <EngineCore\EngineCore.h>
 
 // Ό³Έν :
-class ArkanoidCore : public EngineCore
+class ArkanoidCore : public UEngineCore
 {
 public:
 	// constrcuter destructer

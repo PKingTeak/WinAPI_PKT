@@ -21,11 +21,13 @@ void User::BeginPlay()
 //{
 	PlayerRenderer = CreateImageRenderer(0);				  		//좌표 이동 기준점 은 무조건 0으로 해야된다 이유는 랜더는 원래 있던 곳에서 똑같이 겹쳐야 하기 때문
 	PlayerRenderer->SetPosition({ 0, 30 });				  		//좌표 이동 기준점 은 무조건 0으로 해야된다 이유는 랜더는 원래 있던 곳에서 똑같이 겹쳐야 하기 때문
-	PlayerRenderer->SetImageToScale("TestImage.bmp");
-//}
+	PlayerRenderer->SetImage("TestImage.bmp");
+	
+	
+	
+	//}
 	SetActorLocation({ 200, 500 });
-	SetActorScale({ 100, 50 });
-
+	
 
 }
 
