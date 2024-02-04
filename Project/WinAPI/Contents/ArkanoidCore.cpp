@@ -24,6 +24,14 @@ void ArkanoidCore::BeginPlay()
 	Dir.MoveParent();
 	Dir.Move("ImageResource");
 
+
+	std::list<UEngineFile> FList = Dir.AllFile({ ".png",".bmp" }, true);
+	for (UEngineFile& File : FList)
+
+	{
+		UEngineResourcesManager::GetInst().LoadImg(File.GetFullPath());
+	}
+	UEngineResourcesManager::GetInst().CuttingImage("TestImage.bmp", 100, 100);
 	
 	
 	CreateLevel<Stage1Level>("Stage1");

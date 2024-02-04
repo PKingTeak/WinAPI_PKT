@@ -20,7 +20,7 @@ void User::BeginPlay()
 	//랜더러를 가져오기
 	UImageRenderer* Render = CreateImageRenderer();
 
-	Render->SetImage("TestImage.bmp");
+	Render->SetImage("TESTIMAGE.bmp"); //?? 왜 못읽지??
 	SetActorLocation({ 50,50 });
 	Render->SetTransform({ { 50,50 },{ 100,100 } });
 	Render->SetImageCuttingTransform({ {0,0},{180,240} });

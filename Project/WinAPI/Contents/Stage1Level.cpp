@@ -15,7 +15,11 @@ void Stage1Level::BeginPlay()
 {
 	ULevel::BeginPlay();
 	
-	User* user = SpawnActor<User>();
+	User* user = SpawnActor<User>(); //플에이어 생성
 
 }
 
+void Stage1Level::Tick(float _DeltaTime)
+{
+	ULevel::Tick(_DeltaTime);
+}
