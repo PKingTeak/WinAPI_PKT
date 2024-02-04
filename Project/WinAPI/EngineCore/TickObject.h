@@ -40,7 +40,7 @@ public:
 
 	virtual void Destroy(float _DestroyTime = 0.0f)
 	{
-		IsDestroyUpdate = true; // 언제 죽는지 시간을 계산 하는것
+		IsDestroyUpdate = true;
 		DestroyTime = _DestroyTime;
 		if (0.0f>= _DestroyTime)
 		{
@@ -60,15 +60,15 @@ public:
 
 	virtual void DestroyUpdate(float _DeltaTime)
 	{
-		if (false == IsDestroyUpdate) //이걸로 true가 아니면 리턴
+		if (false == IsDestroyUpdate)
 		{
 			return;
 		}
 
-		DestroyTime -= _DeltaTime; //시간을 빼다가
-		if (0.0f >= DestroyTime) //0초가 되면
+		DestroyTime -= _DeltaTime;
+		if (0.0f >= DestroyTime)
 		{
-			Destroy(0.0f); //삭제 
+			Destroy(0.0f);
 		}
 	}
 

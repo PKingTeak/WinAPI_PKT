@@ -16,17 +16,18 @@ User::~User()
 void User::BeginPlay()
 {
 	AActor::BeginPlay(); //Actor에서 상속받아와 BeginePlay()를 실행시켜준다 하지만 지금은 비어있다.
+	
+	//랜더러를 가져오기
+	UImageRenderer* Render = CreateImageRenderer();
 
+	Render->SetImage("TestImage.bmp");
+	SetActorLocation({ 50,50 });
+	Render->SetTransform({ { 50,50 },{ 100,100 } });
+	Render->SetImageCuttingTransform({ {0,0},{180,240} });
 
-//{
-	PlayerRenderer = CreateImageRenderer(0);				  		//좌표 이동 기준점 은 무조건 0으로 해야된다 이유는 랜더는 원래 있던 곳에서 똑같이 겹쳐야 하기 때문
-	PlayerRenderer->SetPosition({ 0, 30 });				  		//좌표 이동 기준점 은 무조건 0으로 해야된다 이유는 랜더는 원래 있던 곳에서 똑같이 겹쳐야 하기 때문
-	PlayerRenderer->SetImage("TestImage.bmp");
 	
-	
-	
-	//}
-	SetActorLocation({ 200, 500 });
+
+	//SetActorLocation({ 200, 500 });
 	
 
 }

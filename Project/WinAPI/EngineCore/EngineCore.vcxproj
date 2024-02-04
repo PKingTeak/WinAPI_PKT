@@ -170,7 +170,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="EngineResourcesManager.h" />
-    <ClInclude Include="Image.h" />
     <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="SceneComponent.h" />
@@ -184,7 +183,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="EngineResourcesManager.cpp" />
-    <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="SceneComponent.cpp" />

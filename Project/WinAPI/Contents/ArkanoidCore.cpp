@@ -1,6 +1,9 @@
 #include "ArkanoidCore.h"
 #include "User.h"
 #include "Stage1Level.h"
+#include <EngineBase/EngineDirectory.h>
+#include <EngineBase/EngineFile.h>
+#include <EngineCore/EngineResourcesManager.h>
 ArkanoidCore::ArkanoidCore()
 	:UEngineCore()
 {
@@ -13,6 +16,15 @@ ArkanoidCore::~ArkanoidCore()
 // 게임시작
 void ArkanoidCore::BeginPlay()
 {
+	UEngineCore::BeginPlay();
+
+	MainWindow.SetWindowScale({ 1280,720 }); //윈도우 설정해주고
+
+	UEngineDirectory Dir;
+	Dir.MoveParent();
+	Dir.Move("ImageResource");
+
+	
 	
 	CreateLevel<Stage1Level>("Stage1");
 	//구지 처음에 level을 다 만들 필요는 없다
@@ -42,7 +54,7 @@ void ArkanoidCore::Tick(float _DelatTime)
 	//}
 	//실행도중
 	//플레이어 동작같은거 
-	//로직 (객체들 함수 가져다 쓴느 공간)
+	//로직 (객체들 함수 가져다 쓰는 공간)
 }
 
 void ArkanoidCore::End()
