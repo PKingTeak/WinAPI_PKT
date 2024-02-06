@@ -2,14 +2,46 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="ArkanoidCore.cpp" />
-    <ClCompile Include="User.cpp" />
-    <ClCompile Include="Stage1Level.cpp" />
-    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Stage1Level.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Obejct</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>Obejct</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround.cpp">
+      <Filter>Obejct</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArkanoidCore.h" />
-    <ClInclude Include="User.h" />
-    <ClInclude Include="Stage1Level.h" />
-    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Stage1Level.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleLevel.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Obejct</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>Obejct</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround.h">
+      <Filter>Obejct</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Obejct">
+      <UniqueIdentifier>{bd85f85e-ad5f-44be-b406-b9e5900dfd5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level">
+      <UniqueIdentifier>{e4daa80d-62ad-4903-b1b6-c01bc1a2453f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Bullet.cpp">
       <SubType>
       </SubType>
@@ -168,12 +169,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TitleLevel.cpp" />
     <ClCompile Include="User.cpp">
       <SubType>
       </SubType>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BackGround.h" />
     <ClInclude Include="Bullet.h">
       <SubType>
       </SubType>
@@ -186,6 +189,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TitleLevel.h" />
     <ClInclude Include="User.h">
       <SubType>
       </SubType>

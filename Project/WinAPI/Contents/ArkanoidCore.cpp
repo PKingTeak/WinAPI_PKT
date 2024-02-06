@@ -1,6 +1,7 @@
 #include "ArkanoidCore.h"
 #include "User.h"
 #include "Stage1Level.h"
+#include "TitleLevel.h"
 #include <EngineBase/EngineDirectory.h>
 #include <EngineBase/EngineFile.h>
 #include <EngineCore/EngineResourcesManager.h>
@@ -31,16 +32,15 @@ void ArkanoidCore::BeginPlay()
 	{
 		UEngineResourcesManager::GetInst().LoadImg(File.GetFullPath());
 	}
-	UEngineResourcesManager::GetInst().CuttingImage("TestImage.bmp", 100, 100);
+	
+	CreateLevel<TitleLevel>("TitleLevel");
+	CreateLevel<Stage1Level>("Stage1Level");
+	
+	ChangeLevel("TitleLevel");
 	
 	
-	CreateLevel<Stage1Level>("Stage1");
-	//구지 처음에 level을 다 만들 필요는 없다
-	ChangeLevel("Stage1");
-	//MainWindow.SetTitle();
-	//MainWindow.SetScale();
-
-
+	UEngineResourcesManager::GetInst().CuttingImage("TestImage.bmp", 2248,420);
+	//이꺼때문에 안짤린거였다.
 	
 	// 이때되면 이미 윈도우 창은 만들어져있는 상태일거라고 
 	//창이 실행되면서 초기설정 
@@ -53,7 +53,10 @@ void ArkanoidCore::BeginPlay()
 }
 
 void ArkanoidCore::Tick(float _DelatTime)
-{ // 입력 받는거 혹은 상황을 넣어주는게 좋을듯 하고
+
+{
+	UEngineCore::Tick(_DelatTime);
+	// 입력 받는거 혹은 상황을 넣어주는게 좋을듯 하고
 	//특정 버튼을 누르고 changeLevel하는것인가?
 	//if (/*플레이어가 충돌했다 뭐 게임을 클리어 했다*/)
 	//{

@@ -15,7 +15,7 @@ void Stage1Level::BeginPlay()
 {
 	ULevel::BeginPlay();
 	
-	User* user = SpawnActor<User>(); //플에이어 생성
+	User* user = SpawnActor<User>(); //플레이어 생성
 
 }
 
