@@ -22,10 +22,11 @@ void User::BeginPlay()
 	//랜더러를 가져오기
 	
 	UImageRenderer* PlayerRenderer = CreateImageRenderer(1);
-	
+	UEngineResourcesManager::GetInst().CuttingImage("Player_Idle.png", 1, 6);
 	PlayerRenderer->SetImage("Player_Idle.png");
-	//SetActorLocation({16,4,32,8});
 	PlayerRenderer->SetTransform({ { 300,300 },{ 64,96 } });
+	PlayerRenderer->CreateAnimation("PlayerIdleAnimation", "Player_Idle.png",0,5,0.1f,true);
+	//SetActorLocation({16,4,32,8});
 
 
 
@@ -58,6 +59,7 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 	{
 		AddActorLocation(FVector::Down * 500.0f * _DeltaTime);
 	}
+	PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 	//AutoShot(_DeltaTime);
 
 }
