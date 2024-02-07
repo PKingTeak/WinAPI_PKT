@@ -39,7 +39,7 @@ void ArkanoidCore::BeginPlay()
 	ChangeLevel("TitleLevel");
 	
 	
-	UEngineResourcesManager::GetInst().CuttingImage("TestImage.bmp", 2248,420);
+	UEngineResourcesManager::GetInst().CuttingImage("Player_Idle", 32,8);
 	//이꺼때문에 안짤린거였다.
 	
 	// 이때되면 이미 윈도우 창은 만들어져있는 상태일거라고 
