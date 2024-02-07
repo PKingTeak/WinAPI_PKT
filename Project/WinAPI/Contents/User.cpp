@@ -26,6 +26,8 @@ void User::BeginPlay()
 	PlayerRenderer->SetImage("Player_Idle.png");
 	PlayerRenderer->SetTransform({ { 300,300 },{ 64,96 } });
 	PlayerRenderer->CreateAnimation("PlayerIdleAnimation", "Player_Idle.png",0,5,0.1f,true);
+	PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
+	
 	//SetActorLocation({16,4,32,8});
 
 
@@ -59,7 +61,7 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 	{
 		AddActorLocation(FVector::Down * 500.0f * _DeltaTime);
 	}
-	PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
+	//PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 	//AutoShot(_DeltaTime);
 
 }
