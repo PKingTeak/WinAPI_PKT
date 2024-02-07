@@ -2,6 +2,8 @@
 #include <EngineCore\EngineCore.h>
 #include <EngineBase/EngineTime.h>
 #include <EnginePlatform/EngineInput.h>
+#include <EngineCore/EngineResourcesManager.h>
+
 #include <vector>
 #include <list>
 #include "Bullet.h"
@@ -18,10 +20,12 @@ void User::BeginPlay()
 	AActor::BeginPlay(); //Actor에서 상속받아와 BeginePlay()를 실행시켜준다 하지만 지금은 비어있다.
 
 	//랜더러를 가져오기
+	
 	UImageRenderer* PlayerRenderer = CreateImageRenderer(1);
+	
 	PlayerRenderer->SetImage("Player_Idle.png");
-	SetActorLocation({0,0,32,8});
-	PlayerRenderer->SetTransform({ { 300,300 },{ 100,400 } });
+	//SetActorLocation({16,4,32,8});
+	PlayerRenderer->SetTransform({ { 300,300 },{ 64,96 } });
 
 
 

@@ -401,7 +401,7 @@ void UWindowImage::Cutting(int _X, int _Y)
 	{
 		for (int i = 0; i < _X; i++)
 		{
-			ImageInfo Info;
+			ImageInfo Info; //안들어 간다..
 			Info.ImageDC = ImageDC;
 			Info.CuttingTrans.SetPosition(CuttingPos);
 			Info.CuttingTrans.SetScale(CuttingScale);

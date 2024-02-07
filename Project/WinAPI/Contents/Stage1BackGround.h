@@ -1,5 +1,6 @@
 #pragma once
 #include<EngineCore/Actor.h>
+#include"ArkanoidCore.h"
 class Stage1Map : public AActor
 {
 
@@ -16,14 +17,14 @@ public:
 	void SetMapImage(std::string_view _MapImageName);
 	void SetColMapImage(std::string_view _MapImageName);
 	void SwitchDebug();
-
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+	static UWindowImage* ColMapImage;
 
 private:
 	UImageRenderer* MapRenderer = nullptr;
 	UImageRenderer* ColMapRenderer = nullptr;
-
+	
 };
 
