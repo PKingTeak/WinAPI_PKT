@@ -5,6 +5,12 @@
 #include <EngineBase/EngineDirectory.h>
 #include <EngineBase/EngineFile.h>
 #include <EngineCore/EngineResourcesManager.h>
+
+FVector ArkanoidCore::ScreenSize = { 800,600 };
+//꿀팁 선언만 하고 구현을 안해주면 링커가 못찾는다. 
+//1120 2001오류들 있으면 Static오류다 
+//헤더 추가만 하면 끝~
+
 ArkanoidCore::ArkanoidCore()
 	:UEngineCore()
 {
@@ -39,7 +45,7 @@ void ArkanoidCore::BeginPlay()
 	ChangeLevel("TitleLevel");
 	
 	
-	UEngineResourcesManager::GetInst().CuttingImage("Player_Idle", 32,8);
+	UEngineResourcesManager::GetInst().CuttingImage("Player_Idle.png", 32,8);
 	//이꺼때문에 안짤린거였다.
 	
 	// 이때되면 이미 윈도우 창은 만들어져있는 상태일거라고 

@@ -20,7 +20,7 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
-	void AutoShot(float _DeltaTime);
+	//void AutoShot(float _DeltaTime);
 	UImageRenderer* PlayerRenderer;
 	float time = 0.0f;
 

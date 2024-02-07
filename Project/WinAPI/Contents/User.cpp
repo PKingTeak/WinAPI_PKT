@@ -16,21 +16,19 @@ User::~User()
 void User::BeginPlay()
 {
 	AActor::BeginPlay(); //Actor에서 상속받아와 BeginePlay()를 실행시켜준다 하지만 지금은 비어있다.
-	
-	//랜더러를 가져오기
-	UImageRenderer* Render = CreateImageRenderer();
-//
-//	Render->SetImage(""); 
-//	SetActorLocation({ 0,0 });
-//	//Render->SetImageCuttingTransform({ { 0,0 }, {1000, 420} });
-//	Render->SetTransform({ { 300,300 },{ 100,400 } });
-	
-	
 
-	
+	//랜더러를 가져오기
+	UImageRenderer* PlayerRenderer = CreateImageRenderer(1);
+	PlayerRenderer->SetImage("Player_Idle.png");
+	SetActorLocation({0,0,32,8});
+	PlayerRenderer->SetTransform({ { 300,300 },{ 100,400 } });
+
+
+
+
 
 	//SetActorLocation({ 200, 500 });
-	
+
 
 }
 
@@ -56,21 +54,21 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 	{
 		AddActorLocation(FVector::Down * 500.0f * _DeltaTime);
 	}
-	AutoShot(_DeltaTime);
+	//AutoShot(_DeltaTime);
 
 }
-void User::AutoShot(float _DeltaTime)
-{
-	time += _DeltaTime;
-
-	
-	if (time >= 2)
-	{
-		ABullet* NewBullet = GetWorld()->SpawnActor<ABullet>();
-		NewBullet->SetActorLocation(GetActorLocation());
-		NewBullet->SetDir(FVector::Up);
-		time = 0;
-
-		//총알이 계속 나간다 .
-	}
-}
+// void User::AutoShot(float _DeltaTime)
+// {
+// 	time += _DeltaTime;
+// 
+// 	
+// 	if (time >= 2)
+// 	{
+// 		ABullet* NewBullet = GetWorld()->SpawnActor<ABullet>();
+// 		NewBullet->SetActorLocation(GetActorLocation());
+// 		NewBullet->SetDir(FVector::Up);
+// 		time = 0;
+// 
+// 		//총알이 계속 나간다 .
+// 	}
+// }
