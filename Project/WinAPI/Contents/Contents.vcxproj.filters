@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="ArkanoidCore.cpp" />
-    <ClCompile Include="Stage1Level.cpp">
-      <Filter>Level</Filter>
-    </ClCompile>
     <ClCompile Include="TitleLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
@@ -17,12 +14,15 @@
     <ClCompile Include="BackGround.cpp">
       <Filter>Obejct</Filter>
     </ClCompile>
+    <ClCompile Include="Stage1Level.cpp">
+      <Filter>Level\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1BackGround.cpp">
+      <Filter>Level\Stage1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArkanoidCore.h" />
-    <ClInclude Include="Stage1Level.h">
-      <Filter>Level</Filter>
-    </ClInclude>
     <ClInclude Include="TitleLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
@@ -35,6 +35,12 @@
     <ClInclude Include="BackGround.h">
       <Filter>Obejct</Filter>
     </ClInclude>
+    <ClInclude Include="Stage1Level.h">
+      <Filter>Level\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage1BackGround.h">
+      <Filter>Level\Stage1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Obejct">
@@ -42,6 +48,9 @@
     </Filter>
     <Filter Include="Level">
       <UniqueIdentifier>{e4daa80d-62ad-4903-b1b6-c01bc1a2453f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Stage1">
+      <UniqueIdentifier>{f410b0de-19bc-4985-9943-d12b78cfcfee}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

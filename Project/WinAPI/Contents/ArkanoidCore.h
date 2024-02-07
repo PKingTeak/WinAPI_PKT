@@ -19,6 +19,7 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DelatTime) override;
 	void End() override;
+	FVector   ScreenSize = { 640,480 } ;
 
 private:
 

@@ -19,7 +19,7 @@ void ArkanoidCore::BeginPlay()
 {
 	UEngineCore::BeginPlay();
 
-	MainWindow.SetWindowScale({ 1280,720 }); //윈도우 설정해주고
+	MainWindow.SetWindowScale({ ScreenSize.X,ScreenSize.Y }); //윈도우 설정해주고
 
 	UEngineDirectory Dir;
 	Dir.MoveParent();

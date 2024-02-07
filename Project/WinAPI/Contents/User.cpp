@@ -19,11 +19,11 @@ void User::BeginPlay()
 	
 	//랜더러를 가져오기
 	UImageRenderer* Render = CreateImageRenderer();
-
-	Render->SetImage("TESTIMAGE.bmp"); 
-	SetActorLocation({ 0,0 });
-	//Render->SetImageCuttingTransform({ { 0,0 }, {1000, 420} });
-	Render->SetTransform({ { 300,300 },{ 1000,400 } });
+//
+//	Render->SetImage(""); 
+//	SetActorLocation({ 0,0 });
+//	//Render->SetImageCuttingTransform({ { 0,0 }, {1000, 420} });
+//	Render->SetTransform({ { 300,300 },{ 100,400 } });
 	
 	
 

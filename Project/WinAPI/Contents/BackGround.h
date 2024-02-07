@@ -1,6 +1,6 @@
 #pragma once
 #include<EngineCore/Actor.h>
-
+#include"ArkanoidCore.h"
 class BackGround:public AActor
 {
 public:
@@ -16,7 +16,7 @@ public:
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-
+	
 
 
 private:
