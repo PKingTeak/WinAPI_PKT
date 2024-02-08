@@ -1,4 +1,5 @@
 #include "Stage1BackGround.h"
+#include"CollisonManger.h"
 
 Stage1Map::Stage1Map()
 {
@@ -9,7 +10,7 @@ Stage1Map::~Stage1Map()
 {
 
 }
-
+//더 줄일수 있다. 
 
 void Stage1Map::SetMapImage(std::string_view _MapImageName)
 {
@@ -19,11 +20,11 @@ void Stage1Map::SetMapImage(std::string_view _MapImageName)
 	MapRenderer->SetTransform({ ImageScale.Half2D(), ImageScale });
 }
 
-void Stage1Map::SetColMapImage(std::string_view _MapImageName)
+void  Stage1Map::SetColMapImage(std::string_view _MapImageName)
 {
 	ColMapRenderer->SetImage(_MapImageName);
 	UWindowImage* Image = ColMapRenderer->GetImage();
-	ColMapImage = Image;
+	CollisonManger::ColMapImage = Image;
 	FVector ImageScale = ArkanoidCore::GetScreenSize();
 	ColMapRenderer->SetTransform({ ImageScale.Half2D(), ImageScale });
 
@@ -61,7 +62,7 @@ void Stage1Map::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 
-	if (EngineInput::IsDown('q'))
+	if (EngineInput::IsDown('Q'))
 	{
 		SwitchDebug();
 	}

@@ -3,7 +3,9 @@
 #include <EngineBase/EngineTime.h>
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineResourcesManager.h>
+#include <EngineBase/EngineMath.h>
 
+#include"CollisonManger.h"
 #include <vector>
 #include <list>
 #include "Bullet.h"
@@ -24,11 +26,15 @@ void User::BeginPlay()
 	UImageRenderer* PlayerRenderer = CreateImageRenderer(1);
 	UEngineResourcesManager::GetInst().CuttingImage("Player_Idle.png", 1, 6);
 	PlayerRenderer->SetImage("Player_Idle.png");
-	PlayerRenderer->SetTransform({ { 300,300 },{ 64,96 } });
+	PlayerRenderer->SetTransform({ { 300,480 },{ 68,16} });
 	PlayerRenderer->CreateAnimation("PlayerIdleAnimation", "Player_Idle.png",0,5,0.1f,true);
 	PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 	
+	
 	//SetActorLocation({16,4,32,8});
+
+
+
 
 
 
@@ -39,9 +45,11 @@ void User::BeginPlay()
 
 }
 
+
 void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 다르게 하면 성능에 따라 시간이 달라지기 때문에 안된다.
 {
-
+	
+	
 	if (true == EngineInput::IsPress('A'))
 	{
 		AddActorLocation(FVector::Left * 500.0f * _DeltaTime);
@@ -52,18 +60,16 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 		AddActorLocation(FVector::Right * 500.0f * _DeltaTime);
 	}
 
-	if (true == EngineInput::IsPress('W'))
-	{
-		AddActorLocation(FVector::Up * 500.0f * _DeltaTime);
-	}
 
-	if (true == EngineInput::IsPress('S'))
-	{
-		AddActorLocation(FVector::Down * 500.0f * _DeltaTime);
-	}
 	//PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 	//AutoShot(_DeltaTime);
 
+}
+
+void User::CheckCol()
+{
+	
+	
 }
 // void User::AutoShot(float _DeltaTime)
 // {

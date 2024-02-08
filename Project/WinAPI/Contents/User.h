@@ -1,5 +1,7 @@
 #pragma once
 #include <EngineCore/Actor.h>
+#include"Stage1BackGround.h"
+
 
 // 설명 :
 class User : public AActor
@@ -18,11 +20,14 @@ public:
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+	void CheckCol();
 
 private:
 	//void AutoShot(float _DeltaTime);
 	UImageRenderer* PlayerRenderer;
+	
 	float time = 0.0f;
+
 
 
 	//사실 총쏘는 기능은 필요 없다. 

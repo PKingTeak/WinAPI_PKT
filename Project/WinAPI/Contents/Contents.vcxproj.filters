@@ -20,6 +20,9 @@
     <ClCompile Include="Stage1BackGround.cpp">
       <Filter>Level\Stage1</Filter>
     </ClCompile>
+    <ClCompile Include="CollisonManger.cpp">
+      <Filter>Level\Stage1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArkanoidCore.h" />
@@ -39,6 +42,9 @@
       <Filter>Level\Stage1</Filter>
     </ClInclude>
     <ClInclude Include="Stage1BackGround.h">
+      <Filter>Level\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisonManger.h">
       <Filter>Level\Stage1</Filter>
     </ClInclude>
   </ItemGroup>

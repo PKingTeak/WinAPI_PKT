@@ -6,7 +6,7 @@
 #include <EngineBase/EngineFile.h>
 #include <EngineCore/EngineResourcesManager.h>
 
-FVector ArkanoidCore::ScreenSize = { 800,600 };
+FVector ArkanoidCore::ScreenSize = { 552,602 };
 //꿀팁 선언만 하고 구현을 안해주면 링커가 못찾는다. 
 //1120 2001오류들 있으면 Static오류다 
 //헤더 추가만 하면 끝~

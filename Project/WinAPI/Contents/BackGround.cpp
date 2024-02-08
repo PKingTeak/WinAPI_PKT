@@ -17,9 +17,9 @@ void BackGround::BeginPlay()
 	BackGroundRender = CreateImageRenderer();
 	//SetActorLocation({ 0,0 });
 	BackGroundRender->SetImage("TitleBackGround.png");
-	SetActorLocation({400,300 ,640,480});//수치상으로 하는거 안좋으니 변수로 변경
+	SetActorLocation({276,304 ,552,602});//수치상으로 하는거 안좋으니 변수로 변경
 	//BackGroundRender->SetImageCuttingTransform({ {0,0},{522,602} });<- 이건 랜더러
-	BackGroundRender->SetTransform({ { 0,0 },{ 800,600 } });
+	BackGroundRender->SetTransform({ { 0,0 },{ 552,600 } });
 	//BackGroundRender->CreateAnimation(); 아직 애니메이션 안넣음
 
 }
