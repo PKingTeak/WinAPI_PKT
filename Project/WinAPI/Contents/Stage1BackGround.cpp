@@ -36,7 +36,7 @@ void Stage1Map::SwitchDebug()
 	if (true == MapRenderer->IsActive())
 	{
 		MapRenderer->SetActive(false);
-		ColMapRenderer->SetActive(true);
+		ColMapRenderer->SetActive(true,0.0f);
 
 	}
 	else
