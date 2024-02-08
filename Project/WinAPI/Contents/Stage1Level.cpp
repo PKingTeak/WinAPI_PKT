@@ -20,7 +20,7 @@ void Stage1Level::BeginPlay()
 	User* user = SpawnActor<User>(); //플레이어 생성
 	Stage1Map* Stage1 = SpawnActor<Stage1Map>();
 	Stage1->SetMapImage("Stage1_BackGround.png");
-	Stage1->SetColMapImage("Stage1_ColMap.png");
+	//Stage1->SetColMapImage("Stage1_ColMap.png");
 
 }
 

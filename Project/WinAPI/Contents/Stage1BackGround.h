@@ -16,22 +16,18 @@ public:
 	Stage1Map& operator=(Stage1Map&& _Other) noexcept = delete;
 
 	void SetMapImage(std::string_view _MapImageName);
-	void SetColMapImage(std::string_view _MapImageName);
-	void SwitchDebug();
+	//void SetColMapImage(std::string_view _MapImageName);
 	
-	UImageRenderer* GetColMap()
-	{
-		return ColMapRenderer;
-	}
+	
 	
 protected:
-	UWindowImage* ColMapImage;
+	
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
 private:
 	UImageRenderer* MapRenderer = nullptr;
-	UImageRenderer* ColMapRenderer = nullptr;
+
 	
 	
 };
