@@ -16,18 +16,18 @@ public:
 	User(User&& _Other) noexcept = delete;
 	User& operator=(const User& _Other) = delete;
 	User& operator=(User&& _Other) noexcept = delete;
-
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-	void CheckCol();
+	
 
 private:
+	FVector CurPos;
 	//void AutoShot(float _DeltaTime);
 	UImageRenderer* PlayerRenderer;
 	
 	float time = 0.0f;
-
+	
 
 
 	//사실 총쏘는 기능은 필요 없다. 
