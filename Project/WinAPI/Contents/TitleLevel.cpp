@@ -21,7 +21,7 @@ void TitleLevel::BeginPlay()
 void TitleLevel::Tick(float _DeltaTime)
 {
 	ULevel::Tick(_DeltaTime);
-	if (EngineInput::IsDown(' '))
+	if (UEngineInput::IsDown(' '))
 	{
 		GEngine->ChangeLevel("Stage1Level");
 	}

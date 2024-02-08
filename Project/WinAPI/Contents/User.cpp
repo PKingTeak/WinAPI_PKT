@@ -50,12 +50,12 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 {
 	
 	
-	if (true == EngineInput::IsPress('A'))
+	if (true == UEngineInput::IsPress('A'))
 	{
 		AddActorLocation(FVector::Left * 500.0f * _DeltaTime);
 	}
 
-	if (true == EngineInput::IsPress('D'))
+	if (true == UEngineInput::IsPress('D'))
 	{
 		AddActorLocation(FVector::Right * 500.0f * _DeltaTime);
 	}

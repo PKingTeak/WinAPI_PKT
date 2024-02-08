@@ -7,6 +7,7 @@
 #include <EngineCore/EngineResourcesManager.h>
 
 FVector ArkanoidCore::ScreenSize = { 552,602 }; //Static을 이용하여 만들어서 구현하는 곳에 초기화 
+
 //꿀팁 선언만 하고 구현을 안해주면 링커가 못찾는다. 
 //1120 2001오류들 있으면 Static오류다 
 //헤더 추가만 하면 끝~
@@ -26,7 +27,7 @@ void ArkanoidCore::BeginPlay()
 	UEngineCore::BeginPlay();
 
 	MainWindow.SetWindowScale({ ScreenSize.X,ScreenSize.Y }); //윈도우 설정해주고
-
+	MainWindow.SetClearColor(Color8Bit::BlackA);
 	UEngineDirectory Dir;
 	Dir.MoveParent();
 	Dir.Move("ImageResource");
