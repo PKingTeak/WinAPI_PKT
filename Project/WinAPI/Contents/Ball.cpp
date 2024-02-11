@@ -15,9 +15,9 @@ void Ball::BeginPlay()
 {
 	AActor::BeginPlay();
 	BallRender = CreateImageRenderer(0);
-	//UEngineResourcesManager::GetInst().CuttingImage("Ball.png", 1, 1);
+	UEngineResourcesManager::GetInst().CuttingImage("Ball.png", 1, 1);
 	BallRender->SetImage("Ball.png"); //아직 없음
-	BallRender->SetTransform({ { 0,0 }, {10,8} });
+	BallRender->SetScale({ 10,8 });
 
 	
 }
@@ -33,12 +33,13 @@ void Ball::Tick(float _DeltaTime)
 	AActor::Tick(_DeltaTime);
 	DirCheck();
 	AddActorLocation(BDir * Speed * _DeltaTime);//공이이동한다.
-	BDir;
+	
 
 }
 
 void Ball::DirCheck()
 {
+	CurBallPos = GetActorLocation();
 	if (CurBallPos.X <= 0)
 	{
 		BDir = BDir.Right;
@@ -61,21 +62,12 @@ void Ball::DirCheck()
 }
 
 
-/*
 
-void Ball::Move(float _DetaTime)
+
+
+void Ball::Move(FVector _StartPos)
 {
-	if (Dir.X <= 0)
-	{
-	Dir.X += _DetaTime;
-	}
-	else if (Dir.X >= 500)
-	{
-		Dir.X += ( - 1 * _DetaTime);
-	}
-	else if (Dir.Y <= 0)
-	{
-		Dir.Y += _DetaTime;
-	}
+	CurBallPos = _StartPos;
+	
 }
-*/
+

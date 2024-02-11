@@ -46,6 +46,7 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 	//Block();
 	FVector MovePos = FVector::Zero;
 	FVector NextPos = GetActorLocation();
+	CurPos = NextPos;
 	if (true == UEngineInput::IsPress('A'))
 	{
 		MovePos = FVector::Left * 500.0f * _DeltaTime;
@@ -82,8 +83,11 @@ void User::AutoShot(float _DeltaTime)
  	time += _DeltaTime;
 	if (time >= 2)
 	{
+		CurPos;
 		Ball* NewBall = GetWorld()->SpawnActor<Ball>(); //여기서 공이 생성됨 
-		NewBall->SetActorLocation({CurPos.X,CurPos.Y+10});//플레이어의 판위에서 생성
+		NewBall->Move(CurPos);
+		NewBall->SetActorLocation({CurPos.X,CurPos.Y-10});//플레이어의 판위에서 생성
+		
 		Isballlive = true;
 		time = 0;
 		//공이 사라지면 다시 생기게 할것이다. 

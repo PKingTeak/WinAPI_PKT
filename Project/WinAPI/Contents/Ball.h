@@ -27,6 +27,7 @@ public:
 
 	*/
 	void SetPos(FVector _CurPos);
+	void Move(FVector _StartPos);
 
 protected:
 	void BeginPlay() override;
@@ -35,9 +36,8 @@ protected:
 	
 private:
 	void DirCheck();
-	//void Move(float DeltaTime);
 	UImageRenderer* BallRender = nullptr;
 	FVector CurBallPos = {};
-	FVector BDir = BDir.Zero;
+	FVector BDir = BDir.Up;
 	float Speed = 300.0f;
 };
