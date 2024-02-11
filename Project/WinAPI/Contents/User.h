@@ -16,16 +16,18 @@ public:
 	User(User&& _Other) noexcept = delete;
 	User& operator=(const User& _Other) = delete;
 	User& operator=(User&& _Other) noexcept = delete;
+
+	static FVector CurPos;
+	
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 	
 
 private:
-	FVector CurPos;
-	//void AutoShot(float _DeltaTime);
+	void AutoShot(float _DeltaTime);
 	UImageRenderer* PlayerRenderer;
-	
+	bool Isballlive = false;
 	float time = 0.0f;
 	
 

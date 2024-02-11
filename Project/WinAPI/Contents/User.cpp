@@ -9,6 +9,8 @@
 #include <vector>
 #include <list>
 #include "Bullet.h"
+#include "Ball.h"
+FVector User::CurPos = {};
 User::User()
 {
 }
@@ -22,7 +24,7 @@ void User::BeginPlay()
 	AActor::BeginPlay(); //Actor에서 상속받아와 BeginePlay()를 실행시켜준다 하지만 지금은 비어있다.
 
 	//랜더러를 가져오기
-	SetActorLocation({ 50,480 });
+	SetActorLocation({ 300,480 });
 	UImageRenderer* PlayerRenderer = CreateImageRenderer(1);
 	UEngineResourcesManager::GetInst().CuttingImage("Player_Idle.png", 1, 6);
 	PlayerRenderer->SetImage("Player_Idle.png");
@@ -63,17 +65,31 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 	}
 	AddActorLocation(MovePos);
 
-	//PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
-	//AutoShot(_DeltaTime);
-
+	
+	AutoShot(_DeltaTime);
+	
 }
 
 
 
 
-// void User::AutoShot(float _DeltaTime)
-// {
-// 	time += _DeltaTime;
+void User::AutoShot(float _DeltaTime)
+ {
+	if (true == Isballlive)
+	{
+		return;
+	}
+ 	time += _DeltaTime;
+	if (time >= 2)
+	{
+		Ball* NewBall = GetWorld()->SpawnActor<Ball>(); //여기서 공이 생성됨 
+		NewBall->SetActorLocation({CurPos.X,CurPos.Y+10});//플레이어의 판위에서 생성
+		Isballlive = true;
+		time = 0;
+		//공이 사라지면 다시 생기게 할것이다. 
+
+	}
+	
 // 
 // 	
 // 	if (time >= 2)
@@ -85,4 +101,4 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 // 
 // 		//총알이 계속 나간다 .
 // 	}
-// }
+ }
