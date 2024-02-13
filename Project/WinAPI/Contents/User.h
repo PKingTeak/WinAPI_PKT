@@ -25,9 +25,9 @@ protected:
 	
 
 private:
-	void AutoShot(float _DeltaTime);
+	
 	UImageRenderer* PlayerRenderer;
-	bool Isballlive = false;
+	
 	float time = 0.0f;
 	
 

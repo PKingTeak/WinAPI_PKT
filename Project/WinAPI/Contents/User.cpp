@@ -25,6 +25,7 @@ void User::BeginPlay()
 
 	//랜더러를 가져오기
 	SetActorLocation({ 300,480 });
+	CurPos = GetActorLocation();
 	UImageRenderer* PlayerRenderer = CreateImageRenderer(1);
 	UEngineResourcesManager::GetInst().CuttingImage("Player_Idle.png", 1, 6);
 	PlayerRenderer->SetImage("Player_Idle.png");
@@ -32,6 +33,7 @@ void User::BeginPlay()
 	PlayerRenderer->CreateAnimation("PlayerIdleAnimation", "Player_Idle.png",0,5,0.1f,true);
 	PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 	
+
 
 	//SetActorLocation({16,4,32,8});
 	//SetActorLocation({ 200, 500 });
@@ -42,8 +44,7 @@ void User::BeginPlay()
 
 void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 다르게 하면 성능에 따라 시간이 달라지기 때문에 안된다.
 {
-	
-	//Block();
+	CurPos = GetActorLocation();
 	FVector MovePos = FVector::Zero;
 	FVector NextPos = GetActorLocation();
 	CurPos = NextPos;
@@ -67,40 +68,13 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 	AddActorLocation(MovePos);
 
 	
-	AutoShot(_DeltaTime);
+
 	
 }
 
 
 
 
-void User::AutoShot(float _DeltaTime)
- {
-	if (true == Isballlive)
-	{
-		return;
-	}
- 	time += _DeltaTime;
-	if (time >= 2)
-	{
-		CurPos;
-		Ball* NewBall = GetWorld()->SpawnActor<Ball>(); //여기서 공이 생성됨 
-		NewBall->Move(CurPos);
-		NewBall->SetActorLocation({CurPos.X,CurPos.Y-10});//플레이어의 판위에서 생성
-		
-		Isballlive = true;
-		time = 0;
-		//공이 사라지면 다시 생기게 할것이다. 
-
-	}
-	
-// 
-// 레이저 아이템 먹었을때 스페이스바를 누르면 만들 함수	
-// 	if (time >= 2)
-// 	{
-// 		//총알이 계속 나간다 .
-// 	}
- }
 
 /*
 void 레이저()
@@ -108,6 +82,37 @@ void 레이저()
 
 
 if(Input(' ');
+
+void User::AutoShot(float _DeltaTime)
+ {
+	if (true == Isballlive)
+	{
+		return;
+	}
+	time += _DeltaTime;
+	if (time >= 2)
+	{
+
+		Ball* NewBall = GetWorld()->SpawnActor<Ball>(); //여기서 공이 생성됨
+		NewBall->Move(CurPos);
+		NewBall->SetActorLocation({ CurPos.X,CurPos.Y - 10 });//플레이어의 판위에서 생성
+
+		NewBall->DirCheck();
+		Isballlive = true;
+		time = 0;
+		//공이 사라지면 다시 생기게 할것이다.
+
+	}
+
+//
+// 레이저 아이템 먹었을때 스페이스바를 누르면 만들 함수
+// 	if (time >= 2)
+// 	{
+// 		//총알이 계속 나간다 .
+// 	}
+ }
+
+
 
 {
 
