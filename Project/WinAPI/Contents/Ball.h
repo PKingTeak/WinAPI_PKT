@@ -28,7 +28,22 @@ public:
 	*/
 	void SetPos(FVector _CurPos);
 	void Move(FVector _StartPos);
-
+	inline void SetBallX(float _X)
+	{
+		BallX = _X;
+	}
+	inline void SetBallY(float _Y)
+	{
+		BallY = _Y;
+	}
+	float GetBallX()
+	{
+		return BallX;
+	}
+	float GetBallY()
+	{
+		return BallY;
+	}
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -38,6 +53,8 @@ private:
 	void DirCheck();
 	UImageRenderer* BallRender = nullptr;
 	FVector CurBallPos = {};
-	FVector BDir = {1,-1};
+	FVector BDir = {};
+	float BallX;
+	float BallY;
 	float Speed = 300.0f;
 };
