@@ -38,6 +38,6 @@ private:
 	void DirCheck();
 	UImageRenderer* BallRender = nullptr;
 	FVector CurBallPos = {};
-	FVector BDir = BDir.Up;
+	FVector BDir = {1,-1};
 	float Speed = 300.0f;
 };

@@ -13,13 +13,16 @@ BackGround::~BackGround()
 void BackGround::BeginPlay()
 {
 	AActor::BeginPlay();
-	//UEngineResourcesManager::GetInst().CuttingImage("TitleBackGround.bmp", 522, 602);여러개 이미지 있는거 자를때
 	BackGroundRender = CreateImageRenderer();
-	//SetActorLocation({ 0,0 });
 	BackGroundRender->SetImage("TitleBackGround.png");
 	SetActorLocation({276,304 ,552,602});//수치상으로 하는거 안좋으니 변수로 변경
-	//BackGroundRender->SetImageCuttingTransform({ {0,0},{522,602} });<- 이건 랜더러
 	BackGroundRender->SetTransform({ { 0,0 },{ 552,600 } });
+
+
+
+	//UEngineResourcesManager::GetInst().CuttingImage("TitleBackGround.bmp", 522, 602);여러개 이미지 있는거 자를때
+	//SetActorLocation({ 0,0 });
+	//BackGroundRender->SetImageCuttingTransform({ {0,0},{522,602} });<- 이건 랜더러
 	//BackGroundRender->CreateAnimation(); 아직 애니메이션 안넣음
 
 }

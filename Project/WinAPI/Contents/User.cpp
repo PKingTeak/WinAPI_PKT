@@ -95,14 +95,25 @@ void User::AutoShot(float _DeltaTime)
 	}
 	
 // 
-// 	
+// 레이저 아이템 먹었을때 스페이스바를 누르면 만들 함수	
 // 	if (time >= 2)
 // 	{
-// 		ABullet* NewBullet = GetWorld()->SpawnActor<ABullet>();
-// 		NewBullet->SetActorLocation(GetActorLocation());
-// 		NewBullet->SetDir(FVector::Up);
-// 		time = 0;
-// 
 // 		//총알이 계속 나간다 .
 // 	}
  }
+
+/*
+void 레이저()
+
+
+
+if(Input(' ');
+
+{
+
+ ABullet* NewBullet = GetWorld()->SpawnActor<ABullet>();
+ NewBullet->SetActorLocation(GetActorLocation());
+ NewBullet->SetDir(FVector::Up);
+ time = 0;
+} 
+*/
