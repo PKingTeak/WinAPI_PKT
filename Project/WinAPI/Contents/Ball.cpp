@@ -49,11 +49,11 @@ void Ball::DirCheck()
 		BDir = BDir.Left;
 	}
 
-	if (CurBallPos.Y <= 0)
+	if (CurBallPos.Y <= 50)
 	{
 		BDir = BDir.Down;
 	}
-	else if (CurBallPos.Y >= 600)
+	else if (CurBallPos.Y >= User::CurPos.Y-10)
 	{
 		//공을 제거 해야됨 
 		BDir = BDir.Up;
