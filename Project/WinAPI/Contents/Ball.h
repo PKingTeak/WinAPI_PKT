@@ -42,7 +42,7 @@ private:
 	void GameStart(float _DeltaTime);
 	UImageRenderer* BallRender = nullptr;
 	FVector CurBallPos = {};
-	FVector BDir = {1,-1};
+	FVector BDir = {0,-1};
 	bool IsballLive = false;
 	float Speed = 300.0f;
 	float Time = 0.0f;

@@ -25,6 +25,9 @@
     <ClInclude Include="TickObject.h">
       <Filter>Component</Filter>
     </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -49,6 +52,9 @@
       <Filter>Component</Filter>
     </ClCompile>
     <ClCompile Include="TickObject.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
       <Filter>Component</Filter>
     </ClCompile>
   </ItemGroup>
