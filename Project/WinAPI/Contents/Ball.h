@@ -30,6 +30,8 @@ public:
 	void StartPos(FVector _StartPos);
 	void DirCheck();
 	void Reflect(FVector _CurBallPos);
+	void GetUserScale();
+	
 	//void YLReflect();
 protected:
 	void BeginPlay() override;
@@ -37,12 +39,13 @@ protected:
 	
 	
 private:
+	User* Player = nullptr;
 	void Move(float _DeltaTime);
-	void Block();
+
 	void GameStart(float _DeltaTime);
 	UImageRenderer* BallRender = nullptr;
 	FVector CurBallPos = {};
-	FVector BDir = {0,-1};
+	FVector BDir = {0.5f,-0.5f};
 	bool IsballLive = false;
 	float Speed = 300.0f;
 	float Time = 0.0f;

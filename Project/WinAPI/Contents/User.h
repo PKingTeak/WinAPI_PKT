@@ -18,6 +18,8 @@ public:
 	User& operator=(User&& _Other) noexcept = delete;
 
 	static FVector CurPos;
+	static FVector UserScale;
+	
 	
 protected:
 	void BeginPlay() override;

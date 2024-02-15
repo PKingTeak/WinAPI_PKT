@@ -166,6 +166,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GloBal .cpp" />
     <ClCompile Include="Stage1BackGround.cpp" />
     <ClCompile Include="Stage1Level.cpp">
       <SubType>
@@ -192,6 +193,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GloBal .h" />
     <ClInclude Include="Stage1BackGround.h" />
     <ClInclude Include="Stage1Level.h">
       <SubType>

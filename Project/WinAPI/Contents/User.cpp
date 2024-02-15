@@ -11,6 +11,7 @@
 #include "Bullet.h"
 #include "Ball.h"
 FVector User::CurPos = {};
+FVector User::UserScale = {};
 User::User()
 {
 }
@@ -22,17 +23,18 @@ User::~User()
 void User::BeginPlay()
 {
 	AActor::BeginPlay(); //Actor에서 상속받아와 BeginePlay()를 실행시켜준다 하지만 지금은 비어있다.
-
+	UserScale = this->GetTransform().GetScale();
 	//랜더러를 가져오기
 	SetActorLocation({ 300,480 });
 	CurPos = GetActorLocation();
-	UImageRenderer* PlayerRenderer = CreateImageRenderer(1);
+	UImageRenderer* PlayerRenderer = CreateImageRenderer(0);
 	UEngineResourcesManager::GetInst().CuttingImage("Player_Idle.png", 1, 6);
 	PlayerRenderer->SetImage("Player_Idle.png");
 	PlayerRenderer->SetTransform({ { 0,0 },{ 68,16} });
 	PlayerRenderer->CreateAnimation("PlayerIdleAnimation", "Player_Idle.png",0,5,0.1f,true);
 	PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 	
+	int a = 0;
 
 
 	//SetActorLocation({16,4,32,8});

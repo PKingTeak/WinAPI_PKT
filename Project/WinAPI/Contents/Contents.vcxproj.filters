@@ -26,6 +26,7 @@
     <ClCompile Include="Ball.cpp">
       <Filter>Obejct</Filter>
     </ClCompile>
+    <ClCompile Include="GloBal .cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArkanoidCore.h" />
@@ -53,6 +54,7 @@
     <ClInclude Include="Ball.h">
       <Filter>Obejct</Filter>
     </ClInclude>
+    <ClInclude Include="GloBal .h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Obejct">
