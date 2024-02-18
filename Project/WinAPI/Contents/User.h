@@ -6,6 +6,8 @@
 // 설명 :
 class User : public AActor
 {
+private:
+	static User* MainUser;
 public:
 	// constrcuter destructer
 	User();
@@ -19,7 +21,7 @@ public:
 
 	static FVector CurPos;
 	static FVector UserScale;
-	
+	static User* GetMainUser(); //다른곳에서 속성을 가져오기 get
 	
 protected:
 	void BeginPlay() override;

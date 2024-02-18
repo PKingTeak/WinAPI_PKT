@@ -23,6 +23,10 @@ void Ball::BeginPlay()
 	GetUserScale();
 	SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
 
+	BallCollison = CreateCollision(ColiiderOrder::Ball);
+	BallCollison->SetScale({ 10,8 });
+	BallCollison->SetColType(ECollisionType::CirCle);
+
 }
 void Ball::SetPos(FVector _CurPos)
 {

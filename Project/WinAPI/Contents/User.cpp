@@ -12,6 +12,7 @@
 #include "Ball.h"
 FVector User::CurPos = {};
 FVector User::UserScale = {};
+User* User::MainUser = nullptr;
 User::User()
 {
 }
@@ -22,6 +23,7 @@ User::~User()
 
 void User::BeginPlay()
 {
+	MainUser = this;
 	AActor::BeginPlay(); //Actor에서 상속받아와 BeginePlay()를 실행시켜준다 하지만 지금은 비어있다.
 	UserScale = this->GetTransform().GetScale();
 	//랜더러를 가져오기
@@ -41,6 +43,11 @@ void User::BeginPlay()
 	//SetActorLocation({ 200, 500 });
 
 
+}
+User* User::GetMainUser()
+{
+
+	return MainUser;
 }
 
 

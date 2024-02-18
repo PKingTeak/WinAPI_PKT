@@ -27,6 +27,7 @@
       <Filter>Obejct</Filter>
     </ClCompile>
     <ClCompile Include="GloBal .cpp" />
+    <ClCompile Include="ColliderManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArkanoidCore.h" />
@@ -55,6 +56,7 @@
       <Filter>Obejct</Filter>
     </ClInclude>
     <ClInclude Include="GloBal .h" />
+    <ClInclude Include="ColliderManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Obejct">

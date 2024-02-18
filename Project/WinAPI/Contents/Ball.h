@@ -1,6 +1,7 @@
 #pragma once
 #include<EngineCore/Actor.h>
 #include"User.h"
+#include"ColliderManager.h"
 class Ball : public AActor
 {
 public:
@@ -39,13 +40,14 @@ protected:
 	
 	
 private:
-	User* Player = nullptr;
+	
 	void Move(float _DeltaTime);
 
 	void GameStart(float _DeltaTime);
 	UImageRenderer* BallRender = nullptr;
 	FVector CurBallPos = {};
 	FVector BDir = {0.5f,-0.5f};
+	UCollision* BallCollison = nullptr;
 	bool IsballLive = false;
 	float Speed = 300.0f;
 	float Time = 0.0f;
