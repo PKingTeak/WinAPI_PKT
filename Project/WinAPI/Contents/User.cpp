@@ -11,7 +11,6 @@
 #include "Bullet.h"
 #include "Ball.h"
 FVector User::CurPos = {};
-FVector User::UserScale = {};
 User* User::MainUser = nullptr;
 UCollision* User::PlayerCollider = nullptr;
 
@@ -28,10 +27,11 @@ void User::BeginPlay()
 {
 	MainUser = this;
 	AActor::BeginPlay(); //Actor에서 상속받아와 BeginePlay()를 실행시켜준다 하지만 지금은 비어있다.
-	UserScale = this->GetTransform().GetScale();
+
+
 	PlayerCollider = CreateCollision(ColliderOrder::Player);
 	PlayerCollider->SetColType(ECollisionType::Rect);
-	PlayerCollider->SetScale({ UserScale });
+	PlayerCollider->SetScale({ 68,16 });
 	//랜더러를 가져오기
 	SetActorLocation({ 300,480 });
 	CurPos = GetActorLocation();
@@ -41,7 +41,7 @@ void User::BeginPlay()
 	PlayerRenderer->SetTransform({ { 0,0 },{ 68,16} });
 	PlayerRenderer->CreateAnimation("PlayerIdleAnimation", "Player_Idle.png",0,5,0.1f,true);
 	PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
-	
+	//변수 보는방법 
 
 
 }
@@ -81,7 +81,7 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 	}
 	AddActorLocation(MovePos);
 
-	
+
 
 	
 }

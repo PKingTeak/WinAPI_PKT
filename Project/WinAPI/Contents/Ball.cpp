@@ -56,6 +56,12 @@ void Ball::Tick(float _DeltaTime)
 	AActor::Tick(_DeltaTime);
 	GameStart(Time);
 	DirCheck();
+	
+	//if (UEngineInput::IsDown('Q'))
+	//{
+	//	BallCollison->SetActive(true);
+	//	Userx
+	//}
 
 	std::vector<UCollision*> Result;
 	if (true == BallCollison->CollisionCheck(ColliderOrder::Player, Result))
@@ -67,8 +73,11 @@ void Ball::Tick(float _DeltaTime)
 		BDir = BDir + (N2 * T); //R
 
 
-		Reflect(CurBallPos);
+		
+
 	}
+	
+		
 
 
 	if (IsballLive == true)
