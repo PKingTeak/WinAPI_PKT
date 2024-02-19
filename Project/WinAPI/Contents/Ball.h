@@ -4,6 +4,8 @@
 #include"ColliderManager.h"
 class Ball : public AActor
 {
+private: 
+	static Ball* MainBall;;
 public:
 	// constrcuter destructer
 	Ball();
@@ -32,6 +34,9 @@ public:
 	void DirCheck();
 	void Reflect(FVector _CurBallPos);
 	void GetUserScale();
+	static Ball* GetMainBall();
+	static UCollision* GetBallCollision();
+
 	
 	//void YLReflect();
 protected:

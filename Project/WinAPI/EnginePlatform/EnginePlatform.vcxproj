@@ -156,14 +156,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="EngineInput.h" />
+    <ClInclude Include="EngineSound.h" />
     <ClInclude Include="EngineWindow.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ThirdParty\FMOD\inc\fmod.h" />
+    <ClInclude Include="ThirdParty\FMOD\inc\fmod.hpp" />
+    <ClInclude Include="ThirdParty\FMOD\inc\fmod_codec.h" />
+    <ClInclude Include="ThirdParty\FMOD\inc\fmod_common.h" />
+    <ClInclude Include="ThirdParty\FMOD\inc\fmod_dsp.h" />
+    <ClInclude Include="ThirdParty\FMOD\inc\fmod_dsp_effects.h" />
+    <ClInclude Include="ThirdParty\FMOD\inc\fmod_errors.h" />
+    <ClInclude Include="ThirdParty\FMOD\inc\fmod_output.h" />
     <ClInclude Include="WindowImage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineInput.cpp" />
+    <ClCompile Include="EngineSound.cpp" />
     <ClCompile Include="EngineWindow.cpp">
       <SubType>
       </SubType>
@@ -174,6 +184,14 @@
     <ProjectReference Include="..\EngineBase\EngineBase.vcxproj">
       <Project>{ea197215-13bb-4729-9573-db483a0ee1a3}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThirdParty\FMOD\Debug\fmodL.dll" />
+    <None Include="ThirdParty\FMOD\Release\fmod.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ThirdParty\FMOD\Debug\fmodL_vc.lib" />
+    <Library Include="ThirdParty\FMOD\Release\fmod_vc.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

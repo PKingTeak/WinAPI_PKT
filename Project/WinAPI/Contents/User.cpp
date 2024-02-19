@@ -13,6 +13,9 @@
 FVector User::CurPos = {};
 FVector User::UserScale = {};
 User* User::MainUser = nullptr;
+UCollision* User::PlayerCollider = nullptr;
+
+
 User::User()
 {
 }
@@ -24,6 +27,8 @@ User::~User()
 void User::BeginPlay()
 {
 	MainUser = this;
+	PlayerCollider = CreateCollision(ColliderOrder::Player);
+	PlayerCollider->SetColType(ECollisionType::Rect);
 	AActor::BeginPlay(); //Actor에서 상속받아와 BeginePlay()를 실행시켜준다 하지만 지금은 비어있다.
 	UserScale = this->GetTransform().GetScale();
 	//랜더러를 가져오기
@@ -36,13 +41,12 @@ void User::BeginPlay()
 	PlayerRenderer->CreateAnimation("PlayerIdleAnimation", "Player_Idle.png",0,5,0.1f,true);
 	PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 	
-	int a = 0;
 
 
-	//SetActorLocation({16,4,32,8});
-	//SetActorLocation({ 200, 500 });
-
-
+}
+UCollision* User::GetUserCollider()
+{
+	return PlayerCollider;
 }
 User* User::GetMainUser()
 {

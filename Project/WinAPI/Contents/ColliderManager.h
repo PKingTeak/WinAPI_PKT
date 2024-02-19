@@ -1,8 +1,11 @@
 #pragma once
-
+#include "ArkanoidCore.h"
+#include"User.h"
+#include"Ball.h"
+#include"Block.h"
 // Ό³Έν :
 
-enum class ColiiderOrder
+enum class ColliderOrder
 {
 	Block,
 	Ball,
@@ -12,7 +15,7 @@ enum class ColiiderOrder
 
 
 
-class ColliderManager
+class ColliderManager : public ArkanoidCore
 {
 
 
@@ -28,8 +31,12 @@ public:
 	ColliderManager& operator=(ColliderManager&& _Other) noexcept = delete;
 
 protected:
+	void BeginPlay() override;
+	void Tick(float _DetaTime) override;
 
 private:
-
+	User* ColUser = nullptr;
+	Ball* ColBall = nullptr;
+	Block* ColBlock = nullptr;
 };
 

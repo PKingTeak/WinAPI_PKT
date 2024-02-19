@@ -2,6 +2,8 @@
 #include <EngineCore/EngineResourcesManager.h>
 #include "User.h"
 #include <EnginePlatform/EngineInput.h>
+#include <vector>
+Ball* Ball::MainBall = nullptr;
 Ball::Ball()
 {
 
@@ -14,7 +16,7 @@ Ball::~Ball()
 
 void Ball::BeginPlay()
 {
-
+	MainBall = this;
 	AActor::BeginPlay();
 	BallRender = CreateImageRenderer(0);
 	UEngineResourcesManager::GetInst().CuttingImage("Ball.png", 1, 1);
@@ -23,7 +25,8 @@ void Ball::BeginPlay()
 	GetUserScale();
 	SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
 
-	BallCollison = CreateCollision(ColiiderOrder::Ball);
+	BallCollison = CreateCollision(ColliderOrder::Ball);
+	BallCollison->SetColType(ECollisionType::Point);
 	BallCollison->SetScale({ 10,8 });
 	BallCollison->SetColType(ECollisionType::CirCle);
 
@@ -53,6 +56,14 @@ void Ball::Tick(float _DeltaTime)
 	AActor::Tick(_DeltaTime);
 	GameStart(Time);
 	DirCheck();
+	
+	std::vector<UCollision*> Result;
+	if (true == BallCollison->CollisionCheck(ColliderOrder::Player, Result))
+	{
+		
+	}
+
+
 	if (IsballLive == true)
 	{
 
@@ -66,6 +77,7 @@ void Ball::Tick(float _DeltaTime)
 	}
 
 }
+
 
 void Ball::DirCheck()
 {
@@ -127,6 +139,12 @@ void Ball::StartPos(FVector _StartPos)
 }
 
 
+Ball* Ball::GetMainBall()
+{
+
+	return MainBall;
+}
+
 
 void Ball::Move(float _DeltaTime)
 {
@@ -141,6 +159,7 @@ void Ball::Move(float _DeltaTime)
 void Ball::Reflect(FVector _CurBallPos)
 {
 	FVector CurBallPos = _CurBallPos;
+	UCollision* PlayerCollision = User::GetUserCollider(); //유저 충돌타입 가져오기
 	if (CurBallPos.X >= 520)
 	{
 
@@ -165,13 +184,14 @@ void Ball::Reflect(FVector _CurBallPos)
 		BDir = BDir + (N2 * T); //R
 
 	}
-	else if (CurBallPos.Y >= User::UserScale.Y)
-	{
-		FVector N = { 0,-1 };
-		FVector N2 = { 0,-2 };
-		FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
-		BDir = BDir + (N2 * T); //R
-	}
+//else if (/*CurBallPos.Y >= User::UserScale.Y*///)
+//{
+//
+//	//FVector N = { 0,-1 };
+//	//FVector N2 = { 0,-2 };
+//	//FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
+//	//BDir = BDir + (N2 * T); //R
+//}
 
 
 }

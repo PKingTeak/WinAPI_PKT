@@ -158,6 +158,7 @@
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Block.cpp" />
     <ClCompile Include="Bullet.cpp">
       <SubType>
       </SubType>
@@ -189,6 +190,7 @@
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="Block.h" />
     <ClInclude Include="Bullet.h">
       <SubType>
       </SubType>
