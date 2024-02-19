@@ -60,7 +60,13 @@ void Ball::Tick(float _DeltaTime)
 	std::vector<UCollision*> Result;
 	if (true == BallCollison->CollisionCheck(ColliderOrder::Player, Result))
 	{
-	
+
+		FVector N = { 0,-1 };
+		FVector N2 = { 0,-2 };
+		FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
+		BDir = BDir + (N2 * T); //R
+
+
 		Reflect(CurBallPos);
 	}
 
@@ -97,19 +103,20 @@ void Ball::DirCheck()
 	if (CurBallPos.Y <= 50)
 	{
 		Reflect(CurBallPos);
+
 		//YReflect();
 		//BDir = {-1,1};
 	}
-	else if (CurBallPos.Y >= User::CurPos.Y)
-	{
-		User::UserScale.Y;
-		/*
-		플레이어 크기를 가져와서 크기안에 들어오면 날아가게 할것이다.
-		*/
-		Reflect(CurBallPos);
-		//원래 공을 제거 해야됨 시작 위치로 다시 위치시켜야됨
-
-	}
+//else if (CurBallPos.Y >= User::CurPos.Y)
+//{
+//	User::UserScale.Y;
+//	/*
+//	플레이어 크기를 가져와서 크기안에 들어오면 날아가게 할것이다.
+//	*/
+//	Reflect(CurBallPos);
+//	//원래 공을 제거 해야됨 시작 위치로 다시 위치시켜야됨
+//
+//}
 
 	//수정 좀만 더 보자 
 }
@@ -185,13 +192,9 @@ void Ball::Reflect(FVector _CurBallPos)
 		BDir = BDir + (N2 * T); //R
 
 	}
-	else if (true == BallCollison->CollisionCheck(ColliderOrder::Player, Result))
+	else if (CurBallPos.Y >= User::CurPos.Y)
 		{
-
-			FVector N = { 0,-1 };
-			FVector N2 = { 0,-2 };
-			FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
-			BDir = BDir + (N2 * T); //R
+	
 		}
 
 
