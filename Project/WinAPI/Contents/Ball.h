@@ -56,4 +56,7 @@ private:
 	bool IsballLive = false;
 	float Speed = 300.0f;
 	float Time = 0.0f;
+	std::vector<UCollision*> Result;
+	
+
 };

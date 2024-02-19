@@ -27,10 +27,11 @@ User::~User()
 void User::BeginPlay()
 {
 	MainUser = this;
-	PlayerCollider = CreateCollision(ColliderOrder::Player);
-	PlayerCollider->SetColType(ECollisionType::Rect);
 	AActor::BeginPlay(); //Actor에서 상속받아와 BeginePlay()를 실행시켜준다 하지만 지금은 비어있다.
 	UserScale = this->GetTransform().GetScale();
+	PlayerCollider = CreateCollision(ColliderOrder::Player);
+	PlayerCollider->SetColType(ECollisionType::Rect);
+	PlayerCollider->SetScale({ UserScale });
 	//랜더러를 가져오기
 	SetActorLocation({ 300,480 });
 	CurPos = GetActorLocation();

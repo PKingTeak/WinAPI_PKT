@@ -47,7 +47,7 @@ void Ball::GetUserScale()
 
 void Ball::Tick(float _DeltaTime)
 {
-
+	
 	if (false == IsballLive)
 	{
 		SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
@@ -56,11 +56,12 @@ void Ball::Tick(float _DeltaTime)
 	AActor::Tick(_DeltaTime);
 	GameStart(Time);
 	DirCheck();
-	
+
 	std::vector<UCollision*> Result;
 	if (true == BallCollison->CollisionCheck(ColliderOrder::Player, Result))
 	{
-		
+	
+		Reflect(CurBallPos);
 	}
 
 
@@ -184,14 +185,14 @@ void Ball::Reflect(FVector _CurBallPos)
 		BDir = BDir + (N2 * T); //R
 
 	}
-//else if (/*CurBallPos.Y >= User::UserScale.Y*///)
-//{
-//
-//	//FVector N = { 0,-1 };
-//	//FVector N2 = { 0,-2 };
-//	//FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
-//	//BDir = BDir + (N2 * T); //R
-//}
+	else if (true == BallCollison->CollisionCheck(ColliderOrder::Player, Result))
+		{
+
+			FVector N = { 0,-1 };
+			FVector N2 = { 0,-2 };
+			FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
+			BDir = BDir + (N2 * T); //R
+		}
 
 
 }
