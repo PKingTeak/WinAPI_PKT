@@ -35,7 +35,7 @@ public:
 	void Reflect(FVector _CurBallPos);
 	void GetUserScale();
 	static Ball* GetMainBall();
-	static UCollision* GetBallCollision();
+//static UCollision* GetBallCollision();
 
 	
 	//void YLReflect();
@@ -56,7 +56,8 @@ private:
 	bool IsballLive = false;
 	float Speed = 300.0f;
 	float Time = 0.0f;
-	std::vector<UCollision*> Result;
+	bool isCol = false;
+	//std::vector<UCollision*> Result;
 	
 
 };
