@@ -24,6 +24,9 @@ void Ball::BeginPlay()
 	BallRender->SetScale({ 10,8 });
 	GetUserScale();
 	SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
+
+
+
 	BallCollison = CreateCollision(ColliderOrder::Ball);
 	BallCollison->SetColType(ECollisionType::Point);
 	BallCollison->SetScale({ 10,8 });
