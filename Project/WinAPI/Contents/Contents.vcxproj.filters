@@ -26,7 +26,6 @@
     <ClCompile Include="Ball.cpp">
       <Filter>Obejct</Filter>
     </ClCompile>
-    <ClCompile Include="GloBal .cpp" />
     <ClCompile Include="ColliderManager.cpp" />
     <ClCompile Include="Block.cpp">
       <Filter>Obejct</Filter>
@@ -58,7 +57,6 @@
     <ClInclude Include="Ball.h">
       <Filter>Obejct</Filter>
     </ClInclude>
-    <ClInclude Include="GloBal .h" />
     <ClInclude Include="ColliderManager.h" />
     <ClInclude Include="Block.h">
       <Filter>Obejct</Filter>
