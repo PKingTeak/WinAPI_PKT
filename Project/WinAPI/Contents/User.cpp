@@ -32,6 +32,9 @@ void User::BeginPlay()
 	PlayerCollider = CreateCollision(ColliderOrder::Player);
 	PlayerCollider->SetColType(ECollisionType::Rect);
 	PlayerCollider->SetScale({ 68,16 });
+
+	
+
 	//랜더러를 가져오기
 	SetActorLocation({ 300,480 });
 	CurPos = GetActorLocation();
