@@ -3,12 +3,14 @@
 #include"User.h"
 #include"Ball.h"
 #include"Block.h"
+#include"Item.h"
 // Ό³Έν :
 
 enum class ColliderOrder
 {
 	Block,
 	Ball,
+	Item,
 	Player
 
 };

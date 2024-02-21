@@ -5,6 +5,8 @@
 // Ό³Έν :
 class Item :public AActor
 {
+private:
+	static Item* MainItem;
 public:
 	// constrcuter destructer
 	Item();
@@ -16,14 +18,16 @@ public:
 	Item& operator=(const Item& _Other) = delete;
 	Item& operator=(Item&& _Other) noexcept = delete;
 
+	static UCollision* GetItemCollison();
+	
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _detaTime) override;
 private:
 	UImageRenderer* ItemRender = nullptr;
-
-	UCollision* ItemCollison = nullptr;
-
+	FVector ItemScale = {16,8};
+	static UCollision* ItemCollison;
 
 };
 

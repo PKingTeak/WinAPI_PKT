@@ -29,3 +29,11 @@ void ColliderManager::BeginPlay()
 	
 	//충돌체 만들었고 
 }
+
+
+void Tick(float _deltaTime)
+{
+
+	
+
+}

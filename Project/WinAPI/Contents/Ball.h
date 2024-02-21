@@ -35,6 +35,7 @@ public:
 	void Reflect(FVector _CurBallPos);
 	void GetUserScale();
 	static Ball* GetMainBall();
+	UCollision* GetCollision();
 //static UCollision* GetBallCollision();
 
 	
@@ -47,7 +48,7 @@ protected:
 private:
 	
 	void Move(float _DeltaTime);
-
+	void IsCollide();
 	void GameStart(float _DeltaTime);
 	UImageRenderer* BallRender = nullptr;
 	FVector CurBallPos = {};
@@ -57,7 +58,7 @@ private:
 	float Speed = 300.0f;
 	float Time = 0.0f;
 	bool isCol = false;
-	//std::vector<UCollision*> Result;
+	
 	
 
 };

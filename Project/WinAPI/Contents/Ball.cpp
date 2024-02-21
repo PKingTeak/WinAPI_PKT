@@ -3,6 +3,7 @@
 #include "User.h"
 #include <EnginePlatform/EngineInput.h>
 #include <vector>
+#include"Block.h"
 Ball* Ball::MainBall = nullptr;
 Ball::Ball()
 {
@@ -62,12 +63,6 @@ void Ball::Tick(float _DeltaTime)
 	GameStart(Time);
 	DirCheck();
 
-	//if (UEngineInput::IsDown('Q'))
-	//{
-	//	BallCollison->SetActive(true);
-	//	Userx
-	//}
-
 	if (Time >= 3)    
 	{
 		isCol = true;
@@ -75,17 +70,19 @@ void Ball::Tick(float _DeltaTime)
 	
 	if (isCol == true)
 	{
-		std::vector<UCollision*> Result;
-		if (true == BallCollison->CollisionCheck(ColliderOrder::Player, Result))
-		{
+		IsCollide();
 
-			FVector N = { 0,-1 };
-			FVector N2 = { 0,-2 };
-			FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
-			BDir = BDir + (N2 * T); //R
-			isCol = true;
-
-		}
+		//std::vector<UCollision*> Result;
+		//if (true == BallCollison->CollisionCheck(ColliderOrder::Player, Result))
+		//{
+		//
+		//	FVector N = { 0,-1 };
+		//	FVector N2 = { 0,-2 };
+		//	FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
+		//	BDir = BDir + (N2 * T); //R
+		//	isCol = true;
+		//
+		//}
 	}
 
 
@@ -106,6 +103,36 @@ void Ball::Tick(float _DeltaTime)
 	{
 		IsballLive = true;
 	}
+
+}
+
+void Ball::IsCollide()
+{
+	std::vector<UCollision*> Result;
+
+	if(true == BallCollison->CollisionCheck(ColliderOrder::Player, Result))
+	{
+
+		FVector N = { 0,-1 };
+		FVector N2 = { 0,-2 };
+		FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
+		BDir = BDir + (N2 * T); //R
+		isCol = true;
+
+	}
+	else if (true == BallCollison->CollisionCheck(ColliderOrder::Block, Result))
+	{
+		UCollision* ColCollider = Result[0/*몇번째일때*/];
+		AActor* ColActor = ColCollider->GetOwner();
+		Block* ColBlock = dynamic_cast<Block*>(ColActor);
+		
+		
+	}
+
+}
+UCollision* Ball::GetCollision()
+{
+	return BallCollison;
 
 }
 
