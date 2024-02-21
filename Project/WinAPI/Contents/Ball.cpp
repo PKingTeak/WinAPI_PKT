@@ -125,7 +125,7 @@ void Ball::IsCollide()
 		UCollision* ColCollider = Result[0/*몇번째일때*/];
 		AActor* ColActor = ColCollider->GetOwner();
 		Block* ColBlock = dynamic_cast<Block*>(ColActor);
-		
+		//ColBlock->Destroy();
 		
 	}
 

@@ -18,7 +18,9 @@ public:
 	
 	void BlockMake()
 	{
+		//block will make
 	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -26,6 +28,7 @@ private:
 	UImageRenderer* BlockRender = nullptr;
 	FVector BlockScale = { 16,8 };
 	std::list<Block*> BlockMaker;
+	UCollision* BlockCollision = nullptr;
 
 };
 

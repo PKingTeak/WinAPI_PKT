@@ -28,6 +28,20 @@ void Stage1Level::BeginPlay()
 	Stage1->SetMapImage("Stage1_BackGround.png");
 	//Stage1->SetColMapImage("Stage1_ColMap.png");
 
+
+	{
+		//Test
+	Block* TestBlock = SpawnActor<Block>();
+	TestBlock->SetActorLocation({ 200+16,300 });
+
+	Block* TestBlock1 = SpawnActor<Block>();
+	TestBlock1->SetActorLocation({ 200+32,300 });
+	Block* TestBlock2 = SpawnActor<Block>();
+	TestBlock2->SetActorLocation({ 200+48,300 });
+	Block* TestBlock3 = SpawnActor<Block>();
+	TestBlock3->SetActorLocation({ 200+66,300 });
+	
+	}
 }
 
 
