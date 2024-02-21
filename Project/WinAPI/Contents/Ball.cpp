@@ -122,11 +122,17 @@ void Ball::IsCollide()
 	}
 	else if (true == BallCollison->CollisionCheck(ColliderOrder::Block, Result))
 	{
-		UCollision* ColCollider = Result[0/*몇번째일때*/];
-		AActor* ColActor = ColCollider->GetOwner();
-		Block* ColBlock = dynamic_cast<Block*>(ColActor);
-		//ColBlock->Destroy();
-		
+		UCollision* Collider = Result[0/*몇번째일때*/];
+		AActor* ColAct = Collider->GetOwner();
+		Block* ColBlock = dynamic_cast<Block*>(ColAct);
+		BDir =  (BDir* -1);
+		//Result[0]->Destroy();
+		ColBlock->Destroy();
+		//어쩌피 엑터를 지우면 랜더러 콜리전 둘다 자동으로 소멸자에서 사라짐.
+
+	
+
+		int b = 0;
 	}
 
 }

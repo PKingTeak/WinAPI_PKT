@@ -52,7 +52,8 @@ private:
 	void GameStart(float _DeltaTime);
 	UImageRenderer* BallRender = nullptr;
 	FVector CurBallPos = {};
-	FVector BDir = {0.5f,-0.5f};
+	FVector BDir = {0.0f,-0.5f};
+	//치트모드만들기
 	UCollision* BallCollison = nullptr;
 	bool IsballLive = false;
 	float Speed = 300.0f;
