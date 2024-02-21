@@ -40,6 +40,7 @@ void User::BeginPlay()
 	PlayerRenderer->SetImage("Player_Idle.png");
 	PlayerRenderer->SetTransform({ { 0,0 },{ 68,16} });
 	PlayerRenderer->CreateAnimation("PlayerIdleAnimation", "Player_Idle.png",0,5,0.1f,true);
+	
 	PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 	//변수 보는방법 
 

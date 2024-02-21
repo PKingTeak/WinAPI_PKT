@@ -23,6 +23,9 @@ void ColliderManager::BeginPlay()
 	//ColBall->CreateCollision(ColliderOrder::Ball);
 	ColBlock->CreateCollision(ColliderOrder::Block);
 
+
+
+
 	
 	//충돌체 만들었고 
 }

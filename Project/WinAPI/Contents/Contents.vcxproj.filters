@@ -30,6 +30,7 @@
     <ClCompile Include="Block.cpp">
       <Filter>Obejct</Filter>
     </ClCompile>
+    <ClCompile Include="Item.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArkanoidCore.h" />
@@ -61,6 +62,7 @@
     <ClInclude Include="Block.h">
       <Filter>Obejct</Filter>
     </ClInclude>
+    <ClInclude Include="Item.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Obejct">

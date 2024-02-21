@@ -14,9 +14,13 @@ void Block::BeginPlay()
 
 	AActor::BeginPlay();
 	BlockRender = CreateImageRenderer();
-	BlockRender->SetImage("NormalBlock.png",1);
-	UEngineResourcesManager::GetInst().CuttingImage("NormalBlock.png",4,2);
-	BlockRender->SetScale(BlockScale*2);
+	BlockRender->SetImage("NormalBlock.png", 1);
+	UEngineResourcesManager::GetInst().CuttingImage("NormalBlock.png", 4, 2);
+
+	//BlockRender->SetImage("Item.png");
+	//UEngineResourcesManager::GetInst().CuttingImage("Item.png", 8, 8);
+
+	BlockRender->SetScale(BlockScale * 2);
 	SetActorLocation({ 100,100 });
 	int a = 0;
 }

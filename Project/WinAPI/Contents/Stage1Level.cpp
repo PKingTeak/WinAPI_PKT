@@ -3,6 +3,7 @@
 #include "Stage1BackGround.h"
 #include "Ball.h"
 #include "Block.h"
+#include "Item.h"
 #include <EngineCore/EngineResourcesManager.h>
 #include<EngineBase/EngineFile.h>
 #include<EngineBase/EngineDirectory.h>
@@ -22,6 +23,7 @@ void Stage1Level::BeginPlay()
 	User* user = SpawnActor<User>(); //플레이어 생성
 	Ball* NewBall = SpawnActor<Ball>(); // 공생성
 	Block* NewBlock = SpawnActor<Block>();
+	Item* NewItem = SpawnActor<Item>();
 	Stage1Map* Stage1 = SpawnActor<Stage1Map>();
 	Stage1->SetMapImage("Stage1_BackGround.png");
 	//Stage1->SetColMapImage("Stage1_ColMap.png");
