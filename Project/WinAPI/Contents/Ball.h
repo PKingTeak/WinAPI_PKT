@@ -54,6 +54,7 @@ private:
 	FVector CurBallPos = {};
 	FVector BDir = {0.5f,-0.5f};
 	//치트모드만들기
+	//이번주 작업하면서 조금씩 만들고 수치 확인 제대로 하기
 	UCollision* BallCollison = nullptr;
 	bool IsballLive = false;
 	float Speed = 300.0f;

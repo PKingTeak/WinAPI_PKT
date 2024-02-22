@@ -4,6 +4,7 @@
 #include <EnginePlatform/EngineInput.h>
 #include <vector>
 #include"Block.h"
+#include"Item.h"
 Ball* Ball::MainBall = nullptr;
 Ball::Ball()
 {
@@ -29,7 +30,6 @@ void Ball::BeginPlay()
 
 
 	BallCollison = CreateCollision(ColliderOrder::Ball);
-	BallCollison->SetColType(ECollisionType::Point);
 	BallCollison->SetScale({ 10,8 });
 	BallCollison->SetColType(ECollisionType::CirCle);
 	
@@ -46,7 +46,7 @@ void Ball::SetPos(FVector _CurPos)
 void Ball::GetUserScale()
 {
 	FVector UScale = { User::CurPos.hX() , User::CurPos.hY() };
-	int a = 0;
+	
 }
 
 
@@ -126,8 +126,12 @@ void Ball::IsCollide()
 		AActor* ColAct = Collider->GetOwner();
 		Block* ColBlock = dynamic_cast<Block*>(ColAct);
 		BDir =  (BDir* -1);
-		Result[0]->Destroy();
+		FVector BlockPos = ColBlock->GetActorLocation();
+		
+		
+		Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
 		ColBlock->Destroy();
+		
 		//어쩌피 엑터를 지우면 랜더러 콜리전 둘다 자동으로 소멸자에서 사라짐.
 
 	
@@ -217,9 +221,9 @@ void Ball::Move(float _DeltaTime)
 
 	AddActorLocation(BDir * Speed * _DeltaTime);//공이이동한다.
 
-	FVector a = GetActorLocation();
-
-	//이걸로 각도 조절하면될듯 하다. 
+	//FVector a = GetActorLocation();
+	//
+	////이걸로 각도 조절하면될듯 하다. 
 }
 void Ball::Reflect(FVector _CurBallPos)
 {

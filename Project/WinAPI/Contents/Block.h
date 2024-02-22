@@ -3,8 +3,7 @@
 #include<list>
 class Block : public AActor
 {
-private:
-	
+
 public:
 	Block();
 	~Block();
@@ -20,11 +19,14 @@ public:
 	{
 		//block will make
 	}
-
+	
+	
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
+	
+	void DropItem();
 	UImageRenderer* BlockRender = nullptr;
 	FVector BlockScale = { 16,8 };
 	std::list<Block*> BlockMaker;

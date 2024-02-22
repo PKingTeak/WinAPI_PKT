@@ -29,6 +29,7 @@ void Item::BeginPlay()
 	ItemCollison->SetColType(ECollisionType::Rect);
 
 
+	
 
 }
 

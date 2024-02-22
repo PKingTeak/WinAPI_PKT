@@ -20,11 +20,7 @@ void BackGround::BeginPlay()
 
 
 
-	//UEngineResourcesManager::GetInst().CuttingImage("TitleBackGround.bmp", 522, 602);여러개 이미지 있는거 자를때
-	//SetActorLocation({ 0,0 });
-	//BackGroundRender->SetImageCuttingTransform({ {0,0},{522,602} });<- 이건 랜더러
-	//BackGroundRender->CreateAnimation(); 아직 애니메이션 안넣음
-
+	
 }
 void BackGround::Tick(float _DeltaTime)
 {

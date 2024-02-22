@@ -31,7 +31,7 @@ void User::BeginPlay()
 
 	PlayerCollider = CreateCollision(ColliderOrder::Player);
 	PlayerCollider->SetColType(ECollisionType::Rect);
-	PlayerCollider->SetScale({ 68,16 });
+	PlayerCollider->SetScale({ 60,14 });
 
 	
 
@@ -78,6 +78,8 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 		MovePos = FVector::Right * 500.0f * _DeltaTime;
 		NextPos += MovePos;
 	}
+
+
 
 	if (NextPos.X <= 50 || NextPos.X >= 500)
 	{
