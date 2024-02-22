@@ -39,6 +39,6 @@ protected:
 private:
 	User* ColUser = nullptr;
 	//Ball* ColBall = nullptr;
-	Block* ColBlock = nullptr;
+	//Block* ColBlock = nullptr;
 };
 

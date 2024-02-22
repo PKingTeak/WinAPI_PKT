@@ -25,6 +25,8 @@ void Stage1Level::BeginPlay()
 	Block* NewBlock = SpawnActor<Block>();
 	Stage1Map* Stage1 = SpawnActor<Stage1Map>();
 	Item* NewItem = SpawnActor<Item>();
+	NewItem->SetActorLocation({ 1200,1200 });
+	NewItem->SetActive(false);
 	Stage1->SetMapImage("Stage1_BackGround.png");
 	//Stage1->SetColMapImage("Stage1_ColMap.png");
 
@@ -32,14 +34,14 @@ void Stage1Level::BeginPlay()
 	{
 		//Test
 	Block* TestBlock = SpawnActor<Block>();
-	TestBlock->SetActorLocation({ 300+16,300 });
+	TestBlock->SetActorLocation({ 300+30,300 });
 
 	Block* TestBlock1 = SpawnActor<Block>();
-	TestBlock1->SetActorLocation({ 300+32,300 });
+	TestBlock1->SetActorLocation({ 300+60,300 });
 	Block* TestBlock2 = SpawnActor<Block>();
-	TestBlock2->SetActorLocation({ 300+48,300 });
+	TestBlock2->SetActorLocation({ 300+90,300 });
 	Block* TestBlock3 = SpawnActor<Block>();
-	TestBlock3->SetActorLocation({ 300+66,300 });
+	TestBlock3->SetActorLocation({ 300+120,300 });
 	
 	}
 }

@@ -31,7 +31,11 @@ public:
 	*/
 	void SetPos(FVector _CurPos);
 	void StartPos(FVector _StartPos);
-	void DirCheck();
+
+	void WallCheck();
+	void UserCheck();
+	void BlockCheck();
+
 	void Reflect(FVector _CurBallPos);
 	void GetUserScale();
 	static Ball* GetMainBall();
@@ -49,7 +53,8 @@ private:
 	
 	void Move(float _DeltaTime);
 	void IsCollide();
-	void GameStart(float _DeltaTime);
+	void GameStartCheck();
+	void PlayerPos();
 	UImageRenderer* BallRender = nullptr;
 	FVector CurBallPos = {};
 	FVector BDir = {0.5f,-0.5f};
@@ -58,9 +63,4 @@ private:
 	UCollision* BallCollison = nullptr;
 	bool IsballLive = false;
 	float Speed = 300.0f;
-	float Time = 0.0f;
-	bool isCol = false;
-	
-	
-
 };

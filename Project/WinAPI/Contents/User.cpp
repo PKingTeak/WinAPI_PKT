@@ -11,6 +11,7 @@
 #include "Bullet.h"
 #include "Ball.h"
 FVector User::CurPos = {};
+FVector User::UserScale = {};
 User* User::MainUser = nullptr;
 UCollision* User::PlayerCollider = nullptr;
 
@@ -32,7 +33,7 @@ void User::BeginPlay()
 	PlayerCollider = CreateCollision(ColliderOrder::Player);
 	PlayerCollider->SetColType(ECollisionType::Rect);
 	PlayerCollider->SetScale({ 60,14 });
-
+	UserScale = { 60,14 };
 	
 
 	//랜더러를 가져오기
@@ -88,8 +89,6 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 	AddActorLocation(MovePos);
 
 
-
-	
 }
 
 

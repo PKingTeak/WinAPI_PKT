@@ -33,6 +33,11 @@ void Item::BeginPlay()
 
 }
 
+Item* Item::GetMainItem()
+{
+	return MainItem;
+}
+
 void Item::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);

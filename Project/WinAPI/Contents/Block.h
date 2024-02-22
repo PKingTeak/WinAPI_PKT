@@ -13,7 +13,6 @@ public:
 	Block(Block&& _Other) noexcept = delete;
 	Block& operator=(const Block& _Other) = delete;
 	Block& operator=(Block&& _Other) noexcept = delete;
-	static Block* GetMainBlock(); //나중에 ColliderManager로 통합시켜서 충돌 리펙할예정
 	
 	void BlockMake()
 	{

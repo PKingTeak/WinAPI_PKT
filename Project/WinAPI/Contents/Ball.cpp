@@ -30,9 +30,9 @@ void Ball::BeginPlay()
 
 
 	BallCollison = CreateCollision(ColliderOrder::Ball);
-	BallCollison->SetScale({ 10,8 });
+	BallCollison->SetScale({ 5,5 });
 	BallCollison->SetColType(ECollisionType::CirCle);
-	
+
 
 
 
@@ -46,78 +46,49 @@ void Ball::SetPos(FVector _CurPos)
 void Ball::GetUserScale()
 {
 	FVector UScale = { User::CurPos.hX() , User::CurPos.hY() };
-	
+
 }
 
 
 
 void Ball::Tick(float _DeltaTime)
 {
-
 	if (false == IsballLive)
 	{
 		SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
 	}
-	Time += _DeltaTime;
+
 	AActor::Tick(_DeltaTime);
-	GameStart(Time);
-	DirCheck();
+	GameStartCheck();
 
-	if (Time >= 3)    
-	{
-		isCol = true;
-	}
-	
-	if (isCol == true)
-	{
-		IsCollide();
-
-		//std::vector<UCollision*> Result;
-		//if (true == BallCollison->CollisionCheck(ColliderOrder::Player, Result))
-		//{
-		//
-		//	FVector N = { 0,-1 };
-		//	FVector N2 = { 0,-2 };
-		//	FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
-		//	BDir = BDir + (N2 * T); //R
-		//	isCol = true;
-		//
-		//}
-	}
+	Move(_DeltaTime);
+	// 내 미래의 위치로 체크하는 법
+	// 충돌하고 나서 체크하는법
 
 
+	WallCheck();
+	//UserCheck();
+	BlockCheck();
 
-
-
-
-
-
-	if (IsballLive == true)
-	{
-
-		Move(_DeltaTime);
-
-		SetActorLocation({ GetActorLocation() });
-	}
-	else if (UEngineInput::IsDown(' '))
-	{
-		IsballLive = true;
-	}
-
+	// IsCollide();
 }
 
 void Ball::IsCollide()
 {
+	if (false == IsballLive)
+	{
+		return;
+	}
+
 	std::vector<UCollision*> Result;
 
-	if(true == BallCollison->CollisionCheck(ColliderOrder::Player, Result))
+	if (true == BallCollison->CollisionCheck(ColliderOrder::Player, Result))
 	{
 
 		FVector N = { 0,-1 };
 		FVector N2 = { 0,-2 };
 		FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
 		BDir = BDir + (N2 * T); //R
-		isCol = true;
 
 	}
 	else if (true == BallCollison->CollisionCheck(ColliderOrder::Block, Result))
@@ -125,19 +96,15 @@ void Ball::IsCollide()
 		UCollision* Collider = Result[0/*몇번째일때*/];
 		AActor* ColAct = Collider->GetOwner();
 		Block* ColBlock = dynamic_cast<Block*>(ColAct);
-		BDir =  (BDir* -1);
+		BDir = (BDir * -1);
 		FVector BlockPos = ColBlock->GetActorLocation();
-		
-		
 		Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
 		ColBlock->Destroy();
-		
-		//어쩌피 엑터를 지우면 랜더러 콜리전 둘다 자동으로 소멸자에서 사라짐.
-
-	
 	}
 
 }
+
+
 UCollision* Ball::GetCollision()
 {
 	return BallCollison;
@@ -145,59 +112,34 @@ UCollision* Ball::GetCollision()
 }
 
 
-void Ball::DirCheck()
+
+void Ball::GameStartCheck()
 {
-	CurBallPos = GetActorLocation(); //내 위치를 알아야 하니까 
-	if (CurBallPos.X <= 30)
-	{
-		Reflect(CurBallPos);
-		//BDir = { 1,1/*진행방향으로 가고픔*/}; //여기를 변경하면 될듯 하다. 방향으로 하지말고 벡터값을 주면서 변경을 시켜보자. 
-	}
-	else if (CurBallPos.X >= 520)
-	{
-		//BDir = {-1,-1};
-		Reflect(CurBallPos);
-	}
-
-	if (CurBallPos.Y <= 50)
-	{
-		Reflect(CurBallPos);
-
-		
-	}
-//else if (CurBallPos.Y >= User::CurPos.Y)
-//{
-//	User::UserScale.Y;
-//	/*
-//	플레이어 크기를 가져와서 크기안에 들어오면 날아가게 할것이다.
-//	*/
-//	Reflect(CurBallPos);
-//	//원래 공을 제거 해야됨 시작 위치로 다시 위치시켜야됨
-//
-//}
-
-		//수정 좀만 더 보자 
-}
-
-
-void Ball::GameStart(float _DeltaTime)
-{
-
 	if (true == IsballLive)
 	{
 		return;
 	}
 
-	if (Time >= 1)
+	if (true == UEngineInput::IsDown('A'))
 	{
-
-		IsballLive = true;
-		Time = 0;
-		BallCollison->SetActive(true, 1.0f);
+		BDir = FVector(-1.0f, -1.0f);
+		BDir.Normalize2D();
+	}
+	else if (true == UEngineInput::IsDown('D'))
+	{
+		BDir = FVector(1.0f, -1.0f);
+		BDir.Normalize2D();
+	}
+	else if (true == UEngineInput::IsDown('W'))
+	{
+		BDir = FVector(0.0f, -1.0f);
+		BDir.Normalize2D();
 	}
 
-
-
+	if (true == UEngineInput::IsDown(VK_SPACE))
+	{
+		IsballLive = true;
+	}
 }
 
 
@@ -210,7 +152,6 @@ void Ball::StartPos(FVector _StartPos)
 
 Ball* Ball::GetMainBall()
 {
-
 	return MainBall;
 }
 
@@ -220,44 +161,97 @@ void Ball::Move(float _DeltaTime)
 	BDir.Normalize2D();
 
 	AddActorLocation(BDir * Speed * _DeltaTime);//공이이동한다.
-
-	//FVector a = GetActorLocation();
-	//
-	////이걸로 각도 조절하면될듯 하다. 
 }
-void Ball::Reflect(FVector _CurBallPos)
+
+void Ball::WallCheck()
 {
-	FVector CurBallPos = _CurBallPos;
-	UCollision* PlayerCollision = User::GetUserCollider(); //유저 충돌타입 가져오기
+	// R = P + 2n(-P·n);
+	FVector N = FVector::Zero;
+	CurBallPos = GetTransform().GetPosition();
+
 	if (CurBallPos.X >= 520)
 	{
-
-		FVector N = { -1,0 };
-		FVector N2 = { -2,0 };
-		FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
-		BDir = BDir + (N2 * T); //R
-		//N을 구하는걸 못하겠음?
+		N = { -1,0 };
 	}
 	else if (CurBallPos.X <= 30)
 	{
-		FVector N = { 1,0 };
-		FVector N2 = { 2,0 };
-		FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
-		BDir = BDir + (N2 * T); //R
+		N = { 1,0 };
 	}
 	else if (CurBallPos.Y <= 50)
 	{
-		FVector N = { 0,1 };
-		FVector N2 = { 0,2 };
-		FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
-		BDir = BDir + (N2 * T); //R
+		N = { 0,1 };
+	}
+
+
+else if (CurBallPos.Y >= 480)
+{
+		int a = 0;
+		PlayerPos();
+}
+
+
+	if (false == N.IsZeroVector2D())
+	{
+		Reflect(N);
+	}
+}
+void Ball::PlayerPos()
+{
+	float ULeft = User::CurPos.X - 30;
+	float URight = User::CurPos.X + 30;
+
+
+	if (CurBallPos.X >= ULeft && CurBallPos.X <= URight)
+	{
+		Reflect({ 0.0f, -1.0f });
+		FVector Pos = GetTransform().GetPosition() - User::CurPos;
+		Pos.X /= User::UserScale.hX(); //유저 x에서 중점을 기준으로 부딪친 곳을 나눠서 
+		BDir.X += Pos.X;
+		BDir.Normalize2D();
+	}
+}
+void Ball::UserCheck()
+{
+	std::vector<UCollision*> Result;
+	if (true == BallCollison->CollisionCheck(ColliderOrder::Player, Result))
+	{
+		Reflect({ 0.0f, -1.0f });
+		FVector Pos = GetTransform().GetPosition() - User::CurPos;
+		Pos.X /= User::UserScale.hX(); //유저 x에서 중점을 기준으로 부딪친 곳을 나눠서 
+		BDir.X += Pos.X;
+		BDir.Normalize2D();
+
+		//유저 크기만큼 직선 만들기 실험중
+		
+		FVector TestPos = User::CurPos;
+	
+
+
+		
 
 	}
-	//else if (CurBallPos.Y >= User::CurPos.Y)
-	//{
-	//
-	//}
+}
 
+void Ball::BlockCheck()
+{
+	std::vector<UCollision*> Result;
+	if (true == BallCollison->CollisionCheck(ColliderOrder::Block, Result))
+	{
+		UCollision* Collider = Result[0/*몇번째일때*/];
+		AActor* ColAct = Collider->GetOwner();
+		Block* ColBlock = dynamic_cast<Block*>(ColAct);
+		BDir = (BDir * -1);
+		FVector BlockPos = ColBlock->GetActorLocation();
+		Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
+		ColBlock->Destroy();
+	}
+}
 
+void Ball::Reflect(FVector Normal)
+{
+	FVector N = Normal;
+	FVector N2 = N * 2.0f;
+	FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
+	BDir = BDir + (N2 * T);
 }
 

@@ -19,6 +19,7 @@ public:
 	Item& operator=(Item&& _Other) noexcept = delete;
 
 	static UCollision* GetItemCollison();
+	static Item* GetMainItem();
 	
 
 protected:
