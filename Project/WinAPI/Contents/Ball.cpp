@@ -127,12 +127,10 @@ void Ball::IsCollide()
 		Block* ColBlock = dynamic_cast<Block*>(ColAct);
 		BDir =  (BDir* -1);
 		Result[0]->Destroy();
-		ColBlock;
 		ColBlock->Destroy();
 		//어쩌피 엑터를 지우면 랜더러 콜리전 둘다 자동으로 소멸자에서 사라짐.
 
 	
-
 	}
 
 }
