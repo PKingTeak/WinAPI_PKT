@@ -1,6 +1,6 @@
 #pragma once
 #include<EngineCore/Level.h>
-
+#include<EnginePlatform/EngineSound.h>
 
 class TitleLevel :public ULevel
 {
@@ -17,8 +17,9 @@ public:
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+	UEngineSoundPlayer SoundPlay;
 
-
+	
 
 };
 

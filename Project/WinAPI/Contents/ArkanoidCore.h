@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore\EngineCore.h>
+#include<EngineBase/EngineDirectory.h>
 
 // Ό³Έν :
 class ArkanoidCore : public UEngineCore
@@ -26,6 +27,7 @@ protected:
 	static FVector  ScreenSize;
 
 private:
+
 
 };
 

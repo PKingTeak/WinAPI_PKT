@@ -5,6 +5,7 @@
 #include <EngineBase/EngineDirectory.h>
 #include <EngineBase/EngineFile.h>
 #include <EngineCore/EngineResourcesManager.h>
+#include<EnginePlatform/EngineSound.h>
 
 FVector ArkanoidCore::ScreenSize = { 552,602 }; //Static을 이용하여 만들어서 구현하는 곳에 초기화 
 
@@ -29,16 +30,27 @@ void ArkanoidCore::BeginPlay()
 	MainWindow.SetWindowScale({ ScreenSize.X,ScreenSize.Y }); //윈도우 설정해주고
 	MainWindow.SetClearColor(Color8Bit::BlackA);
 	UEngineDirectory Dir;
+	UEngineDirectory SDir;
 	Dir.MoveParent();
 	Dir.Move("ImageResource");
+	SDir.MoveParent();
+	SDir.Move("SoundResorce");
 
-
+	
 	std::list<UEngineFile> FList = Dir.AllFile({ ".png",".bmp" }, true);
 	for (UEngineFile& File : FList)
 
 	{
 		UEngineResourcesManager::GetInst().LoadImg(File.GetFullPath());
 	}
+	std::list<UEngineFile> NewList = SDir.AllFile({ ".wav", ".mp3" }, true);
+	// 엔진만의 규칙을 정할거냐.
+	for (UEngineFile& File : NewList)
+	{
+		UEngineSound::Load(File.GetFullPath());
+	}
+
+	
 	
 	CreateLevel<TitleLevel>("TitleLevel");
 	CreateLevel<Stage1Level>("Stage1Level");
@@ -57,6 +69,9 @@ void ArkanoidCore::BeginPlay()
 	//여기에서 Update를 하여 뱀게임을 예로 들면 여기에 헤드 부분
 	//
 
+	// 엔진만의 규칙을 정할거냐.
+	
+
 }
 
 void ArkanoidCore::Tick(float _DelatTime)
@@ -65,7 +80,7 @@ void ArkanoidCore::Tick(float _DelatTime)
 	UEngineCore::Tick(_DelatTime);
 	// 입력 받는거 혹은 상황을 넣어주는게 좋을듯 하고
 	//특정 버튼을 누르고 changeLevel하는것인가?
-	//if (/*플레이어가 충돌했다 뭐 게임을 클리어 했다*/)
+	//if (/*플레이어가 충돌했다 뭐 게임을 클리어 했다*/) 
 	//{
 	//ChangeLevel("Stage1");
 	//
