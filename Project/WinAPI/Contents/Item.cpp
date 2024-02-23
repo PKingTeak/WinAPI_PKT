@@ -2,8 +2,22 @@
 #include<EngineCore/ImageRenderer.h>
 #include<EngineBase/EngineMath.h>
 #include"ColliderManager.h"
+#include<random>
 Item* Item::MainItem = nullptr;
 UCollision* Item::ItemCollison = nullptr;
+
+enum ItemType
+{
+	Slow = 0,
+	Catch = 1,
+	Laser =2,
+	Enlarge = 3,
+
+
+
+};
+
+
 Item::Item()
 {
 }
@@ -27,6 +41,8 @@ void Item::BeginPlay()
 
 	ItemCollison = CreateCollision(ColliderOrder::Item);
 	ItemCollison->SetColType(ECollisionType::Rect);
+
+
 
 
 	

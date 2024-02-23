@@ -26,7 +26,10 @@
       <Filter>Component</Filter>
     </ClInclude>
     <ClInclude Include="Collision.h">
-      <Filter>Component</Filter>
+      <Filter>Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\GM\WIn\EngineCore\EngineDebug.h">
+      <Filter>Debug</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -55,7 +58,10 @@
       <Filter>Component</Filter>
     </ClCompile>
     <ClCompile Include="Collision.cpp">
-      <Filter>Component</Filter>
+      <Filter>Component\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\GM\WIn\EngineCore\EngineDebug.cpp">
+      <Filter>Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +82,12 @@
     </Filter>
     <Filter Include="Component\Renderer">
       <UniqueIdentifier>{a007374d-38a2-4317-99df-eb3a5f457641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Collision">
+      <UniqueIdentifier>{620846ad-d3fd-474c-b1e1-cfeedfb7b4b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{54ddbc7f-15a4-4236-adc2-ec68b9394f09}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

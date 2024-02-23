@@ -21,6 +21,7 @@ public:
 	static UCollision* GetItemCollison();
 	static Item* GetMainItem();
 	
+	int Random();
 
 protected:
 	void BeginPlay() override;
