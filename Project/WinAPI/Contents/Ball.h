@@ -6,6 +6,7 @@
 #include<EngineBase/EngineMath.h>
 class Ball : public AActor
 {
+	friend Block;
 private: 
 	static Ball* MainBall;;
 public:
@@ -46,6 +47,7 @@ public:
 
 	Block* NewBlock = nullptr;
 	
+	FVector BlockSideCheck(Block* _ColBlock);
 	//void YLReflect();
 protected:
 	void BeginPlay() override;
@@ -56,16 +58,15 @@ private:
 	void BlockRatio(Block* _NewBlock);
 	void Reset();
 	void Move(float _DeltaTime);
-	void IsCollide();
 	void GameStartCheck();
 	void PlayerPos();
 	UImageRenderer* BallRender = nullptr;
 	FVector CurBallPos = {};
 	FVector BDir = {0.5f,-0.5f};
 	FVector BallSize = { 10,8 };
-	//치트모드만들기
-	//이번주 작업하면서 조금씩 만들고 수치 확인 제대로 하기
 	UCollision* BallCollison = nullptr;
 	bool IsballLive = false;
 	float Speed = 300.0f;
+	
+
 };

@@ -18,19 +18,20 @@ Ball::~Ball()
 
 void Ball::BeginPlay()
 {
+
 	MainBall = this;
 	AActor::BeginPlay();
 	BallRender = CreateImageRenderer(0);
 	UEngineResourcesManager::GetInst().CuttingImage("Ball.png", 1, 1);
 	BallRender->SetImage("Ball.png");
-	BallRender->SetScale(BallSize * 2);
+	BallRender->SetScale(BallSize*2 );
 	GetUserScale();
 	SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
 
 
 
 	BallCollison = CreateCollision(ColliderOrder::Ball);
-	BallCollison->SetScale({ 10,10 });
+	BallCollison->SetScale({ 2,2 });
 	BallCollison->SetColType(ECollisionType::CirCle);
 
 
@@ -198,7 +199,7 @@ void Ball::BlockCheck()
 		AActor* ColAct = Collider->GetOwner();
 		Block* ColBlock = dynamic_cast<Block*>(ColAct);
 		BlockRatio(ColBlock);
-		BDir = (BDir * -1);
+		//BDir = (BDir * -1);
 		FVector BlockPos = ColBlock->GetActorLocation();
 		Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
 		ColBlock->Destroy();
@@ -223,8 +224,7 @@ void Ball::BlockRatio(Block* _NewBlock)
 
 
 	FTransform Transform = { _NewBlock->GetBlockPos(), _NewBlock->GetBlockScale() };
-	_NewBlock->BlockSide(CurBallPos);
-
+	BlockSideCheck(_NewBlock);
 	float ColX = GetActorLocation().X - Transform.Left();
 	float ColY = GetActorLocation().Y - Transform.Top();
 
@@ -256,4 +256,56 @@ void Ball::BlockRatio(Block* _NewBlock)
 
 
 }
+FVector Ball::BlockSideCheck(Block* _ColBlock)
+{
+	Block* thisBlock = _ColBlock;
+	
+	float BlockLeft =  thisBlock->BlockLeft() + thisBlock->GetActorLocation().X+1;
+	float BlockRight =  thisBlock->BlockRight() + thisBlock->GetActorLocation().X+1;
+	float BlockTop =  thisBlock->BlockUP() + thisBlock->GetActorLocation().Y+1;
+	float BlockBottom =  thisBlock->BlockBottom() + thisBlock->GetActorLocation().Y+1;
+	//각각 1씩 더해준 이유는 float 의 오차를 없애기 위해서 더해줬습니다. 
+	
+	float XMid = thisBlock->GetActorLocation().X;
+	float YMid = thisBlock->GetActorLocation().Y;
+
+
+	bool isleft = false;
+	bool isRight = false;
+	bool isDown = false;
+	bool isTop = false;
+
+	if (BlockLeft <= CurBallPos.X && CurBallPos.X < XMid)
+	{
+		float ColX = GetActorLocation().X - _ColBlock->GetBlockScale().X;
+		float ColY = GetActorLocation().Y - _ColBlock->GetBlockScale().Y;
+		isleft = true;
+		int a = 0;
+		//왼쪽 
+	}
+
+	if (XMid <= CurBallPos.X && CurBallPos.X <= BlockRight)
+	{
+		isRight = true;
+		int b = 0;
+		//오른쪽
+	}
+
+	if (BlockTop <= CurBallPos.Y && CurBallPos.Y < YMid)
+	{
+		int c = 0;
+		//위
+	}
+
+	if (YMid < CurBallPos.Y && CurBallPos.Y <= BlockBottom)
+	{
+		int d = 0;
+		//아래
+	}
+
+	int E = 0;
+	return Ball::BDir = { -1,-1 };
+
+}
+
 //상하좌우 알아내기

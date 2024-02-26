@@ -55,8 +55,7 @@ public:
 	{
 		return BlockCollision;
 	}
-	void BlockSide(FVector _CurBallPos);
-	
+	//FVector BlockSideCheck(FVector _CurBallPos);
 	
 	
 protected:
@@ -66,8 +65,10 @@ private:
 	
 	UImageRenderer* BlockRender = nullptr;
 	FVector BlockScale = { 44, 24 };
+
 	std::list<Block*> BlockMaker;
 	UCollision* BlockCollision = nullptr;
 	
+
 };
 
