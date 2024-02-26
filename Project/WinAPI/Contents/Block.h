@@ -1,6 +1,12 @@
 #pragma once
 #include <EngineCore/Actor.h>
 #include<list>
+enum BlockSide
+{
+	
+
+};
+
 class Block : public AActor
 {
 
@@ -26,19 +32,30 @@ public:
 	{
 		return BlockScale;
 	}
-	float Blockwidth()
+	float BlockRight()
 	{
-		return BlockCollision->GetTransform().Left() - BlockCollision->GetTransform().Right();
+		
+		return  BlockCollision->GetTransform().Right();
 		
 	}
-	float BlockHeight()
+	float BlockLeft()
 	{
-		return BlockCollision->GetTransform().Top() - BlockCollision->GetTransform().Bottom();
+		return BlockCollision->GetTransform().Left();
+	}
+	float BlockBottom()
+	{
+		return  BlockCollision->GetTransform().Bottom();
+	}
+
+	float BlockUP()
+	{
+		return BlockCollision->GetTransform().Top();
 	}
 	UCollision* GetBlockCollision()
 	{
 		return BlockCollision;
 	}
+	void BlockSide(FVector _CurBallPos);
 	
 	
 	
@@ -46,10 +63,9 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
-	void BlockRatio();
-	void DropItem();
+	
 	UImageRenderer* BlockRender = nullptr;
-	FVector BlockScale = { 16,8 };
+	FVector BlockScale = { 44, 24 };
 	std::list<Block*> BlockMaker;
 	UCollision* BlockCollision = nullptr;
 	

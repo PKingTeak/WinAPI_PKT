@@ -31,35 +31,23 @@ Block::~Block()
 
 void Block::BeginPlay()
 {
-
+	
 	AActor::BeginPlay();
 	BlockRender = CreateImageRenderer();
 	BlockRender->SetImage("NewBlock.png", MINT);
-	UEngineResourcesManager::GetInst().CuttingImage("NewBlock.png", 4, 3);
-	BlockRender->SetScale(BlockScale * 2);
-	SetActorLocation({ 100,100 });
-
+	BlockRender->SetScale(BlockScale);
 
 	
 	BlockCollision = CreateCollision(ColliderOrder::Block);
 	BlockCollision->SetColType(ECollisionType::Rect);
-	BlockCollision->SetScale(BlockScale * 2);
+	BlockCollision->SetScale(BlockScale);
 
-
-
-	
-
-
-
+	int a = 0;
 }
 
 
 
-void Block::DropItem()
-{
-	
 
-}
 
 void Block::Tick(float _Deltatime)
 {
@@ -67,12 +55,42 @@ void Block::Tick(float _Deltatime)
 
 
 }
-void Block::BlockRatio()
+
+void Block::BlockSide(FVector _CurBallPos)
 {
+	Block* thisBlock = this;
+	float BlockLeft = (BlockScale.hX() + thisBlock->BlockLeft()) + thisBlock->GetActorLocation().X;
+	float BlockRight = BlockScale.hX() + thisBlock->BlockRight() + thisBlock->GetActorLocation().X;
+
+
+	float BlockTop = BlockScale.hY() + thisBlock->BlockUP()+ thisBlock->GetActorLocation().Y;
+	float BlockBottom = BlockScale.hY() + thisBlock->BlockBottom()+ thisBlock->GetActorLocation().Y;
+	if (BlockLeft <= _CurBallPos.X && _CurBallPos.X < BlockScale.hX())
+	{
+
+		int a = 0;
+		//왼쪽 
+	}
+	else if (_CurBallPos.X >= BlockScale.hX() && _CurBallPos.X <= BlockRight)
+	{
+		int b = 0;
+		//오른쪽
+	}
+	
+	if (_CurBallPos.Y <= BlockScale.hY() && _CurBallPos.Y >= BlockTop)
+	{
+		int c = 0;
+		//위
+	}
+	else if (_CurBallPos.Y > BlockScale.hY() && _CurBallPos.Y <= BlockBottom)
+	{
+		int d = 0;
+		//아래
+	}
+
+	int x = 0;
 
 }
-
-
 
 //Block* Block::GetMainBlock()
 //{

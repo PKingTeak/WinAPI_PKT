@@ -51,7 +51,8 @@ void ArkanoidCore::BeginPlay()
 	}
 
 	
-	
+	UEngineResourcesManager::GetInst().CuttingImage("NewBlock.png", 4, 2);
+
 	CreateLevel<TitleLevel>("TitleLevel");
 	CreateLevel<Stage1Level>("Stage1Level");
 	

@@ -23,7 +23,7 @@ void Ball::BeginPlay()
 	BallRender = CreateImageRenderer(0);
 	UEngineResourcesManager::GetInst().CuttingImage("Ball.png", 1, 1);
 	BallRender->SetImage("Ball.png");
-	BallRender->SetScale(BallSize*2);
+	BallRender->SetScale(BallSize * 2);
 	GetUserScale();
 	SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
 
@@ -57,7 +57,7 @@ void Ball::Tick(float _DeltaTime)
 	{
 		SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
 	}
-	
+
 
 	if (UEngineInput::IsDown('R'))
 	{
@@ -154,11 +154,11 @@ void Ball::WallCheck()
 	}
 
 
-else if (CurBallPos.Y >= 480)
-{
+	else if (CurBallPos.Y >= 480)
+	{
 		int a = 0;
 		PlayerPos();
-}
+	}
 
 
 	if (false == N.IsZeroVector2D())
@@ -183,9 +183,9 @@ void Ball::PlayerPos()
 }
 void Ball::Reset()
 {
-	
+
 	IsballLive = false;
-	CurBallPos =  User::CurPos;
+	CurBallPos = User::CurPos;
 	GameStartCheck();
 }
 
@@ -214,30 +214,46 @@ void Ball::Reflect(FVector Normal)
 }
 void Ball::BlockRatio(Block* _NewBlock)
 {
-	
-//float StandardCross = _NewBlock->Blockwidth(); //대각선
-//UCollision* BlockCol = _NewBlock->GetBlockCollision();
-//
-//
-//FVector StandardRCross = ColBlock->GetRightTop() - ColBlock->GetLeftBottom(); //대각선 반대
-//
-//FVector StandardVector = { StandardCross.hX() / StandardCross.X , StandardCross.hY() / StandardCross.Y};
-//
-//
-//float BlockBDH = _NewBlock->GetTransform().Top() - _NewBlock->GetTransform().Bottom();
-//float BlockX = BlockScale.Left.X - BlockScale.Right.X ;
-////float BlockY = BlockScale.
-//// 중심 
-//
-//float BallScaleX = CurBallPos.X + BallSize.X;
-//float BallScaleY = CurBallPos.Y + BallSize.Y;
-//
-//int a = 0;
-	
-	
+
+	//FVector BlockLeftTop = { _NewBlock->BlockLeft(),_NewBlock->BlockUP() };
+	//
+	//FVector BlockRightBottom = { _NewBlock->BlockRight(),_NewBlock->BlockBottom() };
+	//
 
 
-	
-	
+
+	FTransform Transform = { _NewBlock->GetBlockPos(), _NewBlock->GetBlockScale() };
+	_NewBlock->BlockSide(CurBallPos);
+
+	float ColX = GetActorLocation().X - Transform.Left();
+	float ColY = GetActorLocation().Y - Transform.Top();
+
+	// 지금 공 위치 = 공의 현재 위치 - 블록의 왼쪽 좌표
+	// 지금 공 위치 = 공의 현재 y위치 - 블록의 위쪽 좌표;
+
+	float RatioX = ColX / _NewBlock->GetBlockScale().X;
+	float RatioY = ColY / _NewBlock->GetBlockScale().Y;
+
+	bool R = false;
+
+	if (RatioX < RatioY)
+	{
+		R = true;
+	}
+
+
+
+
+	//FVector BlockCross = 
+
+
+
+
+
+
+
+
+
+
 }
 //상하좌우 알아내기
