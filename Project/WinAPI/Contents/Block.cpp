@@ -34,19 +34,21 @@ void Block::BeginPlay()
 
 	AActor::BeginPlay();
 	BlockRender = CreateImageRenderer();
-	BlockRender->SetImage("NormalBlock.png", MINT);
-	UEngineResourcesManager::GetInst().CuttingImage("NormalBlock.png", 4, 2);
+	BlockRender->SetImage("NewBlock.png", MINT);
+	UEngineResourcesManager::GetInst().CuttingImage("NewBlock.png", 4, 3);
 	BlockRender->SetScale(BlockScale * 2);
 	SetActorLocation({ 100,100 });
+
 
 	
 	BlockCollision = CreateCollision(ColliderOrder::Block);
 	BlockCollision->SetColType(ECollisionType::Rect);
 	BlockCollision->SetScale(BlockScale * 2);
 
+
+
 	
 
-		
 
 
 }
@@ -65,6 +67,12 @@ void Block::Tick(float _Deltatime)
 
 
 }
+void Block::BlockRatio()
+{
+
+}
+
+
 
 //Block* Block::GetMainBlock()
 //{

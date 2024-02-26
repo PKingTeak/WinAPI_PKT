@@ -23,14 +23,14 @@ void Ball::BeginPlay()
 	BallRender = CreateImageRenderer(0);
 	UEngineResourcesManager::GetInst().CuttingImage("Ball.png", 1, 1);
 	BallRender->SetImage("Ball.png");
-	BallRender->SetScale({ 10,8 });
+	BallRender->SetScale(BallSize*2);
 	GetUserScale();
 	SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
 
 
 
 	BallCollison = CreateCollision(ColliderOrder::Ball);
-	BallCollison->SetScale({ 5,5 });
+	BallCollison->SetScale({ 10,10 });
 	BallCollison->SetColType(ECollisionType::CirCle);
 
 
@@ -57,7 +57,12 @@ void Ball::Tick(float _DeltaTime)
 	{
 		SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
 	}
+	
 
+	if (UEngineInput::IsDown('R'))
+	{
+		Reset();
+	}
 	AActor::Tick(_DeltaTime);
 	GameStartCheck();
 
@@ -67,42 +72,12 @@ void Ball::Tick(float _DeltaTime)
 
 
 	WallCheck();
-	//UserCheck();
 	BlockCheck();
 
-	// IsCollide();
-}
-
-void Ball::IsCollide()
-{
-	if (false == IsballLive)
-	{
-		return;
-	}
-
-	std::vector<UCollision*> Result;
-
-	if (true == BallCollison->CollisionCheck(ColliderOrder::Player, Result))
-	{
-
-		FVector N = { 0,-1 };
-		FVector N2 = { 0,-2 };
-		FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
-		BDir = BDir + (N2 * T); //R
-
-	}
-	else if (true == BallCollison->CollisionCheck(ColliderOrder::Block, Result))
-	{
-		UCollision* Collider = Result[0/*몇번째일때*/];
-		AActor* ColAct = Collider->GetOwner();
-		Block* ColBlock = dynamic_cast<Block*>(ColAct);
-		BDir = (BDir * -1);
-		FVector BlockPos = ColBlock->GetActorLocation();
-		Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
-		ColBlock->Destroy();
-	}
 
 }
+
+
 
 
 UCollision* Ball::GetCollision()
@@ -143,11 +118,7 @@ void Ball::GameStartCheck()
 }
 
 
-void Ball::StartPos(FVector _StartPos)
-{
-	CurBallPos = _StartPos; //시작 위치 
 
-}
 
 
 Ball* Ball::GetMainBall()
@@ -169,7 +140,7 @@ void Ball::WallCheck()
 	FVector N = FVector::Zero;
 	CurBallPos = GetTransform().GetPosition();
 
-	if (CurBallPos.X >= 520)
+	if (CurBallPos.X >= 524)
 	{
 		N = { -1,0 };
 	}
@@ -210,26 +181,12 @@ void Ball::PlayerPos()
 		BDir.Normalize2D();
 	}
 }
-void Ball::UserCheck()
+void Ball::Reset()
 {
-	std::vector<UCollision*> Result;
-	if (true == BallCollison->CollisionCheck(ColliderOrder::Player, Result))
-	{
-		Reflect({ 0.0f, -1.0f });
-		FVector Pos = GetTransform().GetPosition() - User::CurPos;
-		Pos.X /= User::UserScale.hX(); //유저 x에서 중점을 기준으로 부딪친 곳을 나눠서 
-		BDir.X += Pos.X;
-		BDir.Normalize2D();
-
-		//유저 크기만큼 직선 만들기 실험중
-		
-		FVector TestPos = User::CurPos;
 	
-
-
-		
-
-	}
+	IsballLive = false;
+	CurBallPos =  User::CurPos;
+	GameStartCheck();
 }
 
 void Ball::BlockCheck()
@@ -240,6 +197,7 @@ void Ball::BlockCheck()
 		UCollision* Collider = Result[0/*몇번째일때*/];
 		AActor* ColAct = Collider->GetOwner();
 		Block* ColBlock = dynamic_cast<Block*>(ColAct);
+		BlockRatio(ColBlock);
 		BDir = (BDir * -1);
 		FVector BlockPos = ColBlock->GetActorLocation();
 		Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
@@ -254,4 +212,32 @@ void Ball::Reflect(FVector Normal)
 	FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
 	BDir = BDir + (N2 * T);
 }
+void Ball::BlockRatio(Block* _NewBlock)
+{
+	
+//float StandardCross = _NewBlock->Blockwidth(); //대각선
+//UCollision* BlockCol = _NewBlock->GetBlockCollision();
+//
+//
+//FVector StandardRCross = ColBlock->GetRightTop() - ColBlock->GetLeftBottom(); //대각선 반대
+//
+//FVector StandardVector = { StandardCross.hX() / StandardCross.X , StandardCross.hY() / StandardCross.Y};
+//
+//
+//float BlockBDH = _NewBlock->GetTransform().Top() - _NewBlock->GetTransform().Bottom();
+//float BlockX = BlockScale.Left.X - BlockScale.Right.X ;
+////float BlockY = BlockScale.
+//// 중심 
+//
+//float BallScaleX = CurBallPos.X + BallSize.X;
+//float BallScaleY = CurBallPos.Y + BallSize.Y;
+//
+//int a = 0;
+	
+	
 
+
+	
+	
+}
+//상하좌우 알아내기

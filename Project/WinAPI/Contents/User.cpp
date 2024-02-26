@@ -30,10 +30,10 @@ void User::BeginPlay()
 	AActor::BeginPlay(); //Actor에서 상속받아와 BeginePlay()를 실행시켜준다 하지만 지금은 비어있다.
 
 
-	PlayerCollider = CreateCollision(ColliderOrder::Player);
-	PlayerCollider->SetColType(ECollisionType::Rect);
-	PlayerCollider->SetScale({ 60,14 });
-	UserScale = { 60,14 };
+//PlayerCollider = CreateCollision(ColliderOrder::Player);
+//PlayerCollider->SetColType(ECollisionType::Rect);
+//PlayerCollider->SetScale({ 60,14 });
+ UserScale = { 60,14 };
 	
 
 	//랜더러를 가져오기

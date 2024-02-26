@@ -34,14 +34,14 @@ void Stage1Level::BeginPlay()
 	{
 		//Test
 	Block* TestBlock = SpawnActor<Block>();
-	TestBlock->SetActorLocation({ 300+30,300 });
+	TestBlock->SetActorLocation({ 300+32,300 });
 
 	Block* TestBlock1 = SpawnActor<Block>();
-	TestBlock1->SetActorLocation({ 300+60,300 });
+	TestBlock1->SetActorLocation({ 300+ 64,300 });
 	Block* TestBlock2 = SpawnActor<Block>();
-	TestBlock2->SetActorLocation({ 300+90,300 });
+	TestBlock2->SetActorLocation({ 300+96,300 });
 	Block* TestBlock3 = SpawnActor<Block>();
-	TestBlock3->SetActorLocation({ 300+120,300 });
+	TestBlock3->SetActorLocation({ 300+128,300 });
 	
 	}
 }

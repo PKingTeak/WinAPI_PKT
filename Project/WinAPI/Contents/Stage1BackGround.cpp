@@ -20,25 +20,14 @@ void Stage1Map::SetMapImage(std::string_view _MapImageName)
 	MapRenderer->SetTransform({ {ImageScale.Half2D().X , ImageScale.Half2D().Y+30}, ImageScale});
 }
 
-//void  Stage1Map::SetColMapImage(std::string_view _MapImageName)
-//{
-//	ColMapRenderer->SetImage(_MapImageName);
-//	UWindowImage* Image = ColMapRenderer->GetImage();
-//	CollisonManger::ColMapImage = Image;
-//	FVector ImageScale = ArkanoidCore::GetScreenSize();
-//	ColMapRenderer->SetTransform({ ImageScale.Half2D(), ImageScale });
-//
-//
-//}
-//
+
 
 
 void Stage1Map::BeginPlay()
 {
 	AActor::BeginPlay();
 	MapRenderer = CreateImageRenderer(-10);
-//	ColMapRenderer = CreateImageRenderer(-11); //플레이어 보다는 먼저 그려져야 안덮어 
-//	ColMapRenderer->SetActive(false);
+
 
 }
 
