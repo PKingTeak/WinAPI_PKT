@@ -305,15 +305,33 @@ FVector Ball::BlockSideCheck(Block* _ColBlock)
 
 	if (XMid <= CurBallPos.X && CurBallPos.X <= BlockRight)
 	{
-		isRight = true;
+		if (RatioX < RatioY) //대각선 방향 
+		{
+			isRight = false;
+		}
+		else if (RatioX > RatioY)
+		{
+			isRight = true;
+
+		}
 		int b = 0;
 		//오른쪽
 	}
 
 	if (BlockTop <= CurBallPos.Y && CurBallPos.Y < YMid)
 	{
-		int c = 0;
-		RatioY *= -1;
+		if (RatioX > RatioY)
+		{
+			isDown = true;
+
+		}
+		else if (RatioX < RatioY)
+		{
+			isDown = false;
+			RatioY *= -1;
+		}
+
+		
 		//위
 	}
 
