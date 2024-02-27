@@ -25,7 +25,7 @@ public:
 	bool IsDirectory();
 
 	bool IsExists();
-
+	bool IsRoot();
 	std::string GetFileName() const ;
 	std::string GetExtension() const;
 

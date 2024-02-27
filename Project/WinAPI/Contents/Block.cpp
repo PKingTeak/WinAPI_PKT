@@ -24,7 +24,7 @@ Block::~Block()
 {
 	Item* NewItem = Item::GetMainItem();
 	NewItem->SetActorLocation(this->GetActorLocation());
-	NewItem->SetActive(true);
+	NewItem->SetActive(true,0.0f);
 
 	
 }

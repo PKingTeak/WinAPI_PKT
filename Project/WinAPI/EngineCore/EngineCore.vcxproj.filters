@@ -28,7 +28,7 @@
     <ClInclude Include="Collision.h">
       <Filter>Component\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\GM\WIn\EngineCore\EngineDebug.h">
+    <ClInclude Include="EngineDebug.h">
       <Filter>Debug</Filter>
     </ClInclude>
   </ItemGroup>
@@ -60,7 +60,7 @@
     <ClCompile Include="Collision.cpp">
       <Filter>Component\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\GM\WIn\EngineCore\EngineDebug.cpp">
+    <ClCompile Include="EngineDebug.cpp">
       <Filter>Debug</Filter>
     </ClCompile>
   </ItemGroup>
