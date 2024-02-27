@@ -233,9 +233,13 @@ void Ball::BlockRatio(Block* _NewBlock)
 
 	float RatioX = ColX / _NewBlock->GetBlockScale().X;
 	float RatioY = ColY / _NewBlock->GetBlockScale().Y;
-
+	 
+	/*
+	
+	/으로 그어서 X비율이 Y보다 작을경우 
+	*/
+	
 	bool R = false;
-
 	if (RatioX < RatioY)
 	{
 		R = true;
@@ -247,7 +251,7 @@ void Ball::BlockRatio(Block* _NewBlock)
 	//FVector BlockCross = 
 
 
-
+	
 
 
 
@@ -258,6 +262,11 @@ void Ball::BlockRatio(Block* _NewBlock)
 }
 FVector Ball::BlockSideCheck(Block* _ColBlock)
 {
+	bool isLeft = false;
+	bool isRight = false;
+	bool isDown = false;
+	bool isTop = false;
+
 	Block* thisBlock = _ColBlock;
 	
 	float BlockLeft =  thisBlock->BlockLeft() + thisBlock->GetActorLocation().X+1;
@@ -270,16 +279,28 @@ FVector Ball::BlockSideCheck(Block* _ColBlock)
 	float YMid = thisBlock->GetActorLocation().Y;
 
 
-	bool isleft = false;
-	bool isRight = false;
-	bool isDown = false;
-	bool isTop = false;
+	
 
 	if (BlockLeft <= CurBallPos.X && CurBallPos.X < XMid)
 	{
 		float ColX = GetActorLocation().X - _ColBlock->GetBlockScale().X;
 		float ColY = GetActorLocation().Y - _ColBlock->GetBlockScale().Y;
-		isleft = true;
+		
+		float RatioX = ColX / _ColBlock->GetBlockScale().X;
+		float RatioY = ColY / _ColBlock->GetBlockScale().Y;
+		
+
+
+		if (RatioX < RatioY)
+		{
+			isRight = true;
+		}
+		if (RatioX > RatioY)
+		{
+			isLeft = true;
+			isRight = false;
+		}
+		isLeft = true;
 		int a = 0;
 		//왼쪽 
 	}
@@ -303,7 +324,7 @@ FVector Ball::BlockSideCheck(Block* _ColBlock)
 		//아래
 	}
 
-	int E = 0;
+	int E = 0; 
 	return Ball::BDir = { -1,-1 };
 
 }
