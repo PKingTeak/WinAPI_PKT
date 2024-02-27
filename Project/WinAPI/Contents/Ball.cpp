@@ -278,29 +278,27 @@ FVector Ball::BlockSideCheck(Block* _ColBlock)
 	float XMid = thisBlock->GetActorLocation().X;
 	float YMid = thisBlock->GetActorLocation().Y;
 
+	float ColX = GetActorLocation().X - _ColBlock->GetBlockScale().X;
+	float ColY = GetActorLocation().Y - _ColBlock->GetBlockScale().Y;
 
+	float RatioX = ColX / _ColBlock->GetBlockScale().X;
+	float RatioY = ColY / _ColBlock->GetBlockScale().Y;
 	
 
 	if (BlockLeft <= CurBallPos.X && CurBallPos.X < XMid)
 	{
-		float ColX = GetActorLocation().X - _ColBlock->GetBlockScale().X;
-		float ColY = GetActorLocation().Y - _ColBlock->GetBlockScale().Y;
 		
-		float RatioX = ColX / _ColBlock->GetBlockScale().X;
-		float RatioY = ColY / _ColBlock->GetBlockScale().Y;
-		
-
-
-		if (RatioX < RatioY)
+		if (RatioX < RatioY) //대각선 방향 
 		{
-			isRight = true;
+			isRight = false;
+			isDown = false;
 		}
 		if (RatioX > RatioY)
 		{
-			isLeft = true;
-			isRight = false;
+			isDown = true;
+			isRight = true;
 		}
-		isLeft = true;
+		
 		int a = 0;
 		//왼쪽 
 	}
@@ -315,6 +313,7 @@ FVector Ball::BlockSideCheck(Block* _ColBlock)
 	if (BlockTop <= CurBallPos.Y && CurBallPos.Y < YMid)
 	{
 		int c = 0;
+		RatioY *= -1;
 		//위
 	}
 
@@ -324,9 +323,14 @@ FVector Ball::BlockSideCheck(Block* _ColBlock)
 		//아래
 	}
 
-	int E = 0; 
-	return Ball::BDir = { -1,-1 };
+	if (isRight == false && isDown == false)
+	{
 
+	
+	}
+	Ball::BDir = { RatioX,RatioY };
+	BDir.Normalize2D();
+	return BDir;
 }
 
 //상하좌우 알아내기
