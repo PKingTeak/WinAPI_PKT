@@ -268,8 +268,10 @@ FVector Ball::BlockSideCheck(Block* _ColBlock)
 	bool isTop = false;
 
 	Block* thisBlock = _ColBlock;
-	
-	float BlockLeft =  thisBlock->BlockLeft() + thisBlock->GetActorLocation().X+1;
+	float BlockLeftcheck = thisBlock->BlockLeft();
+	float BlockLeftpos = thisBlock->GetActorLocation().X;
+
+	float BlockLeft =  thisBlock->BlockLeft() + thisBlock->GetActorLocation().X-1;
 	float BlockRight =  thisBlock->BlockRight() + thisBlock->GetActorLocation().X+1;
 	float BlockTop =  thisBlock->BlockUP() + thisBlock->GetActorLocation().Y+1;
 	float BlockBottom =  thisBlock->BlockBottom() + thisBlock->GetActorLocation().Y+1;
@@ -297,7 +299,10 @@ FVector Ball::BlockSideCheck(Block* _ColBlock)
 		{
 			isDown = true;
 			isRight = true;
+			RatioY *= -1; 
+			//만약에 왼쪽 위쪽에서 맞았을경우에는 위로 튕겨야된다. 
 		}
+		
 		
 		int a = 0;
 		//왼쪽 
