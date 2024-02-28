@@ -37,7 +37,7 @@ void User::BeginPlay()
 	
 
 	//랜더러를 가져오기
-	SetActorLocation({ 300,100 }); //원래 위치 480
+	SetActorLocation({ 300,480 }); //원래 위치 480
 	CurPos = GetActorLocation();
 	UImageRenderer* PlayerRenderer = CreateImageRenderer(0);
 	UEngineResourcesManager::GetInst().CuttingImage("Player_Idle.png", 1, 6);

@@ -204,7 +204,6 @@ void Ball::BlockCheck()
 		AActor* ColAct = Collider->GetOwner();
 		Block* ColBlock = dynamic_cast<Block*>(ColAct);
 		BlockRatio(ColBlock);
-		//BDir = (BDir * -1);
 		FVector BlockPos = ColBlock->GetActorLocation();
 		//Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
 		//ColBlock->Destroy();
@@ -221,57 +220,90 @@ void Ball::Reflect(FVector Normal)
 void Ball::BlockRatio(Block* _NewBlock) //각도 계산 
 {
 
-	//FVector BlockLeftTop = { _NewBlock->BlockLeft(),_NewBlock->BlockUP() };
-	//
-	//FVector BlockRightBottom = { _NewBlock->BlockRight(),_NewBlock->BlockBottom() };
-	//
-
-
-
 	FTransform Transform = { _NewBlock->GetBlockPos(), _NewBlock->GetBlockScale() };
 
 	bool R = BlockSideCheckLR(_NewBlock);
 	bool D = BlockSideCheckUD(_NewBlock);
 
-	float ColX = GetActorLocation().X - Transform.Left();
-	float ColY = GetActorLocation().Y - Transform.Top();
-
-	// 지금 공 위치 = 공의 현재 위치 - 블록의 왼쪽 좌표
-	// 지금 공 위치 = 공의 현재 y위치 - 블록의 위쪽 좌표;
-
-	float RatioX = ColX / _NewBlock->GetBlockScale().X;
-	float RatioY = ColY / _NewBlock->GetBlockScale().Y;
+	
 	 
-	/*
 	
-	/으로 그어서 X비율이 Y보다 작을경우 
-	*/
-	
-	if (false == R && false == D || true == R && true ==D)
+	if (false == R && false == D)
 	{
+		float ColX = GetActorLocation().X - Transform.Left();
+		float ColY = GetActorLocation().Y - Transform.Top();
 
+		// 지금 공 위치 = 공의 현재 위치 - 블록의 왼쪽 좌표
+		// 지금 공 위치 = 공의 현재 y위치 - 블록의 위쪽 좌표;
+
+		float RatioX = ColX / _NewBlock->GetBlockScale().X;
+		float RatioY = ColY / _NewBlock->GetBlockScale().Y;
+		 // [\] 일때
 		BDir.X = RatioX;
 		BDir.Y = RatioY;
 		BDir.Normalize2D();
+		Reflect(BDir);
 
 	}
-	if (true == R && false == D || false == R && true == D)
+	if (true == R && true == D)
 	{
-		if (RatioX < RatioY) // : /
-		{
-			R = false; // 이게 맞음
-			D = true;
-		}
+		float ColX = GetActorLocation().X - Transform.Right();
+		float ColY = GetActorLocation().Y - Transform.Bottom();
+
+		// 지금 공 위치 = 공의 현재 위치 - 블록의 왼쪽 좌표
+		// 지금 공 위치 = 공의 현재 y위치 - 블록의 위쪽 좌표;
+
+		float RatioX = ColX / _NewBlock->GetBlockScale().X;
+		float RatioY = ColY / _NewBlock->GetBlockScale().Y;
+	
+		BDir.X = RatioX;
+		BDir.Y = RatioY;
+		BDir.Normalize2D();
+		Reflect(BDir);
+	}
+	if (true == R && false == D)
+	{
+		float ColX = GetActorLocation().X - Transform.Right();
+		float ColY = GetActorLocation().Y - Transform.Top();
+
+		// 지금 공 위치 = 공의 현재 위치 - 블록의 왼쪽 좌표
+		// 지금 공 위치 = 공의 현재 y위치 - 블록의 위쪽 좌표;
+
+		float RatioX = ColX / _NewBlock->GetBlockScale().X;
+		float RatioY = ColY / _NewBlock->GetBlockScale().Y;
+		// [/]일때
+		BDir.X = RatioX;
+		BDir.Y = RatioY;
+		BDir.Normalize2D();
+		Reflect(BDir);
+
+	}
+	if (false == R && true == D)
+	{
+		float ColX = GetActorLocation().X - Transform.Left();
+		float ColY = GetActorLocation().Y - Transform.Bottom();
+
+		// 지금 공 위치 = 공의 현재 위치 - 블록의 왼쪽 좌표
+		// 지금 공 위치 = 공의 현재 y위치 - 블록의 위쪽 좌표;
+
+		float RatioX = ColX / _NewBlock->GetBlockScale().X;
+		float RatioY = ColY / _NewBlock->GetBlockScale().Y;
+		// [/]일때
+		BDir.X = RatioX;
+		BDir.Y = RatioY;
+		BDir.Normalize2D();
+		Reflect(BDir);
 
 	}
 	
-	if (RatioX < RatioY) // : /
-	{
-		R = false; // 이게 맞음
-		D = true;
-	}
+	int a = 0;
+//	if (RatioX < RatioY) // : /
+//	{
+//		R = false; // 이게 맞음
+//		D = true;
+	//}
 	
-	BDir;
+	
 
 
 
@@ -289,15 +321,10 @@ void Ball::BlockRatio(Block* _NewBlock) //각도 계산
 }
 bool Ball::BlockSideCheckLR(Block* _ColBlock)
 {
-	bool isLeft = false;
+	
 	bool isRight = false;
-	bool isDown = false;
-	bool isTop = false;
-
+	
 	Block* thisBlock = _ColBlock;
-	float BlockLeftcheck = thisBlock->BlockLeft();
-	float BlockLeftpos = thisBlock->GetActorLocation().X;
-
 	float BlockLeft =  thisBlock->BlockLeft() + thisBlock->GetActorLocation().X-1;
 	float BlockRight =  thisBlock->BlockRight() + thisBlock->GetActorLocation().X+1;
 	
@@ -324,24 +351,18 @@ bool Ball::BlockSideCheckLR(Block* _ColBlock)
 	}
 
 	
-
-	if (isRight == false && isDown == false)
-	{
-
-	
-	}
-	return false;
+	return isRight;
 
 }
 
 bool Ball::BlockSideCheckUD(Block* _ColBlock)
 {
+	bool isDown = false;
 	Block* thisBlock = _ColBlock;
 	float BlockTop = thisBlock->BlockUP() + thisBlock->GetActorLocation().Y - 1;
 	float BlockBottom = thisBlock->BlockBottom() + thisBlock->GetActorLocation().Y + 1;
 
 	float YMid = thisBlock->GetActorLocation().Y;
-	bool isDown = false;
 
 
 	if (BlockTop <= CurBallPos.Y && CurBallPos.Y < YMid)
@@ -355,7 +376,7 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 	{
 
 		return isDown = true;
-		int d = 0;
+	
 		//아래
 	}
 	return isDown;
