@@ -264,8 +264,14 @@ void Ball::BlockRatio(Block* _NewBlock)
 	}
 	if (true == R && false == D)
 	{
-		
+		if (true == MidTopHeight)
+		{
+			Reflect({ 1.0f,0.0f });
+		}
+		else
+		{
 		Reflect({0.0f,-1.0f});
+		}
 		
 
 	}
