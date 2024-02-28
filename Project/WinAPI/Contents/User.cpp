@@ -88,6 +88,14 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 	}
 	AddActorLocation(MovePos);
 
+	if (UEngineInput::IsDown('U'))
+	{
+		SetActorLocation({ 300,100 });
+	}
+	if (UEngineInput::IsDown('I'))
+	{
+		SetActorLocation({ 300,480 });
+	}
 
 }
 

@@ -47,8 +47,8 @@ public:
 
 	Block* NewBlock = nullptr;
 	
-	bool BlockSideCheckLR(Block* _ColBlock);
-	bool BlockSideCheckUD(Block* _ColBlock);
+	bool BlockSideCheckLR(Block* _ColBlock );
+	bool BlockSideCheckUD(Block* _ColBlock  );
 	//void YLReflect();
 protected:
 	void BeginPlay() override;
