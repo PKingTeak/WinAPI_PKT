@@ -235,12 +235,14 @@ void Ball::BlockRatio(Block* _NewBlock)
 	bool D = BlockSideCheckUD(_NewBlock);
 	
 	
+	
 	 
 	
 	if (false == R && false == D)
 	{
 		if (true == MidTopHeight)
 		{
+			MidHeight = false;
 			Reflect({ -1.0f,0.0f });
 		}
 		else
@@ -255,23 +257,29 @@ void Ball::BlockRatio(Block* _NewBlock)
 	{
 		if (true == MidHeight)
 		{
+			MidHeight = false;
 			Reflect({ 1.0f,0.0f });
+			
 		}
 		else
 		{
-		Reflect({ 1.0f,-1.0f });
+		Reflect({ 0.0f,-1.0f });
 		}
+		//오른쪽 아래
 	}
 	if (true == R && false == D)
 	{
 		if (true == MidTopHeight)
 		{
+			MidHeight = false;
 			Reflect({ 1.0f,0.0f });
+			
 		}
 		else
 		{
 		Reflect({0.0f,-1.0f});
 		}
+		//오른쪽 위
 		
 
 	}
@@ -279,7 +287,9 @@ void Ball::BlockRatio(Block* _NewBlock)
 	{
 		if (true == MidHeight)
 		{
+			MidHeight = false;
 			Reflect({ -1.0f,0.0f });
+		
 		}
 		else
 		{
@@ -287,6 +297,7 @@ void Ball::BlockRatio(Block* _NewBlock)
 		}
 		 // 여기서 값이 y가 -가 붙어서 나와야 하는데 지금 양수로 나온다. 그래서 꺾여서 나가기 때문에 값이 이상하다
 		// X값은 잘나옴
+		//왼쪽 아래
 	}
 
 	
@@ -330,7 +341,7 @@ bool Ball::BlockSideCheckLR(Block* _ColBlock )
 	
 	Block* thisBlock = _ColBlock;
 	float BlockLeft =  thisBlock->BlockLeft() + thisBlock->GetActorLocation().X -1;
-	float BlockRight =  thisBlock->BlockRight() + thisBlock->GetActorLocation().X+1;
+	float BlockRight =  thisBlock->BlockRight() + thisBlock->GetActorLocation().X-1;
 	
 	//각각 1씩 더해준 이유는 float 의 오차를 없애기 위해서 더해줬습니다. 
 	
@@ -365,22 +376,23 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 	bool isDown = false;
 	bool isMD = false;
 	Block* thisBlock = _ColBlock;
-	float BlockTop = thisBlock->BlockUP() + thisBlock->GetActorLocation().Y - 1;
-	float BlockBottom = thisBlock->BlockBottom() + thisBlock->GetActorLocation().Y ;
+	float BlockTop = thisBlock->BlockUP() + thisBlock->GetActorLocation().Y - 2;
+	float BlockBottom = thisBlock->BlockBottom() + thisBlock->GetActorLocation().Y-1 ;
 
 	float YMid = thisBlock->GetActorLocation().Y;
 
 
-	if (BlockTop < CurBallPos.Y && CurBallPos.Y < YMid)
+	if (BlockTop+4 < CurBallPos.Y && CurBallPos.Y < YMid)
 	{
 		
 		isDown = false;
 		MidTopHeight = true;
 		//위
 	}
-	if (BlockTop >= CurBallPos.Y)
+	if (BlockTop+2 >= CurBallPos.Y)
 	{
 		isDown = false;
+		
 	}
 
 	if (YMid <= CurBallPos.Y && CurBallPos.Y < BlockBottom)
@@ -394,6 +406,7 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 	if (CurBallPos.Y > BlockBottom)
 	{
 		isDown = true;
+		MidTopHeight = false;
 	}
 	return isDown;
 }
