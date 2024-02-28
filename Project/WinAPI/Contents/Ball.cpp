@@ -239,8 +239,15 @@ void Ball::BlockRatio(Block* _NewBlock)
 	
 	if (false == R && false == D)
 	{
-	
+		if (true == MidTopHeight)
+		{
+			Reflect({ -1.0f,0.0f });
+		}
+		else
+		{
 		Reflect({0.0,-1.0f});
+		}
+	
 		//N
 
 	}
@@ -362,10 +369,9 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 	{
 		
 		isDown = false;
-		
+		MidTopHeight = true;
 		//À§
 	}
-	if()
 	if (BlockTop >= CurBallPos.Y)
 	{
 		isDown = false;
