@@ -209,8 +209,8 @@ void Ball::BlockCheck()
 		Block* ColBlock = dynamic_cast<Block*>(ColAct);
 		BlockRatio(ColBlock);
 		FVector BlockPos = ColBlock->GetActorLocation();
-		//Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
-		//ColBlock->Destroy();
+		Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
+		ColBlock->Destroy();
 	}
 }
 
@@ -382,7 +382,7 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 	float YMid = thisBlock->GetActorLocation().Y;
 
 
-	if (BlockTop+4 < CurBallPos.Y && CurBallPos.Y < YMid)
+	if (BlockTop+1 < CurBallPos.Y && CurBallPos.Y < YMid)
 	{
 		
 		isDown = false;
