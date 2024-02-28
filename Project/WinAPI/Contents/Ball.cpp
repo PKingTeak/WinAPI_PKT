@@ -149,28 +149,32 @@ void Ball::WallCheck()
 	if (CurBallPos.X >= 524)
 	{
 		N = { -1,0 };
+	
 	}
 	else if (CurBallPos.X <= 30)
 	{
 		N = { 1,0 };
+	
 	}
 	else if (CurBallPos.Y <= 50)
 	{
 		N = { 0,1 };
+	
 	}
 
 
 	else if (CurBallPos.Y >= 480)
 	{
-		int a = 0;
+	
 		PlayerPos();
 	}
 
-
-	if (false == N.IsZeroVector2D())
-	{
-		Reflect(N);
-	}
+if (false == N.IsZeroVector2D())
+{
+	Reflect(N);
+	int a = 0;
+	
+}
 }
 void Ball::PlayerPos()
 {
@@ -213,13 +217,15 @@ void Ball::BlockCheck()
 void Ball::Reflect(FVector Normal)
 {
 	FVector N = Normal;
-	FVector N2 = N* 2;
-	float T =  (-1 * BDir.X) * N.X +(-1 * BDir.Y) * N.Y ; //(-P * n) <여기가 이상하다.
+	FVector N2 = N * 2;
+	float X = BDir.X;
+	float Y = BDir.Y;
+	float T = (-BDir.X) * N.X + (-BDir.Y) * N.Y; //(-P * n) <여기가 이상하다.
 	BDir = BDir + (N2 * T); //R = P+2n(-P내적n)
 }
 
 
-void Ball::BlockRatio(Block* _NewBlock) //각도 계산 
+void Ball::BlockRatio(Block* _NewBlock)
 {
 	FVector N = {BDir.X,BDir.Y};
 
@@ -233,8 +239,8 @@ void Ball::BlockRatio(Block* _NewBlock) //각도 계산
 	
 	if (false == R && false == D)
 	{
-		Reflect({1.0f,0.0f});
 	
+		Reflect({0.0,-1.0f});
 		//N
 
 	}
