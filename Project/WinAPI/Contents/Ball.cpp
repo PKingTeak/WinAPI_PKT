@@ -54,6 +54,7 @@ void Ball::GetUserScale()
 
 void Ball::Tick(float _DeltaTime)
 {
+
 	if (false == IsballLive)
 	{
 		SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
@@ -66,14 +67,15 @@ void Ball::Tick(float _DeltaTime)
 	}
 	AActor::Tick(_DeltaTime);
 	GameStartCheck();
-
+	WallCheck();
+	BlockCheck();
 	Move(_DeltaTime);
 	// 내 미래의 위치로 체크하는 법
 	// 충돌하고 나서 체크하는법
 
 
-	WallCheck();
-	BlockCheck();
+	
+	
 
 
 }
@@ -267,6 +269,7 @@ void Ball::BlockRatio(Block* _NewBlock)
 		}
 		//오른쪽 아래
 	}
+	
 	if (true == R && false == D)
 	{
 		if (true == MidTopHeight)
@@ -382,16 +385,17 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 	float YMid = thisBlock->GetActorLocation().Y;
 
 
-	if (BlockTop+1 < CurBallPos.Y && CurBallPos.Y < YMid)
+	if (BlockTop+2 < CurBallPos.Y && CurBallPos.Y < YMid)
 	{
 		
 		isDown = false;
 		MidTopHeight = true;
-		//위
+		//위 옆면
 	}
-	if (BlockTop+2 >= CurBallPos.Y)
+	if (BlockTop+1 > CurBallPos.Y)
 	{
 		isDown = false;
+		// 진짜 위에
 		
 	}
 
@@ -401,7 +405,7 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 		MidHeight = true;
 		isDown = true;
 		
-		//아래
+		//아래 여옆면
 	}
 	if (CurBallPos.Y > BlockBottom)
 	{
