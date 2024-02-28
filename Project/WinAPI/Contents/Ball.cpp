@@ -111,6 +111,11 @@ void Ball::GameStartCheck()
 		BDir = FVector(0.0f, -1.0f);
 		BDir.Normalize2D();
 	}
+	else if (true == UEngineInput::IsDown('S'))
+	{
+		BDir = FVector(0.0f, 1.0f);
+		BDir.Normalize2D();
+	}
 
 	if (true == UEngineInput::IsDown(VK_SPACE))
 	{
@@ -201,8 +206,8 @@ void Ball::BlockCheck()
 		BlockRatio(ColBlock);
 		//BDir = (BDir * -1);
 		FVector BlockPos = ColBlock->GetActorLocation();
-		Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
-		ColBlock->Destroy();
+		//Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
+		//ColBlock->Destroy();
 	}
 }
 
@@ -213,7 +218,7 @@ void Ball::Reflect(FVector Normal)
 	FVector T = { (-1 * BDir.X) * N.X,(-1 * BDir.Y) * N.Y }; //(-P * n)
 	BDir = BDir + (N2 * T);
 }
-void Ball::BlockRatio(Block* _NewBlock)
+void Ball::BlockRatio(Block* _NewBlock) //각도 계산 
 {
 
 	//FVector BlockLeftTop = { _NewBlock->BlockLeft(),_NewBlock->BlockUP() };
@@ -224,7 +229,10 @@ void Ball::BlockRatio(Block* _NewBlock)
 
 
 	FTransform Transform = { _NewBlock->GetBlockPos(), _NewBlock->GetBlockScale() };
-	BlockSideCheck(_NewBlock);
+
+	bool R = BlockSideCheckLR(_NewBlock);
+	bool D = BlockSideCheckUD(_NewBlock);
+
 	float ColX = GetActorLocation().X - Transform.Left();
 	float ColY = GetActorLocation().Y - Transform.Top();
 
@@ -239,12 +247,31 @@ void Ball::BlockRatio(Block* _NewBlock)
 	/으로 그어서 X비율이 Y보다 작을경우 
 	*/
 	
-	bool R = false;
-	if (RatioX < RatioY)
+	if (false == R && false == D || true == R && true ==D)
 	{
-		R = true;
-	}
 
+		BDir.X = RatioX;
+		BDir.Y = RatioY;
+		BDir.Normalize2D();
+
+	}
+	if (true == R && false == D || false == R && true == D)
+	{
+		if (RatioX < RatioY) // : /
+		{
+			R = false; // 이게 맞음
+			D = true;
+		}
+
+	}
+	
+	if (RatioX < RatioY) // : /
+	{
+		R = false; // 이게 맞음
+		D = true;
+	}
+	
+	BDir;
 
 
 
@@ -260,7 +287,7 @@ void Ball::BlockRatio(Block* _NewBlock)
 
 
 }
-FVector Ball::BlockSideCheck(Block* _ColBlock)
+bool Ball::BlockSideCheckLR(Block* _ColBlock)
 {
 	bool isLeft = false;
 	bool isRight = false;
@@ -273,87 +300,101 @@ FVector Ball::BlockSideCheck(Block* _ColBlock)
 
 	float BlockLeft =  thisBlock->BlockLeft() + thisBlock->GetActorLocation().X-1;
 	float BlockRight =  thisBlock->BlockRight() + thisBlock->GetActorLocation().X+1;
-	float BlockTop =  thisBlock->BlockUP() + thisBlock->GetActorLocation().Y+1;
-	float BlockBottom =  thisBlock->BlockBottom() + thisBlock->GetActorLocation().Y+1;
+	
 	//각각 1씩 더해준 이유는 float 의 오차를 없애기 위해서 더해줬습니다. 
 	
 	float XMid = thisBlock->GetActorLocation().X;
-	float YMid = thisBlock->GetActorLocation().Y;
-
-	float ColX = GetActorLocation().X - _ColBlock->GetBlockScale().X;
-	float ColY = GetActorLocation().Y - _ColBlock->GetBlockScale().Y;
-
-	float RatioX = ColX / _ColBlock->GetBlockScale().X;
-	float RatioY = ColY / _ColBlock->GetBlockScale().Y;
+	
 	
 
 	if (BlockLeft <= CurBallPos.X && CurBallPos.X < XMid)
 	{
-		
-		if (RatioX < RatioY) //대각선 방향 
-		{
-			isRight = false;
-			isDown = false;
-		}
-		if (RatioX > RatioY)
-		{
-			isDown = true;
-			isRight = true;
-			RatioY *= -1; 
-			//만약에 왼쪽 위쪽에서 맞았을경우에는 위로 튕겨야된다. 
-		}
-		
-		
+
+		return isRight = false;
 		int a = 0;
 		//왼쪽 
+		//왼쪽 오른쪽인지 일단 먼저 확인하고 위아래 에서 구현할때 bool타입으로 확인하고 그다음 계산을 시작
 	}
 
 	if (XMid <= CurBallPos.X && CurBallPos.X <= BlockRight)
 	{
-		if (RatioX < RatioY) //대각선 방향 
-		{
-			isRight = false;
-		}
-		else if (RatioX > RatioY)
-		{
-			isRight = true;
-
-		}
+		return isRight = true;
 		int b = 0;
 		//오른쪽
 	}
 
-	if (BlockTop <= CurBallPos.Y && CurBallPos.Y < YMid)
-	{
-		if (RatioX > RatioY)
-		{
-			isDown = true;
-
-		}
-		else if (RatioX < RatioY)
-		{
-			isDown = false;
-			RatioY *= -1;
-		}
-
-		
-		//위
-	}
-
-	if (YMid < CurBallPos.Y && CurBallPos.Y <= BlockBottom)
-	{
-		int d = 0;
-		//아래
-	}
+	
 
 	if (isRight == false && isDown == false)
 	{
 
 	
 	}
-	Ball::BDir = { RatioX,RatioY };
-	BDir.Normalize2D();
-	return BDir;
+	return false;
+
 }
 
-//상하좌우 알아내기
+bool Ball::BlockSideCheckUD(Block* _ColBlock)
+{
+	Block* thisBlock = _ColBlock;
+	float BlockTop = thisBlock->BlockUP() + thisBlock->GetActorLocation().Y - 1;
+	float BlockBottom = thisBlock->BlockBottom() + thisBlock->GetActorLocation().Y + 1;
+
+	float YMid = thisBlock->GetActorLocation().Y;
+	bool isDown = false;
+
+
+	if (BlockTop <= CurBallPos.Y && CurBallPos.Y < YMid)
+	{
+		return 	isDown = false;
+
+		//위
+	}
+
+	if (YMid < CurBallPos.Y && CurBallPos.Y <= BlockBottom)
+	{
+
+		return isDown = true;
+		int d = 0;
+		//아래
+	}
+	return isDown;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+		if (RatioX < RatioY) //대각선 방향 [/]
+		{
+			isRight = false;
+			isDown = false;
+		}
+		if (RatioX > RatioY) //대각선 [\]
+		{
+			isDown = true;
+			isRight = true;
+			RatioY *= -1;
+			//만약에 왼쪽 위쪽에서 맞았을경우에는 위로 튕겨야된다.
+		}
+
+*/
