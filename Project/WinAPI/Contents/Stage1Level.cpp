@@ -22,7 +22,7 @@ void Stage1Level::BeginPlay()
 
 	User* user = SpawnActor<User>(); //플레이어 생성
 	Ball* NewBall = SpawnActor<Ball>(); // 공생성
-	Block* NewBlock = SpawnActor<Block>();
+	//Block* NewBlock = SpawnActor<Block>();
 	Stage1Map* Stage1 = SpawnActor<Stage1Map>();
 	Item* NewItem = SpawnActor<Item>();
 	NewItem->SetActorLocation({ 1200,1200 }); //아이템 위치 이동시킨후 일단 다른곳에 생성ㄴ
@@ -35,12 +35,12 @@ void Stage1Level::BeginPlay()
 		//Test
 	Block* TestBlock = SpawnActor<Block>();
 	TestBlock->SetActorLocation({ 300,300 });
-	Block* TestBlock1 = SpawnActor<Block>();
-	TestBlock1->SetActorLocation({ 100,300 });
-	Block* TestBlock2 = SpawnActor<Block>();
-	TestBlock2->SetActorLocation({ 200,300 });
-	Block* TestBlock3 = SpawnActor<Block>();
-	TestBlock3->SetActorLocation({ 500,300 });
+//  Block* TestBlock1 = SpawnActor<Block>();
+//  TestBlock1->SetActorLocation({ 100,300 });
+//  Block* TestBlock2 = SpawnActor<Block>();
+//  TestBlock2->SetActorLocation({ 200,300 });
+//  Block* TestBlock3 = SpawnActor<Block>();
+//  TestBlock3->SetActorLocation({ 500,300 });
 	
 	}
 }

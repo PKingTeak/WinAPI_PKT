@@ -35,12 +35,12 @@ void Block::BeginPlay()
 	AActor::BeginPlay();
 	BlockRender = CreateImageRenderer();
 	BlockRender->SetImage("NewBlock.png", MINT);
-	BlockRender->SetScale(BlockScale);
+	BlockRender->SetScale(BlockScale*5);
 
 	
 	BlockCollision = CreateCollision(ColliderOrder::Block);
 	BlockCollision->SetColType(ECollisionType::Rect);
-	BlockCollision->SetScale(BlockScale);
+	BlockCollision->SetScale(BlockScale*5);
 	
 	int a = 0;
 }

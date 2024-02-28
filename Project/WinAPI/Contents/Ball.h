@@ -68,6 +68,9 @@ private:
 	UCollision* BallCollison = nullptr;
 	bool IsballLive = false;
 	float Speed = 300.0f;
-	
+	bool isRight = false;
+	bool isDown = false;
+	bool MidHeight = false;
+	bool MidTopHeight = false;
 
 };

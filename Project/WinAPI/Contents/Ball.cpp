@@ -31,7 +31,7 @@ void Ball::BeginPlay()
 
 
 	BallCollison = CreateCollision(ColliderOrder::Ball);
-	BallCollison->SetScale({ 2,2 });
+	BallCollison->SetScale({ 1,1 });
 	BallCollison->SetColType(ECollisionType::CirCle);
 
 
@@ -209,8 +209,8 @@ void Ball::BlockCheck()
 		Block* ColBlock = dynamic_cast<Block*>(ColAct);
 		BlockRatio(ColBlock);
 		FVector BlockPos = ColBlock->GetActorLocation();
-		Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
-		ColBlock->Destroy();
+		//Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
+		//ColBlock->Destroy();
 	}
 }
 
@@ -233,7 +233,7 @@ void Ball::BlockRatio(Block* _NewBlock)
 
 	bool R = BlockSideCheckLR(_NewBlock);
 	bool D = BlockSideCheckUD(_NewBlock);
-
+	
 	
 	 
 	
@@ -246,9 +246,14 @@ void Ball::BlockRatio(Block* _NewBlock)
 	}
 	if (true == R && true == D)
 	{
-		
-		Reflect({ 0.0f, 1.0f });
-
+		if (true == MidHeight)
+		{
+			Reflect({ 1.0f,0.0f });
+		}
+		else
+		{
+		Reflect({ 1.0f,-1.0f });
+		}
 	}
 	if (true == R && false == D)
 	{
@@ -259,8 +264,14 @@ void Ball::BlockRatio(Block* _NewBlock)
 	}
 	if (false == R && true == D)
 	{
-		
+		if (true == MidHeight)
+		{
+			Reflect({ -1.0f,0.0f });
+		}
+		else
+		{
 		Reflect({ 0.0f,1.0f });
+		}
 		 // 여기서 값이 y가 -가 붙어서 나와야 하는데 지금 양수로 나온다. 그래서 꺾여서 나가기 때문에 값이 이상하다
 		// X값은 잘나옴
 	}
@@ -331,6 +342,7 @@ bool Ball::BlockSideCheckLR(Block* _ColBlock )
 	}
 
 	return isRight;
+	
 
 
 }
@@ -338,30 +350,43 @@ bool Ball::BlockSideCheckLR(Block* _ColBlock )
 bool Ball::BlockSideCheckUD(Block* _ColBlock)
 {
 	bool isDown = false;
+	bool isMD = false;
 	Block* thisBlock = _ColBlock;
 	float BlockTop = thisBlock->BlockUP() + thisBlock->GetActorLocation().Y - 1;
-	float BlockBottom = thisBlock->BlockBottom() + thisBlock->GetActorLocation().Y + 1;
+	float BlockBottom = thisBlock->BlockBottom() + thisBlock->GetActorLocation().Y ;
 
 	float YMid = thisBlock->GetActorLocation().Y;
 
 
-	if (BlockTop <= CurBallPos.Y && CurBallPos.Y < YMid)
+	if (BlockTop < CurBallPos.Y && CurBallPos.Y < YMid)
 	{
+		
 		isDown = false;
-
 		
 		//위
 	}
+	if()
+	if (BlockTop >= CurBallPos.Y)
+	{
+		isDown = false;
+	}
 
-	if (YMid < CurBallPos.Y && CurBallPos.Y <= BlockBottom)
+	if (YMid <= CurBallPos.Y && CurBallPos.Y < BlockBottom)
 	{
 
+		MidHeight = true;
 		isDown = true;
 		
 		//아래
 	}
+	if (CurBallPos.Y > BlockBottom)
+	{
+		isDown = true;
+	}
 	return isDown;
 }
+
+//위아래 반사각공식은 이제 완벽한데 
 
 
 
