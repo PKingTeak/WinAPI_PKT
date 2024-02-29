@@ -10,6 +10,7 @@ private:
 public:
 	// constrcuter destructer
 	Item();
+	
 	~Item();
 
 	// delete Function
@@ -21,8 +22,6 @@ public:
 	static UCollision* GetItemCollison();
 	static Item* GetMainItem();
 	
-	int Random();
-
 protected:
 	void BeginPlay() override;
 	void Tick(float _detaTime) override;
@@ -30,6 +29,8 @@ private:
 	UImageRenderer* ItemRender = nullptr;
 	FVector ItemScale = {16,8};
 	static UCollision* ItemCollison;
+	bool isLive = false;
+
 
 };
 

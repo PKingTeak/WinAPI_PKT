@@ -96,6 +96,11 @@ void ArkanoidCore::Tick(float _DelatTime)
 	//플레이어 동작같은거 
 	//로직 (객체들 함수 가져다 쓰는 공간)
 }
+void ArkanoidCore::CreateBlock()
+{
+
+
+}
 
 void ArkanoidCore::End()
 {

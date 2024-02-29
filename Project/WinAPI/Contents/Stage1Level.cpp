@@ -33,25 +33,33 @@ void Stage1Level::BeginPlay()
 
 	{
 		//Test
-		Block* TestBlock = SpawnActor<Block>();
-		TestBlock->SetActorLocation({ 300,300 });
-		Block* TestBlock8 = SpawnActor<Block>();
-		TestBlock8->SetActorLocation({ 364,300 });
-		Block* TestBlock1 = SpawnActor<Block>();
-		TestBlock1->SetActorLocation({ 100,300 });
-		Block* TestBlock2 = SpawnActor<Block>();
-		TestBlock2->SetActorLocation({ 200,300 });
-		Block* TestBlock3 = SpawnActor<Block>();
-		TestBlock3->SetActorLocation({ 500,300 });
-
-		Block* TestBlock4 = SpawnActor<Block>();
-		TestBlock4->SetActorLocation({ 300,200 });
-		Block* TestBlock5 = SpawnActor<Block>();
-		TestBlock5->SetActorLocation({ 100,200 });
-		Block* TestBlock6 = SpawnActor<Block>();
-		TestBlock6->SetActorLocation({ 200,200 });
-		Block* TestBlock7 = SpawnActor<Block>();
-		TestBlock7->SetActorLocation({ 500,200 });
+		Block* TestBlock;
+		std::vector<Block*> a;
+		for (int i = 0; i < 10; ++i) {
+			TestBlock = SpawnActor<Block>();
+			TestBlock->SetActorLocation(FVector{ 50+i*44,100 });
+			a.push_back(TestBlock);
+		}
+	
+	
+	//Block* TestBlock[] = SpawnActor<Block>();
+	//TestBlock8->SetActorLocation({ 364,300 });
+	//Block* TestBlock1 = SpawnActor<Block>();
+	//TestBlock1->SetActorLocation({ 100,300 });
+	//Block* TestBlock2 = SpawnActor<Block>();
+	//TestBlock2->SetActorLocation({ 200,300 });
+	//Block* TestBlock3 = SpawnActor<Block>();
+	//TestBlock3->SetActorLocation({ 500,300 });
+	//
+	//Block* TestBlock4 = SpawnActor<Block>();
+	//TestBlock4->SetActorLocation({ 300,200 });
+	//Block* TestBlock5 = SpawnActor<Block>();
+	//TestBlock5->SetActorLocation({ 100,200 });
+	//Block* TestBlock6 = SpawnActor<Block>();
+	//TestBlock6->SetActorLocation({ 200,200 });
+	//Block* TestBlock7 = SpawnActor<Block>();
+	//TestBlock7->SetActorLocation({ 500,200 });
+	
 	}
 }
 

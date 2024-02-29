@@ -31,6 +31,7 @@
       <Filter>Obejct</Filter>
     </ClCompile>
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="BlockMaker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArkanoidCore.h" />
@@ -63,6 +64,7 @@
       <Filter>Obejct</Filter>
     </ClInclude>
     <ClInclude Include="Item.h" />
+    <ClInclude Include="BlockMaker.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Obejct">

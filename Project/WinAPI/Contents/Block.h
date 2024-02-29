@@ -1,6 +1,6 @@
 #pragma once
 #include <EngineCore/Actor.h>
-#include<list>
+#include<vector>
 enum BlockSide
 {
 	
@@ -12,6 +12,7 @@ class Block : public AActor
 
 public:
 	Block();
+	Block(int _Color);
 	~Block();
 
 	// delete Function
@@ -58,17 +59,15 @@ public:
 	//FVector BlockSideCheck(FVector _CurBallPos);
 	
 	
+	void CreateBlock(int _Count);
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
-	
+
 	UImageRenderer* BlockRender = nullptr;
 	FVector BlockScale = { 44, 24 };
-
-	std::list<Block*> BlockMaker;
 	UCollision* BlockCollision = nullptr;
-	
-
+	std::vector<Block*>BlockMaker = {};
 };
 

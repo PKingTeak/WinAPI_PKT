@@ -19,6 +19,8 @@ public:
 	{
 		return ScreenSize;
 	}
+
+	void CreateBlock();
 protected:
 	
 	void BeginPlay() override;

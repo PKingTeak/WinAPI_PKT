@@ -42,8 +42,7 @@ void Item::BeginPlay()
 	ItemCollison = CreateCollision(ColliderOrder::Item);
 	ItemCollison->SetColType(ECollisionType::Rect);
 
-
-
+	
 
 	
 
@@ -57,7 +56,13 @@ Item* Item::GetMainItem()
 void Item::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+	if (true == isLive)
+	{
+		
 	AddActorLocation(FVector::Down * _DeltaTime * 100.0f); 
+
+	}
+
 	//아래로 내려줄것인데 
 	
 
