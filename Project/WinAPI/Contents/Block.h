@@ -1,11 +1,6 @@
 #pragma once
 #include <EngineCore/Actor.h>
 #include<vector>
-enum BlockSide
-{
-	
-
-};
 
 class Block : public AActor
 {
@@ -57,6 +52,13 @@ public:
 		return BlockCollision;
 	}
 	//FVector BlockSideCheck(FVector _CurBallPos);
+
+	//WHITE = 0,ORANG = 1,MINT = 2,GREEN = 3,RED = 4,BLUE = 5,PINK = 6,YELLOW = 7
+	void SetBlockColor(int _Color)
+	{
+		
+		BlockRender->SetImage("NewBlock.png", _Color);
+	}
 	
 	
 	void CreateBlock(int _Count);

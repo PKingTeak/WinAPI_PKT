@@ -34,34 +34,73 @@ void Stage1Level::BeginPlay()
 	{
 		//Test
 		Block* TestBlock;
-		std::vector<Block*> a;
-		for (int i = 0; i < 10; ++i) {
+		std::vector<Block*> Blocks;
+
+		//이걸 반복해서 사용중이다 이걸 관리해주는 클래스는 나중에 만들자
+		for (int i = 0; i < 12; i++)
+		{
+
 			TestBlock = SpawnActor<Block>();
-			TestBlock->SetActorLocation(FVector{ 50+i*44,100 });
-			a.push_back(TestBlock);
+			TestBlock->SetActorLocation(FVector{ 45 + i * 42,120 });
+			TestBlock->SetBlockColor(4);
+			Blocks.push_back(TestBlock);
+		}
+
+	}
+
+	{
+		Block* TestBlock;
+		std::vector<Block*> Blocks;
+
+		for (int i = 0; i < 12; i++)
+		{
+			TestBlock = SpawnActor<Block>();
+			TestBlock->SetActorLocation(FVector{ 45 + i * 42,120 +24 });
+			TestBlock->SetBlockColor(7);
+			Blocks.push_back(TestBlock);
 		}
 	
-	
-	//Block* TestBlock[] = SpawnActor<Block>();
-	//TestBlock8->SetActorLocation({ 364,300 });
-	//Block* TestBlock1 = SpawnActor<Block>();
-	//TestBlock1->SetActorLocation({ 100,300 });
-	//Block* TestBlock2 = SpawnActor<Block>();
-	//TestBlock2->SetActorLocation({ 200,300 });
-	//Block* TestBlock3 = SpawnActor<Block>();
-	//TestBlock3->SetActorLocation({ 500,300 });
-	//
-	//Block* TestBlock4 = SpawnActor<Block>();
-	//TestBlock4->SetActorLocation({ 300,200 });
-	//Block* TestBlock5 = SpawnActor<Block>();
-	//TestBlock5->SetActorLocation({ 100,200 });
-	//Block* TestBlock6 = SpawnActor<Block>();
-	//TestBlock6->SetActorLocation({ 200,200 });
-	//Block* TestBlock7 = SpawnActor<Block>();
-	//TestBlock7->SetActorLocation({ 500,200 });
+	}
+	{
+		Block* TestBlock;
+		std::vector<Block*> Blocks;
+
+		for (int i = 0; i < 12; i++)
+		{
+			TestBlock = SpawnActor<Block>();
+			TestBlock->SetActorLocation(FVector{ 45 + i * 42,120 +24*2 });
+			TestBlock->SetBlockColor(5);
+			Blocks.push_back(TestBlock);
+		}
 	
 	}
+	{
+		Block* TestBlock;
+		std::vector<Block*> Blocks;
+
+		for (int i = 0; i < 12; i++)
+		{
+			TestBlock = SpawnActor<Block>();
+			TestBlock->SetActorLocation(FVector{ 45 + i * 42,120 + 24 * 3 });
+			TestBlock->SetBlockColor(6);
+			Blocks.push_back(TestBlock);
+		}
+	}
+
+	{
+		Block* TestBlock;
+		std::vector<Block*> Blocks;
+
+		for (int i = 0; i < 12; i++)
+		{
+			TestBlock = SpawnActor<Block>();
+			TestBlock->SetActorLocation(FVector{ 45 + i * 42,120 + 24 * 4 });
+			TestBlock->SetBlockColor(3);
+			Blocks.push_back(TestBlock);
+		}
+	}
 }
+
 
 
 void Stage1Level::Tick(float _DeltaTime)
