@@ -67,6 +67,10 @@ void Item::Tick(float _DeltaTime)
 	
 
 }
+void ItemType()
+{
+
+}
 
 
 UCollision* Item::GetItemCollison()

@@ -186,12 +186,16 @@ void Ball::PlayerPos()
 
 	if (CurBallPos.X >= ULeft && CurBallPos.X <= URight)
 	{
+		if (User::CurPos.Y + 1 > CurBallPos.Y)
+		{
 		Reflect({ 0.0f, -1.0f });
 		FVector Pos = GetTransform().GetPosition() - User::CurPos;
 		Pos.X /= User::UserScale.hX(); //유저 x에서 중점을 기준으로 부딪친 곳을 나눠서 
 		BDir.X += Pos.X;
 		BDir.Normalize2D();
+		}
 	}
+
 }
 void Ball::Reset()
 {
@@ -303,38 +307,6 @@ void Ball::BlockRatio(Block* _NewBlock)
 		//왼쪽 아래
 	}
 
-	
-	
-	
-	
-	
-//	if (RatioX < RatioY) // : /
-//	{
-//		R = false; // 이게 맞음
-//		D = true;
-	//}
-	/*
-	
-	if (false == R && false == D)
-	{
-		float ColX = GetActorLocation().X - Transform.Left();
-		float ColY = GetActorLocation().Y - Transform.Top();
-
-		// 지금 공 위치 = 공의 현재 위치 - 블록의 왼쪽 좌표
-		// 지금 공 위치 = 공의 현재 y위치 - 블록의 위쪽 좌표;
-
-		float RatioX = ColX / _NewBlock->GetBlockScale().X;
-		float RatioY = ColY / _NewBlock->GetBlockScale().Y;
-		 // [\] 일때
-		FVector N = { RatioX ,RatioY };
-		N.Normalize2D();
-		Reflect(N);
-	
-		//N
-
-	}
-	*/
-
 
 }
 bool Ball::BlockSideCheckLR(Block* _ColBlock )
@@ -415,42 +387,3 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 	return isDown;
 }
 
-//위아래 반사각공식은 이제 완벽한데 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-		if (RatioX < RatioY) //대각선 방향 [/]
-		{
-			isRight = false;
-			isDown = false;
-		}
-		if (RatioX > RatioY) //대각선 [\]
-		{
-			isDown = true;
-			isRight = true;
-			RatioY *= -1;
-			//만약에 왼쪽 위쪽에서 맞았을경우에는 위로 튕겨야된다.
-		}
-
-*/

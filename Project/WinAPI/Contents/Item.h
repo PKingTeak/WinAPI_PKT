@@ -21,7 +21,7 @@ public:
 
 	static UCollision* GetItemCollison();
 	static Item* GetMainItem();
-	
+	void ItemType();
 protected:
 	void BeginPlay() override;
 	void Tick(float _detaTime) override;
