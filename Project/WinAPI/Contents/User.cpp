@@ -28,13 +28,7 @@ void User::BeginPlay()
 {
 	MainUser = this;
 	AActor::BeginPlay(); //Actor에서 상속받아와 BeginePlay()를 실행시켜준다 하지만 지금은 비어있다.
-
-
-//PlayerCollider = CreateCollision(ColliderOrder::Player);
-//PlayerCollider->SetColType(ECollisionType::Rect);
-//PlayerCollider->SetScale({ 60,14 });
- UserScale = { 60,14 };
-	
+	UserScale = { 60,14 };
 
 	//랜더러를 가져오기
 	SetActorLocation({ 300,480 }); //원래 위치 480
@@ -43,8 +37,7 @@ void User::BeginPlay()
 	UEngineResourcesManager::GetInst().CuttingImage("Player_Idle.png", 1, 6);
 	PlayerRenderer->SetImage("Player_Idle.png");
 	PlayerRenderer->SetTransform({ { 0,0 },{ 68,16} });
-	PlayerRenderer->CreateAnimation("PlayerIdleAnimation", "Player_Idle.png",0,5,0.1f,true);
-	
+	PlayerRenderer->CreateAnimation("PlayerIdleAnimation", "Player_Idle.png", 0, 5, 0.1f, true);
 	PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 	//변수 보는방법 
 
@@ -71,7 +64,7 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 	{
 		MovePos = FVector::Left * 500.0f * _DeltaTime;
 		NextPos += MovePos;
-		//AddActorLocation(MovePos);
+		
 	}
 
 	if (true == UEngineInput::IsPress('D'))
@@ -147,5 +140,5 @@ void User::AutoShot(float _DeltaTime)
  NewBullet->SetActorLocation(GetActorLocation());
  NewBullet->SetDir(FVector::Up);
  time = 0;
-} 
+}
 */

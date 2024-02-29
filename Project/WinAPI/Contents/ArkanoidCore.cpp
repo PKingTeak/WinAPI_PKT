@@ -34,7 +34,7 @@ void ArkanoidCore::BeginPlay()
 	MainWindow.SetClearColor(Color8Bit::BlackA);
 	UEngineDirectory Dir;
 	UEngineDirectory SDir;
-Dir.MoveToSearchChild("ImageResource");
+	Dir.MoveToSearchChild("ImageResource");
 	//SDir.MoveToSearchChild("SoundResource");
 	SDir.MoveParent();
 	SDir.Move("SoundResource");

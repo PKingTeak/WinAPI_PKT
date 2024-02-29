@@ -95,6 +95,8 @@ public:
 
 	void Cutting(int _X, int _Y);
 
+	void SetCuttingTransform(const FTransform& _CuttingTrans, int _Index = 0);
+
 	void DrawRectangle(const FTransform& _Trans);
 	void DrawEllipse(const FTransform& _Trans);
 
@@ -127,6 +129,10 @@ public:
 	}
 
 	void TextPrint(std::string_view _Text, FVector _Pos);
+	const UImageInfo& ImageInfo(int _Index)
+	{
+		return Infos[_Index];
+	}
 
 protected:
 

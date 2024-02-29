@@ -215,7 +215,7 @@ void Ball::BlockCheck()
 		Block* ColBlock = dynamic_cast<Block*>(ColAct);
 		BlockRatio(ColBlock);
 		FVector BlockPos = ColBlock->GetActorLocation();
-		Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
+		//Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
 		ColBlock->Destroy();
 	}
 }

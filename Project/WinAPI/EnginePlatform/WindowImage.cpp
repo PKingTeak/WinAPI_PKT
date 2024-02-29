@@ -120,6 +120,9 @@ bool UWindowImage::Load(UWindowImage* _Image)
 			MsgBoxAssert("Png 형식 리소스 로드에 실패했습니다.");
 		}
 
+		delete pBitMap;
+		delete pImage;
+
 		ImageType = EWIndowImageType::IMG_PNG;
 	}
 
@@ -198,6 +201,9 @@ bool UWindowImage::LoadFolder(UWindowImage* _Image)
 			{
 				MsgBoxAssert("Png 형식 리소스 로드에 실패했습니다.");
 			}
+
+			delete pBitMap;
+			delete pImage;
 
 			ImageType = EWIndowImageType::IMG_PNG;
 		}
@@ -570,6 +576,11 @@ void UWindowImage::Cutting(int _X, int _Y)
 		CuttingPos.X = 0.0f;
 		CuttingPos.Y += CuttingScale.Y;
 	}
+}
+
+void UWindowImage::SetCuttingTransform(const FTransform& _CuttingTrans, int _Index)
+{
+	Infos[_Index].CuttingTrans = _CuttingTrans;
 }
 
 Color8Bit UWindowImage::GetColor(int _X, int _Y, Color8Bit _DefaultColor)
