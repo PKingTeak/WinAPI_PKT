@@ -186,7 +186,7 @@ void Ball::PlayerPos()
 
 	if (CurBallPos.X >= ULeft && CurBallPos.X <= URight)
 	{
-		if (User::CurPos.Y + 4 > CurBallPos.Y)
+		if (User::CurPos.Y + 4 > CurBallPos.Y) // 플레이어 하단 판정
 		{
 		Reflect({ 0.0f, -1.0f });
 		FVector Pos = GetTransform().GetPosition() - User::CurPos;

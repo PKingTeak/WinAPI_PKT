@@ -28,7 +28,7 @@ void Stage1Level::BeginPlay()
 	NewItem->SetActorLocation({ 1200,1200 }); //아이템 위치 이동시킨후 일단 다른곳에 생성ㄴ
 	NewItem->SetActive(false);
 	Stage1->SetMapImage("Stage1_BackGround.png");
-	//Stage1->SetColMapImage("Stage1_ColMap.png");
+	
 
 
 	{
