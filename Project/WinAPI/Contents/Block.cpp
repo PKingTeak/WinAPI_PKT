@@ -17,6 +17,13 @@ enum Blocks
 	YELLOW = 7
 
 };
+enum BlockType
+{
+	Normal,
+	Stack,
+	NotDestory
+
+};
 
 
 
@@ -66,3 +73,8 @@ void Block::Tick(float _Deltatime)
 
 }
 
+void Block::StackBlock()
+{
+
+
+}

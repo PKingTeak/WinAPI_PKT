@@ -16,10 +16,7 @@ public:
 	Block& operator=(const Block& _Other) = delete;
 	Block& operator=(Block&& _Other) noexcept = delete;
 	
-	void BlockMake()
-	{
-		//block will make
-	}
+
 	FVector GetBlockPos()
 	{
 		return this->GetActorLocation();
@@ -59,6 +56,8 @@ public:
 		
 		BlockRender->SetImage("NewBlock.png", _Color);
 	}
+
+	void StackBlock();
 	
 	
 	void CreateBlock(int _Count);

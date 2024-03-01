@@ -20,6 +20,14 @@ public:
 	User& operator=(const User& _Other) = delete;
 	User& operator=(User&& _Other) noexcept = delete;
 
+	void PlayerDie();
+	
+	int GetLife()
+	{
+		return Life;
+	}
+
+
 	static FVector CurPos;
 	static FVector UserScale;
 	static User* GetMainUser(); //다른곳에서 속성을 가져오기 get
@@ -34,7 +42,7 @@ private:
 	
 	UImageRenderer* PlayerRenderer;
 	float time = 0.0f;
-	
+	int Life = 2;
 
 
 	//사실 총쏘는 기능은 필요 없다. 
