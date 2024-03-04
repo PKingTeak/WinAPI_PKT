@@ -55,6 +55,7 @@ public:
 	PlayerState GetPlayerState(User* _Player);
 	
 	void CheckPlayerState(User* _Player);
+	
 
 
 protected:
@@ -67,8 +68,8 @@ private:
 	UImageRenderer* PlayerRenderer;
 	float time = 0.0f;
 	int Life = 2;
-	PlayerState NowState = PlayerState::Idle;
-
+	PlayerState NowState = PlayerState::Start;
+	bool isStartAniEnd = false;
 
 	//사실 총쏘는 기능은 필요 없다. 
 	// float QSkillColl = 0.0f; 

@@ -38,12 +38,11 @@ void User::BeginPlay()
 	PlayerRenderer->SetImage("Player_Idle.png");
 	PlayerRenderer->SetTransform({ { 0,0 },{ 68,16} });
 	PlayerRenderer->CreateAnimation("PlayerIdleAnimation", "Player_Idle.png", 0, 5, 0.1f, true);
-	//PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
-	CheckPlayerState(this);
 	PlayerRenderer->CreateAnimation("PlayerStart", "Player_Start.png",0,4,0.1f,false);
 	PlayerRenderer->CreateAnimation("PlayerDead", "Player_Dead.png", 0, 3, 0.1f, false);
 	//변수 보는방법 
 
+	CheckPlayerState(this);
 
 }
 UCollision* User::GetUserCollider()
@@ -59,6 +58,7 @@ User* User::GetMainUser()
 
 void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 다르게 하면 성능에 따라 시간이 달라지기 때문에 안된다.
 {
+
 	CurPos = GetActorLocation();
 	FVector MovePos = FVector::Zero;
 	FVector NextPos = GetActorLocation();
@@ -92,6 +92,11 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 	{
 		SetActorLocation({ 300,480 });
 	}
+	
+	
+	CheckPlayerState(this);
+	
+
 
 }
 
@@ -119,11 +124,23 @@ PlayerState User::GetPlayerState(User* _Player)
 
 void User::CheckPlayerState(User* _Player)
 {
+	bool isEnd;
 	switch (NowState)
 	{
 	case Start:
-		PlayerAnimationReset(_Player);
+	
+		if (isStartAniEnd == true)
+		{
+			NowState = Idle;
+			
+		}
 		PlayerRenderer->ChangeAnimation("PlayerStart");
+		
+		isEnd = PlayerRenderer->IsCurAnimationEnd(); // true라도 나옴 그럼 애니메이션은 끝이 난것인데
+		isStartAniEnd = isEnd;
+
+		
+	
 		break;
 	case Idle:
 		PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
