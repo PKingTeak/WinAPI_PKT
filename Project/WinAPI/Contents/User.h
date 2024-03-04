@@ -47,13 +47,16 @@ public:
 
 	void PlayerStart(User* _Player);
 
-	template<typename Playerstate>
-	int SetPlayerState(Playerstate _PlayerState, User* _Player)
-	{
-		_Player->NowState = _PlayerState;
-		return SetPlayerState(static_cast<int>(_PlayerState), _Player);
-	}
-	int SetPlayerState(int _PlayerState, User* _Player);
+	//template<typename Playerstate>
+	void SetPlayerState(PlayerState _PlayerState, User* _Player);
+	
+	
+	//int SetPlayerState(Playerstate _PlayerState, User* _Player)
+	//{
+	//	_Player->NowState = _PlayerState;
+	//	return SetPlayerState(static_cast<int>(_PlayerState), _Player);
+	//}
+	//int SetPlayerState(int _PlayerState, User* _Player);
 	
 	PlayerState GetPlayerState(User* _Player);
 	void CheckPlayerState(User* _Player);
@@ -72,9 +75,9 @@ protected:
 private:
 	void PlayerAnimationReset(User* _Player);
 	UImageRenderer* PlayerRenderer;
+	PlayerState NowState = PlayerState::Start;
 	float time = 0.0f;
 	int Life = 2;
-	PlayerState NowState = PlayerState::Start;
 	bool isStartAniEnd = false;
 	bool isDead = false;
 

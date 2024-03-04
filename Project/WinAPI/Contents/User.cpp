@@ -34,11 +34,11 @@ void User::BeginPlay()
 	SetActorLocation({ 300,480 }); //원래 위치 480
 	CurPos = GetActorLocation();
 	PlayerRenderer = CreateImageRenderer(0);
-	
+
 	PlayerRenderer->SetImage("Player_Idle.png");
 	PlayerRenderer->SetTransform({ { 0,0 },{ 68,16} });
 	PlayerRenderer->CreateAnimation("PlayerIdleAnimation", "Player_Idle.png", 0, 5, 0.1f, true);
-	PlayerRenderer->CreateAnimation("PlayerStart", "Player_Start.png",0,4,0.1f,false);
+	PlayerRenderer->CreateAnimation("PlayerStart", "Player_Start.png", 0, 4, 0.1f, false);
 	PlayerRenderer->CreateAnimation("PlayerDead", "Player_Dead.png", 0, 3, 0.1f, false);
 	//변수 보는방법 
 
@@ -92,10 +92,10 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 	{
 		SetActorLocation({ 300,480 });
 	}
-	
-	
+
+
 	CheckPlayerState(this);
-	
+
 
 
 }
@@ -104,7 +104,8 @@ void User::PlayerDie(User* _Player)
 {
 	Life -= 1;
 	_Player->SetPlayerState(PlayerState::Dead, _Player);
-	PlayerState nowState =GetPlayerState(_Player);
+	//_Player->SetPlayerState(PlayerState::Dead, _Player);
+	PlayerState nowState = GetPlayerState(_Player);
 	CheckPlayerState(_Player);
 	if (isDead == true)
 	{
@@ -137,33 +138,35 @@ void User::CheckPlayerState(User* _Player)
 	switch (NowState)
 	{
 	case Start:
-	
-		if (true  == isStartAniEnd)
+
+		if (true == isStartAniEnd)
 		{
-			NowState = Idle;
-			NowState;
+			SetPlayerState(PlayerState::Idle, _Player);
 		}
 		PlayerRenderer->ChangeAnimation("PlayerStart");
 		isEnd = PlayerRenderer->IsCurAnimationEnd(); // true라도 나옴 그럼 애니메이션은 끝이 난것인데
 		isStartAniEnd = isEnd;
+		if (true == isDead)
+		{
+			isDead = false;
+		}
 		break;
 	case Idle:
 		PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 		break;
 	case PEnlarge:
 		break;
-	case Dead: 
+	case Dead:
 		if (true == isDead)
 		{
 			NowState = Start;
 			PlayerAnimationReset(_Player);
 		}
-		 // PlayerAnimationReset(_Player); 만약에 랜더러안에 애니메이션이 존재할 경우 지워줘야 한다.
-	//	PlayerAnimationReset(_Player);
+		// PlayerAnimationReset(_Player); 만약에 랜더러안에 애니메이션이 존재할 경우 지워줘야 한다.
+   //	PlayerAnimationReset(_Player);
 		PlayerRenderer->ChangeAnimation("PlayerDead");
 		isEnd = PlayerRenderer->IsCurAnimationEnd();
 		isDead = isEnd;
-		//PlayerAnimationReset(_Player);
 		break;
 	default:
 		break;
@@ -172,14 +175,25 @@ void User::CheckPlayerState(User* _Player)
 
 }
 
-int User::SetPlayerState(int _PlayerState, User* _Player)
+void User::SetPlayerState(PlayerState _PlayerState, User* _Player)
 {
-
-		return _PlayerState;
-	 // 임시 리턴값 변신 했을때 상태를 채크할때 사용할 것입니다.
-
+	_Player->NowState = _PlayerState;
+	
 }
 
+
+
+
+
+
+//int User::SetPlayerState(int _PlayerState, User* _Player)
+//{
+//
+//	return _PlayerState;
+//	// 임시 리턴값 변신 했을때 상태를 채크할때 사용할 것입니다.
+//
+//}
+//
 
 void User::PlayerAnimationReset(User* _Player)
 {
