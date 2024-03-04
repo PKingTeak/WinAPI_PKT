@@ -33,7 +33,7 @@ void Ball::BeginPlay()
 	BallCollison = CreateCollision(ColliderOrder::Ball);
 	BallCollison->SetScale({ 2,2 });
 	BallCollison->SetColType(ECollisionType::CirCle);
-
+	this->SetActive(true, 1.0f);
 
 
 
@@ -54,7 +54,7 @@ void Ball::GetUserScale()
 
 void Ball::Tick(float _DeltaTime)
 {
-
+	
 	if (false == IsballLive)
 	{
 		SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });

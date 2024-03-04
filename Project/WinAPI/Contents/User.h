@@ -34,7 +34,7 @@ public:
 
 	
 	
-	int GetLife()
+	inline int GetLife()
 	{
 		return Life;
 	}
@@ -47,16 +47,9 @@ public:
 
 	void PlayerStart(User* _Player);
 
-	//template<typename Playerstate>
+
 	void SetPlayerState(PlayerState _PlayerState, User* _Player);
-	
-	
-	//int SetPlayerState(Playerstate _PlayerState, User* _Player)
-	//{
-	//	_Player->NowState = _PlayerState;
-	//	return SetPlayerState(static_cast<int>(_PlayerState), _Player);
-	//}
-	//int SetPlayerState(int _PlayerState, User* _Player);
+
 	
 	PlayerState GetPlayerState(User* _Player);
 	void CheckPlayerState(User* _Player);

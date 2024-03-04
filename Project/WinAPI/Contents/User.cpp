@@ -35,13 +35,14 @@ void User::BeginPlay()
 	CurPos = GetActorLocation();
 	PlayerRenderer = CreateImageRenderer(0);
 
-	PlayerRenderer->SetImage("Player_Idle.png");
+	PlayerRenderer->SetImage("Player_Start.png");
 	PlayerRenderer->SetTransform({ { 0,0 },{ 68,16} });
 	PlayerRenderer->CreateAnimation("PlayerIdleAnimation", "Player_Idle.png", 0, 5, 0.1f, true);
 	PlayerRenderer->CreateAnimation("PlayerStart", "Player_Start.png", 0, 4, 0.1f, false);
 	PlayerRenderer->CreateAnimation("PlayerDead", "Player_Dead.png", 0, 3, 0.1f, false);
 	//변수 보는방법 
 
+	this->SetActive(true, 1.0f);
 	CheckPlayerState(this);
 
 }
@@ -58,7 +59,7 @@ User* User::GetMainUser()
 
 void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 다르게 하면 성능에 따라 시간이 달라지기 때문에 안된다.
 {
-
+	time += _DeltaTime;
 	CurPos = GetActorLocation();
 	FVector MovePos = FVector::Zero;
 	FVector NextPos = GetActorLocation();
@@ -134,22 +135,34 @@ PlayerState User::GetPlayerState(User* _Player)
 void User::CheckPlayerState(User* _Player)
 {
 	bool isEnd;
-
+	PlayerState nowState;
+	
 	switch (NowState)
 	{
 	case Start:
+	
 
 		if (true == isStartAniEnd)
 		{
 			SetPlayerState(PlayerState::Idle, _Player);
+
 		}
-		PlayerRenderer->ChangeAnimation("PlayerStart");
-		isEnd = PlayerRenderer->IsCurAnimationEnd(); // true라도 나옴 그럼 애니메이션은 끝이 난것인데
-		isStartAniEnd = isEnd;
-		if (true == isDead)
+
+		if (this->IsActive() == true)
 		{
-			isDead = false;
+			PlayerRenderer->ChangeAnimation("PlayerStart");
+			isEnd = PlayerRenderer->IsCurAnimationEnd(); // true라도 나옴 그럼 애니메이션은 끝이 난것인데
+			isStartAniEnd = isEnd;
+			//Dead 에서 time 0으로 초기화 해주면 딜레이 생기고 Start애니메이션 될듯 하다.
+			if (true == isDead)
+			{
+				isDead = false;
+			}
 		}
+		
+		nowState = _Player->GetPlayerState(_Player);
+		
+
 		break;
 	case Idle:
 		PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
@@ -185,15 +198,6 @@ void User::SetPlayerState(PlayerState _PlayerState, User* _Player)
 
 
 
-
-//int User::SetPlayerState(int _PlayerState, User* _Player)
-//{
-//
-//	return _PlayerState;
-//	// 임시 리턴값 변신 했을때 상태를 채크할때 사용할 것입니다.
-//
-//}
-//
 
 void User::PlayerAnimationReset(User* _Player)
 {
