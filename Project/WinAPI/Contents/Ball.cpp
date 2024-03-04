@@ -127,14 +127,6 @@ void Ball::GameStartCheck()
 
 
 
-
-
-Ball* Ball::GetMainBall()
-{
-	return MainBall;
-}
-
-
 void Ball::Move(float _DeltaTime)
 {
 	BDir.Normalize2D();
@@ -207,6 +199,7 @@ void Ball::Reset()
 
 void Ball::BlockCheck()
 {
+	
 	std::vector<UCollision*> Result;
 	if (true == BallCollison->CollisionCheck(ColliderOrder::Block, Result))
 	{
@@ -215,6 +208,8 @@ void Ball::BlockCheck()
 		Block* ColBlock = dynamic_cast<Block*>(ColAct);
 		BlockRatio(ColBlock);
 		FVector BlockPos = ColBlock->GetActorLocation();
+
+		
 		//Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
 		ColBlock->Destroy();
 	}
@@ -240,9 +235,6 @@ void Ball::BlockRatio(Block* _NewBlock)
 	bool R = BlockSideCheckLR(_NewBlock);
 	bool D = BlockSideCheckUD(_NewBlock);
 	
-	
-	
-	 
 	
 	if (false == R && false == D)
 	{

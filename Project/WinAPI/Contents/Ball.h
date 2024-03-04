@@ -41,7 +41,7 @@ public:
 
 	void Reflect(FVector _CurBallPos);
 	void GetUserScale();
-	static Ball* GetMainBall();
+
 	UCollision* GetCollision();
 //static UCollision* GetBallCollision();
 

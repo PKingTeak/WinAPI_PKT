@@ -36,6 +36,18 @@ void Stage1Level::BeginPlay()
 		Block* TestBlock;
 		std::vector<Block*> Blocks;
 
+		for (int i = 0; i < 12; i++)
+		{
+			TestBlock = SpawnActor<Block>();
+			TestBlock->SetBlockType(BlockType::Hard, TestBlock);
+			int Blocklife = TestBlock->GetLife();
+			TestBlock->SetBlockColor(0);
+			TestBlock->SetActorLocation(FVector{ 45 + i * 42, 100 });
+			Blocks.push_back(TestBlock);
+
+
+		}
+
 		//이걸 반복해서 사용중이다 이걸 관리해주는 클래스는 나중에 만들자
 		for (int i = 0; i < 12; i++)
 		{

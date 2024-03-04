@@ -2,6 +2,14 @@
 #include <EngineCore/Actor.h>
 #include<vector>
 
+enum class BlockType
+{
+	Normal = 0 ,
+	Hard = 1,
+	Gold = 2
+
+};
+
 class Block : public AActor
 {
 
@@ -60,16 +68,26 @@ public:
 		BlockRender->SetImage("NewBlock.png", _Color);
 	}
 	
+	int GetLife();
+	void BlockLife(int _Count);
+	void SetLife(int _Count);
+	int LifeDecrease();
+	template<typename EnumType>
+	int SetBlockType(EnumType _BlockType , Block* _NewBlock)
+	{
+		return SetBlockType(static_cast<int>(_BlockType), _NewBlock);
+	}
 	
-	void CreateBlock(int _Count);
+	int SetBlockType(int _BlockType, Block* _NewBlock);
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
-
 	UImageRenderer* BlockRender = nullptr;
 	FVector BlockScale = { 44, 24 };
 	UCollision* BlockCollision = nullptr;
-	std::vector<Block*>BlockMaker = {};
+	int life = 0;
+	BlockType Type = BlockType::Normal;
 };
 

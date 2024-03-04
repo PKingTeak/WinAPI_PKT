@@ -5,6 +5,7 @@
 #include<iostream>
 
 
+
 enum Blocks
 {
 	WHITE = 0,
@@ -52,11 +53,17 @@ void Block::BeginPlay()
 	BlockCollision->SetColType(ECollisionType::Rect);
 	BlockCollision->SetScale(BlockScale);
 
+	
 
 }
 
 
 
+int Block::LifeDecrease()
+{
+	life -= 1;
+	return life;
+}
 
 
 void Block::Tick(float _Deltatime)
@@ -65,4 +72,37 @@ void Block::Tick(float _Deltatime)
 
 
 }
+void Block::SetLife(int _Count)
+{
+	life = _Count;
+}
+
+
+int Block::GetLife()
+{
+	return life;
+}
+
+void Block::BlockLife(int _Count)
+{
+	life = _Count;
+}
+
+
+int Block::SetBlockType(int _BlockType, Block* _NewBlock)
+{
+	Block* thisBlock = _NewBlock;
+	int num = _BlockType;
+	if (num == 1) // Hardºí·Ï
+	{
+	thisBlock->SetLife(2);
+	}
+	else if (num == 2)
+	{
+		thisBlock->SetLife(99999);
+	}
+
+	return num;
+}
+
 
