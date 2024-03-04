@@ -217,7 +217,9 @@ void Ball::BlockCheck()
 			ColBlock->LifeDecrease();
 			if (Type == BlockType::Hard)
 			{
-				ColBlock->HardBlockAnimation(ColBlock);
+			ColBlock->BlockAniReset(ColBlock);
+			ColBlock->HardBlockAnimation(ColBlock);
+			
 			}
 		}
 		else

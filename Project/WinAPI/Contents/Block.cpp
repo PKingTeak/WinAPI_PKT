@@ -28,7 +28,7 @@ Block::Block()
 }
 Block::Block(int _Color)
 {
-	
+
 }
 Block::~Block()
 {
@@ -41,19 +41,22 @@ Block::~Block()
 
 void Block::BeginPlay()
 {
-	
+
 
 	AActor::BeginPlay();
+
+	
+
 	BlockRender = CreateImageRenderer();
 	BlockRender->SetImage("NewBlock.png", MINT);
 	BlockRender->SetScale(BlockScale);
 
-	
+
 	BlockCollision = CreateCollision(ColliderOrder::Block);
 	BlockCollision->SetColType(ECollisionType::Rect);
 	BlockCollision->SetScale(BlockScale);
 
-	
+
 
 }
 
@@ -92,15 +95,17 @@ void Block::BlockLife(int _Count)
 int Block::SetBlockType(int _BlockType, Block* _NewBlock)
 {
 	Block* thisBlock = _NewBlock;
-	UImageRenderer* otherBlockRender = BlockRender;
+	UImageRenderer* otherBlockRender = thisBlock->BlockRender;
 	int num = _BlockType;
 	if (num == 1) // Hardºí·Ï
 	{
-	thisBlock->SetLife(2);
-	otherBlockRender->SetImage("OtherBlock.png", 0);
-	otherBlockRender->SetScale(BlockScale);
-	otherBlockRender->CreateAnimation("HardBlockAnimation", "OtherBlock.png", 0, 5, 0.1f, false);
-	
+		thisBlock->SetLife(2);
+
+		otherBlockRender->SetImage("OtherBlock.png", 0);
+		otherBlockRender->SetScale(BlockScale);
+		otherBlockRender->CreateAnimation("HardBlockAnimation", "OtherBlock.png", 0, 5, 0.1f, false);
+
+		this->HardBlockAnimation(thisBlock);
 	}
 	else if (num == 2)
 	{

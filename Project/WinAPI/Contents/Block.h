@@ -82,8 +82,12 @@ public:
 	BlockType GetBlockType(Block* _NewBlock);
 	void HardBlockAnimation(Block* _NewBlock)
 	{
-		_NewBlock->BlockRender->ChangeAnimation("HardBlockAnimation");
+		_NewBlock->BlockRender->ChangeAnimation("HardBlockAnimation",0);
 		
+	}
+	void BlockAniReset(Block* _NewBlock)
+	{
+		_NewBlock->BlockRender->AnimationReset();
 	}
 protected:
 	void BeginPlay() override;
