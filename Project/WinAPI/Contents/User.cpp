@@ -106,9 +106,14 @@ void User::PlayerDie(User* _Player)
 	_Player->SetPlayerState(PlayerState::Dead, _Player);
 	PlayerState nowState =GetPlayerState(_Player);
 	CheckPlayerState(_Player);
+	if (isDead == true)
+	{
+		NowState = PlayerState::Start;
+	}
 	if (Life < 0)
 	{
-		//GameOver();
+		//GameOver() UI 작업;
+		//Player 다시 재생성 안할것
 	}
 }
 
@@ -133,7 +138,7 @@ void User::CheckPlayerState(User* _Player)
 	{
 	case Start:
 	
-		if (isStartAniEnd == true)
+		if (true  == isStartAniEnd)
 		{
 			NowState = Idle;
 			NowState;
@@ -148,8 +153,17 @@ void User::CheckPlayerState(User* _Player)
 	case PEnlarge:
 		break;
 	case Dead: 
+		if (true == isDead)
+		{
+			NowState = Start;
+			PlayerAnimationReset(_Player);
+		}
 		 // PlayerAnimationReset(_Player); 만약에 랜더러안에 애니메이션이 존재할 경우 지워줘야 한다.
+	//	PlayerAnimationReset(_Player);
 		PlayerRenderer->ChangeAnimation("PlayerDead");
+		isEnd = PlayerRenderer->IsCurAnimationEnd();
+		isDead = isEnd;
+		//PlayerAnimationReset(_Player);
 		break;
 	default:
 		break;

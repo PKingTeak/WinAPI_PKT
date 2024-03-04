@@ -139,6 +139,7 @@ void Ball::WallCheck()
 	// R = P + 2n(-P¡¤n);
 	FVector N = FVector::Zero;
 	CurBallPos = GetTransform().GetPosition();
+	bool PlayerDead = false;
 
 	if (CurBallPos.X >= 524)
 	{
@@ -162,14 +163,16 @@ void Ball::WallCheck()
 	
 		PlayerPos();
 	}
-	else if (CurBallPos.Y >= 550)
+	else if (CurBallPos.Y >= 550 && CurBallPos.Y <= 560)
 	{
 
 
 		User* user = User::GetMainUser();
 		user->User::PlayerDie(user);
-		int a = 0;
+		//GameStartCheck();
+		
 	
+		
 	}
 
 

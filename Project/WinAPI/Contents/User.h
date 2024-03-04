@@ -58,7 +58,11 @@ public:
 	PlayerState GetPlayerState(User* _Player);
 	void CheckPlayerState(User* _Player);
 	void PlayerDie(User* _Player);
-
+	
+	bool GetisDead()
+	{
+		return isDead;
+	}
 
 protected:
 	void BeginPlay() override;
@@ -72,6 +76,7 @@ private:
 	int Life = 2;
 	PlayerState NowState = PlayerState::Start;
 	bool isStartAniEnd = false;
+	bool isDead = false;
 
 	//사실 총쏘는 기능은 필요 없다. 
 	// float QSkillColl = 0.0f; 
