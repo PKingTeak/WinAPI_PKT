@@ -80,7 +80,11 @@ public:
 	
 	int SetBlockType(int _BlockType, Block* _NewBlock);
 	BlockType GetBlockType(Block* _NewBlock);
-
+	void HardBlockAnimation(Block* _NewBlock)
+	{
+		_NewBlock->BlockRender->ChangeAnimation("HardBlockAnimation");
+		
+	}
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

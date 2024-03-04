@@ -99,7 +99,8 @@ int Block::SetBlockType(int _BlockType, Block* _NewBlock)
 	thisBlock->SetLife(2);
 	otherBlockRender->SetImage("OtherBlock.png", 0);
 	otherBlockRender->SetScale(BlockScale);
-	otherBlockRender->CreateAnimation("HardBlockAnimation", "OtherBlock.png", 0, 6,0.1f, false);
+	otherBlockRender->CreateAnimation("HardBlockAnimation", "OtherBlock.png", 0, 5, 0, false);
+	
 	}
 	else if (num == 2)
 	{
@@ -108,6 +109,8 @@ int Block::SetBlockType(int _BlockType, Block* _NewBlock)
 	BlockRender = otherBlockRender;
 	return num;
 }
+
+
 
 BlockType Block::GetBlockType(Block* _NewBlock)
 {

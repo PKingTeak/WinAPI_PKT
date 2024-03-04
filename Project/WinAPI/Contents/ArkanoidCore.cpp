@@ -39,7 +39,7 @@ void ArkanoidCore::BeginPlay()
 	SDir.MoveParent();
 	SDir.Move("SoundResource");
 
-	
+
 	std::list<UEngineFile> FList = Dir.AllFile({ ".png",".bmp" }, true);
 	for (UEngineFile& File : FList)
 
@@ -56,18 +56,19 @@ void ArkanoidCore::BeginPlay()
 
 	}
 
-	
+
 	UEngineResourcesManager::GetInst().CuttingImage("NewBlock.png", 4, 2);
+	UEngineResourcesManager::GetInst().CuttingImage("OtherBlock.png", 6, 2);
 
 	CreateLevel<TitleLevel>("TitleLevel");
 	CreateLevel<Stage1Level>("Stage1Level");
-	
+
 	ChangeLevel("Stage1Level");
-	
-	
-	
+
+
+
 	//이꺼때문에 안짤린거였다.
-	
+
 	// 이때되면 이미 윈도우 창은 만들어져있는 상태일거라고 
 	//창이 실행되면서 초기설정 
 	// 예를 들면 창크기 변경같은거 
@@ -77,7 +78,7 @@ void ArkanoidCore::BeginPlay()
 	//
 
 	// 엔진만의 규칙을 정할거냐.
-	
+
 
 }
 
@@ -114,5 +115,5 @@ void ArkanoidCore::CreateBlock()
 void ArkanoidCore::End()
 {
 	//소멸자 호출이나 릴리즈 같은거 게임종료
-	
+
 }

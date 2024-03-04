@@ -210,11 +210,15 @@ void Ball::BlockCheck()
 		BlockRatio(ColBlock);
 		FVector BlockPos = ColBlock->GetActorLocation();
 		Blocklife = ColBlock->GetLife();
-		
+		BlockType Type = ColBlock->GetBlockType(ColBlock);
 		//Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
-		if (Blocklife >0)
+		if (Blocklife > 0)
 		{
 			ColBlock->LifeDecrease();
+			if (Type == BlockType::Hard)
+			{
+				ColBlock->HardBlockAnimation(ColBlock);
+			}
 		}
 		else
 		{
