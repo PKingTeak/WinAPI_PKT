@@ -199,6 +199,7 @@ void Ball::Reset()
 
 void Ball::BlockCheck()
 {
+	int Blocklife = 0;
 	
 	std::vector<UCollision*> Result;
 	if (true == BallCollison->CollisionCheck(ColliderOrder::Block, Result))
@@ -208,10 +209,17 @@ void Ball::BlockCheck()
 		Block* ColBlock = dynamic_cast<Block*>(ColAct);
 		BlockRatio(ColBlock);
 		FVector BlockPos = ColBlock->GetActorLocation();
-
+		Blocklife = ColBlock->GetLife();
 		
 		//Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
+		if (Blocklife >0)
+		{
+			ColBlock->LifeDecrease();
+		}
+		else
+		{
 		ColBlock->Destroy();
+		}
 	}
 }
 
