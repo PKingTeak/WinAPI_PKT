@@ -161,8 +161,6 @@ void User::CheckPlayerState(User* _Player)
 		}
 		
 		nowState = _Player->GetPlayerState(_Player);
-		
-
 		break;
 	case Idle:
 		PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");

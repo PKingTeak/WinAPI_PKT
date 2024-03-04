@@ -123,6 +123,9 @@ void Ball::GameStartCheck()
 	{
 		IsballLive = true;
 	}
+	
+	
+	
 }
 
 
@@ -163,12 +166,13 @@ void Ball::WallCheck()
 	
 		PlayerPos();
 	}
-	else if (CurBallPos.Y >= 550 && CurBallPos.Y <= 560)
+	else if (CurBallPos.Y >= 600 && CurBallPos.Y <= 700)
 	{
 
 
 		User* user = User::GetMainUser();
 		user->User::PlayerDie(user);
+		IsballLive = false;
 		//GameStartCheck();
 		
 	
