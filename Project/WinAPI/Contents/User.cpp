@@ -33,12 +33,15 @@ void User::BeginPlay()
 	//랜더러를 가져오기
 	SetActorLocation({ 300,480 }); //원래 위치 480
 	CurPos = GetActorLocation();
-	UImageRenderer* PlayerRenderer = CreateImageRenderer(0);
-	UEngineResourcesManager::GetInst().CuttingImage("Player_Idle.png", 1, 6);
+	PlayerRenderer = CreateImageRenderer(0);
+	
 	PlayerRenderer->SetImage("Player_Idle.png");
 	PlayerRenderer->SetTransform({ { 0,0 },{ 68,16} });
 	PlayerRenderer->CreateAnimation("PlayerIdleAnimation", "Player_Idle.png", 0, 5, 0.1f, true);
-	PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
+	//PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
+	CheckPlayerState(this);
+	PlayerRenderer->CreateAnimation("PlayerStart", "Player_Start.png",0,4,0.1f,false);
+	PlayerRenderer->CreateAnimation("PlayerDead", "Player_Dead.png", 0, 3, 0.1f, false);
 	//변수 보는방법 
 
 
@@ -101,7 +104,46 @@ void User::PlayerDie()
 	}
 }
 
+void User::PlayerStart(User* _Player)
+{
+	//_Player->CreateAnimation("PStartAnimation", "Player_Start.png", 0, false);
 
+}
+
+
+PlayerState User::GetPlayerState(User* _Player)
+{
+	return _Player->NowState;
+}
+
+
+void User::CheckPlayerState(User* _Player)
+{
+	switch (NowState)
+	{
+	case Start:
+		PlayerAnimationReset(_Player);
+		PlayerRenderer->ChangeAnimation("PlayerStart");
+		break;
+	case Idle:
+		PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
+		break;
+	case PEnlarge:
+		break;
+	case Dead:
+		PlayerAnimationReset(_Player);
+		PlayerRenderer->ChangeAnimation("PlayerDead");
+		break;
+	default:
+		break;
+	}
+
+
+}
+void User::PlayerAnimationReset(User* _Player)
+{
+	_Player->PlayerRenderer->AnimationReset();
+}
 
 
 /*
