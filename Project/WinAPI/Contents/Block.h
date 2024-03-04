@@ -65,7 +65,7 @@ public:
 		BlockRender->SetImage("NewBlock.png", _Color);
 	}
 
-	void StackBlock();
+	
 	
 	int GetLife();
 	void BlockLife(int _Count);
@@ -74,10 +74,12 @@ public:
 	template<typename EnumType>
 	int SetBlockType(EnumType _BlockType , Block* _NewBlock)
 	{
+		_NewBlock->Type = _BlockType;
 		return SetBlockType(static_cast<int>(_BlockType), _NewBlock);
 	}
 	
 	int SetBlockType(int _BlockType, Block* _NewBlock);
+	BlockType GetBlockType(Block* _NewBlock);
 
 protected:
 	void BeginPlay() override;
