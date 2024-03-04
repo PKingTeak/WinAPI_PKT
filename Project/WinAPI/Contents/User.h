@@ -32,7 +32,7 @@ public:
 	User& operator=(const User& _Other) = delete;
 	User& operator=(User&& _Other) noexcept = delete;
 
-	void PlayerDie();
+	
 	
 	int GetLife()
 	{
@@ -46,16 +46,18 @@ public:
 	static UCollision* GetUserCollider();
 
 	void PlayerStart(User* _Player);
+
 	template<typename Playerstate>
 	int SetPlayerState(Playerstate _PlayerState, User* _Player)
 	{
 		_Player->NowState = _PlayerState;
-		return SetPlayerStates(static_cast<int>(_PlayerState), _Player);
+		return SetPlayerState(static_cast<int>(_PlayerState), _Player);
 	}
+	int SetPlayerState(int _PlayerState, User* _Player);
+	
 	PlayerState GetPlayerState(User* _Player);
-	
 	void CheckPlayerState(User* _Player);
-	
+	void PlayerDie(User* _Player);
 
 
 protected:

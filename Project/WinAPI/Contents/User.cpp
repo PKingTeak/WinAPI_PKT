@@ -100,9 +100,12 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 
 }
 
-void User::PlayerDie()
+void User::PlayerDie(User* _Player)
 {
 	Life -= 1;
+	_Player->SetPlayerState(PlayerState::Dead, _Player);
+	PlayerState nowState =GetPlayerState(_Player);
+	CheckPlayerState(_Player);
 	if (Life < 0)
 	{
 		//GameOver();
@@ -125,6 +128,7 @@ PlayerState User::GetPlayerState(User* _Player)
 void User::CheckPlayerState(User* _Player)
 {
 	bool isEnd;
+
 	switch (NowState)
 	{
 	case Start:
@@ -132,23 +136,19 @@ void User::CheckPlayerState(User* _Player)
 		if (isStartAniEnd == true)
 		{
 			NowState = Idle;
-			
+			NowState;
 		}
 		PlayerRenderer->ChangeAnimation("PlayerStart");
-		
 		isEnd = PlayerRenderer->IsCurAnimationEnd(); // true라도 나옴 그럼 애니메이션은 끝이 난것인데
 		isStartAniEnd = isEnd;
-
-		
-	
 		break;
 	case Idle:
 		PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 		break;
 	case PEnlarge:
 		break;
-	case Dead:
-		PlayerAnimationReset(_Player);
+	case Dead: 
+		 // PlayerAnimationReset(_Player); 만약에 랜더러안에 애니메이션이 존재할 경우 지워줘야 한다.
 		PlayerRenderer->ChangeAnimation("PlayerDead");
 		break;
 	default:
@@ -157,6 +157,16 @@ void User::CheckPlayerState(User* _Player)
 
 
 }
+
+int User::SetPlayerState(int _PlayerState, User* _Player)
+{
+
+		return _PlayerState;
+	 // 임시 리턴값 변신 했을때 상태를 채크할때 사용할 것입니다.
+
+}
+
+
 void User::PlayerAnimationReset(User* _Player)
 {
 	_Player->PlayerRenderer->AnimationReset();

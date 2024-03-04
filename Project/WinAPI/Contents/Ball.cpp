@@ -157,11 +157,21 @@ void Ball::WallCheck()
 	}
 
 
-	else if (CurBallPos.Y >= 480)
+	else if (CurBallPos.Y >= 480 && CurBallPos.Y < 490)
 	{
 	
 		PlayerPos();
 	}
+	else if (CurBallPos.Y >= 550)
+	{
+
+
+		User* user = User::GetMainUser();
+		user->User::PlayerDie(user);
+		int a = 0;
+	
+	}
+
 
 if (false == N.IsZeroVector2D())
 {
@@ -186,6 +196,7 @@ void Ball::PlayerPos()
 		BDir.X += Pos.X;
 		BDir.Normalize2D();
 		}
+
 	}
 
 }
