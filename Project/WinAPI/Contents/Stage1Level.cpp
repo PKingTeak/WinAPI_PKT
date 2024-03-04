@@ -43,7 +43,7 @@ void Stage1Level::BeginPlay()
 			int Blocklife = TestBlock->GetLife();
 			//TestBlock->SetBlockColor(0);
 			BlockType thisBlockType = TestBlock->GetBlockType(TestBlock);
-			TestBlock->SetActorLocation(FVector{ 45 + i * 42, 100 });
+			TestBlock->SetActorLocation(FVector{ 45 + i * 42, 300 });
 			Blocks.push_back(TestBlock);
 
 
