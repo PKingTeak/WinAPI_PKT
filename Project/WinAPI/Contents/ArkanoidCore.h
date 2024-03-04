@@ -19,6 +19,7 @@ public:
 	{
 		return ScreenSize;
 	}
+	void DebugMod();
 
 	void CreateBlock();
 protected:

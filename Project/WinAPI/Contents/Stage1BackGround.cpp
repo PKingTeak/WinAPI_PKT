@@ -1,5 +1,4 @@
 #include "Stage1BackGround.h"
-#include"CollisonManger.h"
 
 Stage1Map::Stage1Map()
 {

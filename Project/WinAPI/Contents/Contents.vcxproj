@@ -160,6 +160,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="UIManager.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BlockMaker.cpp" />
     <ClCompile Include="Item.cpp">
       <SubType>
@@ -173,10 +177,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ColliderManager.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="CollisonManger.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -196,6 +196,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="UIManager.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="BlockMaker.h" />
     <ClInclude Include="Item.h">
       <SubType>
@@ -209,10 +213,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ColliderManager.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="CollisonManger.h">
       <SubType>
       </SubType>
     </ClInclude>

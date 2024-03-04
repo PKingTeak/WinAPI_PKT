@@ -18,6 +18,13 @@ enum Blocks
 	YELLOW = 7
 
 };
+enum BlockType
+{
+	Normal,
+	Stack,
+	NotDestory
+
+};
 
 
 
@@ -106,3 +113,8 @@ int Block::SetBlockType(int _BlockType, Block* _NewBlock)
 }
 
 
+void Block::StackBlock()
+{
+
+
+}

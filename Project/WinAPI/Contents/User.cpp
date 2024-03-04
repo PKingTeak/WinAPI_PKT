@@ -5,7 +5,7 @@
 #include <EngineBase/EngineMath.h>
 #include "ArkanoidCore.h"
 
-#include"CollisonManger.h"
+
 #include <vector>
 #include <list>
 #include "Bullet.h"
@@ -64,7 +64,7 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 	{
 		MovePos = FVector::Left * 500.0f * _DeltaTime;
 		NextPos += MovePos;
-		
+
 	}
 
 	if (true == UEngineInput::IsPress('D'))
@@ -92,6 +92,14 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 
 }
 
+void User::PlayerDie()
+{
+	Life -= 1;
+	if (Life < 0)
+	{
+		//GameOver();
+	}
+}
 
 
 

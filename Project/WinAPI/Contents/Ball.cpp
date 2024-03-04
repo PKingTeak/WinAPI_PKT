@@ -31,7 +31,7 @@ void Ball::BeginPlay()
 
 
 	BallCollison = CreateCollision(ColliderOrder::Ball);
-	BallCollison->SetScale({ 1,1 });
+	BallCollison->SetScale({ 2,2 });
 	BallCollison->SetColType(ECollisionType::CirCle);
 
 
