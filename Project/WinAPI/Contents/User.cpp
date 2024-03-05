@@ -31,7 +31,7 @@ void User::BeginPlay()
 	UserScale = { 60,14 };
 
 	//랜더러를 가져오기
-	SetActorLocation({ 300,480 }); //원래 위치 480
+	SetActorLocation({ 300,530 }); //원래 위치 480
 	CurPos = GetActorLocation();
 	PlayerRenderer = CreateImageRenderer(0);
 

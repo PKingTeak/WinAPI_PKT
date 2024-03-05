@@ -7,6 +7,8 @@
 #include <EngineCore/EngineResourcesManager.h>
 #include<EngineBase/EngineFile.h>
 #include<EngineBase/EngineDirectory.h>
+#include"UIManager.h"
+
 
 
 Stage1Level::Stage1Level()
@@ -28,9 +30,8 @@ void Stage1Level::BeginPlay()
 	NewItem->SetActorLocation({ 1200,1200 }); //아이템 위치 이동시킨후 일단 다른곳에 생성ㄴ
 	NewItem->SetActive(false);
 	Stage1->SetMapImage("Stage1_BackGround.png");
+	UIManager* StageUI = SpawnActor<UIManager>();
 	
-
-
 	{
 		//Test
 		Block* TestBlock;

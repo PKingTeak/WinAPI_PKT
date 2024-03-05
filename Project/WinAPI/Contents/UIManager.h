@@ -1,7 +1,9 @@
 #pragma once
-
+#include<EngineCore/Actor.h>
+#include<EngineCore/ImageRenderer.h>
+#include<EngineCore/EngineResourcesManager.h>
 // Ό³Έν :
-class UIManager
+class UIManager : public AActor
 {
 public:
 	// constrcuter destructer
@@ -15,8 +17,13 @@ public:
 	UIManager& operator=(UIManager&& _Other) noexcept = delete;
 
 protected:
-
+	void BeginPlay() override;
+	void Tick(float _Deltatime) override;
 private:
+	UImageRenderer* HIGH_Text = nullptr;
+	UImageRenderer* SCORE_Text = nullptr;
+	FVector Middle = { 552 / 2 ,20 };
+
 
 };
 
