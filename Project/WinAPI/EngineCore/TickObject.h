@@ -119,5 +119,7 @@ private:
 	bool IsActiveUpdate = false;
 	float ActiveTime = 0.0f;
 	bool IsActiveValue = true;
+
+
 };
 

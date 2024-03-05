@@ -4,7 +4,7 @@
 #include <EngineCore/EngineResourcesManager.h>
 #include <EngineBase/EngineMath.h>
 #include "ArkanoidCore.h"
-
+#include "UIManager.h"
 
 #include <vector>
 #include <list>
