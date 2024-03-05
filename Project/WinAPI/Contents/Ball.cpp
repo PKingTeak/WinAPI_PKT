@@ -68,7 +68,6 @@ void Ball::Tick(float _DeltaTime)
 	GameStartCheck();
 	WallCheck();
 	BlockCheck();
-	
 	Move(_DeltaTime);
 	// 내 미래의 위치로 체크하는 법
 	// 충돌하고 나서 체크하는법
@@ -146,31 +145,31 @@ void Ball::WallCheck()
 
 	if (CurBallPos.X >= 524)
 	{
-		CurBallPos.X = 524;
 		N = { -1,0 };
+		CurBallPos.X = 524;
 
 	}
 	else if (CurBallPos.X <= 30)
 	{
-		CurBallPos.X = 30;
 		N = { 1,0 };
+		CurBallPos.X = 30;
 
 	}
 	else if (CurBallPos.Y <= 50)
 	{
-		CurBallPos.Y = 50;
 		N = { 0,1 };
+		CurBallPos.Y = 50;
 
 	}
 
 
-	else if (CurBallPos.Y >= 480 && CurBallPos.Y < 490)
+	else if (CurBallPos.Y >= 530 && CurBallPos.Y < 540)
 	{
 		CurBallPos.Y;
 		PlayerPos();
-		CurBallPos.Y += 480-CurBallPos.Y;
+		CurBallPos.Y += 530-CurBallPos.Y;
 	}
-	else if (CurBallPos.Y >= 600 && CurBallPos.Y <= 700)
+	else if (CurBallPos.Y >= 650 && CurBallPos.Y <= 750)
 	{
 
 

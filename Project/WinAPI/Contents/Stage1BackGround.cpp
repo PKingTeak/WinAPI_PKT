@@ -16,7 +16,7 @@ void Stage1Map::SetMapImage(std::string_view _MapImageName)
 	MapRenderer->SetImage(_MapImageName);
 	UWindowImage* Image = MapRenderer->GetImage();
 	FVector ImageScale = ArkanoidCore::GetScreenSize();
-	MapRenderer->SetTransform({ {ImageScale.Half2D().X , ImageScale.Half2D().Y+30}, ImageScale});
+	MapRenderer->SetTransform({ {ImageScale.Half2D().X , ImageScale.Half2D().Y+50}, ImageScale});
 }
 
 

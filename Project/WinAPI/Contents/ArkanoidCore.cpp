@@ -5,7 +5,7 @@
 #include <EngineBase/EngineFile.h>
 #include <EngineCore/EngineResourcesManager.h>
 #include<EnginePlatform/EngineSound.h>
-
+#include"UIManager.h"
 #include<EngineBase/EngineDirectory.h>
 
 
@@ -30,7 +30,7 @@ void ArkanoidCore::BeginPlay()
 {
 	UEngineCore::BeginPlay();
 
-	MainWindow.SetWindowScale({ ScreenSize.X,ScreenSize.Y }); //윈도우 설정해주고
+	MainWindow.SetWindowScale({ ScreenSize.X,ScreenSize.Y+50 }); //윈도우 설정해주고
 	MainWindow.SetClearColor(Color8Bit::BlackA);
 	UEngineDirectory Dir;
 	UEngineDirectory SDir;
@@ -63,6 +63,9 @@ void ArkanoidCore::BeginPlay()
 
 	UEngineResourcesManager::GetInst().CuttingImage("NewBlock.png", 4, 2);
 	UEngineResourcesManager::GetInst().CuttingImage("OtherBlock.png", 6, 2);
+
+	//UI
+	UEngineResourcesManager::GetInst().CuttingImage("UI_NumberWhite.png", 1, 10);
 
 	CreateLevel<TitleLevel>("TitleLevel");
 	CreateLevel<Stage1Level>("Stage1Level");
