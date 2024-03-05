@@ -24,7 +24,7 @@ void Ball::BeginPlay()
 	BallRender = CreateImageRenderer(0);
 	UEngineResourcesManager::GetInst().CuttingImage("Ball.png", 1, 1);
 	BallRender->SetImage("Ball.png");
-	BallRender->SetScale(BallSize*2 );
+	BallRender->SetScale(BallSize * 2);
 	GetUserScale();
 	SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
 
@@ -34,7 +34,6 @@ void Ball::BeginPlay()
 	BallCollison->SetScale({ 2,2 });
 	BallCollison->SetColType(ECollisionType::CirCle);
 	this->SetActive(true, 1.0f);
-
 
 
 }
@@ -54,7 +53,7 @@ void Ball::GetUserScale()
 
 void Ball::Tick(float _DeltaTime)
 {
-	
+
 	if (false == IsballLive)
 	{
 		SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
@@ -75,10 +74,9 @@ void Ball::Tick(float _DeltaTime)
 
 
 	
-	
-
 
 }
+
 
 
 
@@ -123,9 +121,9 @@ void Ball::GameStartCheck()
 	{
 		IsballLive = true;
 	}
-	
-	
-	
+
+
+
 }
 
 
@@ -146,25 +144,28 @@ void Ball::WallCheck()
 
 	if (CurBallPos.X >= 524)
 	{
+		CurBallPos.X = 524;
 		N = { -1,0 };
-	
+
 	}
 	else if (CurBallPos.X <= 30)
 	{
+		CurBallPos.X = 30;
 		N = { 1,0 };
-	
+
 	}
 	else if (CurBallPos.Y <= 50)
 	{
+		CurBallPos.Y = 50;
 		N = { 0,1 };
-	
+
 	}
 
 
 	else if (CurBallPos.Y >= 480 && CurBallPos.Y < 490)
 	{
-	
 		PlayerPos();
+		CurBallPos.Y += 480-CurBallPos.Y;
 	}
 	else if (CurBallPos.Y >= 600 && CurBallPos.Y <= 700)
 	{
@@ -174,18 +175,18 @@ void Ball::WallCheck()
 		user->User::PlayerDie(user);
 		IsballLive = false;
 		//GameStartCheck();
-		
-	
-		
+
+
+
 	}
 
 
-if (false == N.IsZeroVector2D())
-{
-	Reflect(N);
-	int a = 0;
-	
-}
+	if (false == N.IsZeroVector2D())
+	{
+		Reflect(N);
+		int a = 0;
+
+	}
 }
 void Ball::PlayerPos()
 {
@@ -197,11 +198,11 @@ void Ball::PlayerPos()
 	{
 		if (User::CurPos.Y + 4 > CurBallPos.Y) // 플레이어 하단 판정
 		{
-		Reflect({ 0.0f, -1.0f });
-		FVector Pos = GetTransform().GetPosition() - User::CurPos;
-		Pos.X /= User::UserScale.hX(); //유저 x에서 중점을 기준으로 부딪친 곳을 나눠서 
-		BDir.X += Pos.X;
-		BDir.Normalize2D();
+			Reflect({ 0.0f, -1.0f });
+			FVector Pos = GetTransform().GetPosition() - User::CurPos;
+			Pos.X /= User::UserScale.hX(); //유저 x에서 중점을 기준으로 부딪친 곳을 나눠서 
+			BDir.X += Pos.X;
+			BDir.Normalize2D();
 		}
 
 	}
@@ -218,33 +219,39 @@ void Ball::Reset()
 void Ball::BlockCheck()
 {
 	int Blocklife = 0;
-	
+
 	std::vector<UCollision*> Result;
 	if (true == BallCollison->CollisionCheck(ColliderOrder::Block, Result))
 	{
-		UCollision* Collider = Result[0/*몇번째일때*/];
-		AActor* ColAct = Collider->GetOwner();
-		Block* ColBlock = dynamic_cast<Block*>(ColAct);
-		BlockRatio(ColBlock);
-		FVector BlockPos = ColBlock->GetActorLocation();
-		Blocklife = ColBlock->GetLife();
-		BlockType Type = ColBlock->GetBlockType(ColBlock);
-		//Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
-		if (Blocklife > 0)
+		if (isCol == false)
 		{
-			ColBlock->LifeDecrease();
-			if (Type == BlockType::Hard)
+
+			UCollision* Collider = Result[0/*몇번째일때*/];
+			AActor* ColAct = Collider->GetOwner();
+			Block* ColBlock = dynamic_cast<Block*>(ColAct);
+			BlockRatio(ColBlock);
+			FVector BlockPos = ColBlock->GetActorLocation();
+			Blocklife = ColBlock->GetLife();
+			BlockType Type = ColBlock->GetBlockType(ColBlock);
+			//isCol = true;
+			//Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
+			if (Blocklife > 0)
 			{
-			ColBlock->BlockAniReset(ColBlock);
-			ColBlock->HardBlockAnimation(ColBlock);
-			
+				ColBlock->LifeDecrease();
+				if (Type == BlockType::Hard)
+				{
+					ColBlock->BlockAniReset(ColBlock);
+					ColBlock->HardBlockAnimation(ColBlock);
+
+				}
+			}
+			else
+			{
+				ColBlock->Destroy();
 			}
 		}
-		else
-		{
-		ColBlock->Destroy();
-		}
 	}
+
 }
 
 void Ball::Reflect(FVector Normal)
@@ -260,14 +267,14 @@ void Ball::Reflect(FVector Normal)
 
 void Ball::BlockRatio(Block* _NewBlock)
 {
-	FVector N = {BDir.X,BDir.Y};
+	FVector N = { BDir.X,BDir.Y };
 
 	FTransform Transform = { _NewBlock->GetBlockPos(), _NewBlock->GetBlockScale() };
 
 	bool R = BlockSideCheckLR(_NewBlock);
 	bool D = BlockSideCheckUD(_NewBlock);
-	
-	
+
+
 	if (false == R && false == D)
 	{
 		if (true == MidTopHeight)
@@ -277,9 +284,9 @@ void Ball::BlockRatio(Block* _NewBlock)
 		}
 		else
 		{
-		Reflect({0.0,-1.0f});
+			Reflect({ 0.0,-1.0f });
 		}
-	
+
 		//N
 
 	}
@@ -289,29 +296,29 @@ void Ball::BlockRatio(Block* _NewBlock)
 		{
 			MidHeight = false;
 			Reflect({ 1.0f,0.0f });
-			
+
 		}
 		else
 		{
-		Reflect({ 0.0f,-1.0f });
+			Reflect({ 0.0f,-1.0f });
 		}
 		//오른쪽 아래
 	}
-	
+
 	if (true == R && false == D)
 	{
 		if (true == MidTopHeight)
 		{
 			MidHeight = false;
 			Reflect({ 1.0f,0.0f });
-			
+
 		}
 		else
 		{
-		Reflect({0.0f,-1.0f});
+			Reflect({ 0.0f,-1.0f });
 		}
 		//오른쪽 위
-		
+
 
 	}
 	if (false == R && true == D)
@@ -320,39 +327,39 @@ void Ball::BlockRatio(Block* _NewBlock)
 		{
 			MidHeight = false;
 			Reflect({ -1.0f,0.0f });
-		
+
 		}
 		else
 		{
-		Reflect({ 0.0f,1.0f });
+			Reflect({ 0.0f,1.0f });
 		}
-		 // 여기서 값이 y가 -가 붙어서 나와야 하는데 지금 양수로 나온다. 그래서 꺾여서 나가기 때문에 값이 이상하다
-		// X값은 잘나옴
-		//왼쪽 아래
+		// 여기서 값이 y가 -가 붙어서 나와야 하는데 지금 양수로 나온다. 그래서 꺾여서 나가기 때문에 값이 이상하다
+	   // X값은 잘나옴
+	   //왼쪽 아래
 	}
 
 
 }
-bool Ball::BlockSideCheckLR(Block* _ColBlock )
+bool Ball::BlockSideCheckLR(Block* _ColBlock)
 {
-	
+
 	bool isRight = false;
-	
+
 	Block* thisBlock = _ColBlock;
-	float BlockLeft =  thisBlock->BlockLeft() + thisBlock->GetActorLocation().X -1;
-	float BlockRight =  thisBlock->BlockRight() + thisBlock->GetActorLocation().X-1;
-	
+	float BlockLeft = thisBlock->BlockLeft() + thisBlock->GetActorLocation().X - 1;
+	float BlockRight = thisBlock->BlockRight() + thisBlock->GetActorLocation().X - 1;
+
 	//각각 1씩 더해준 이유는 float 의 오차를 없애기 위해서 더해줬습니다. 
-	
+
 	float XMid = thisBlock->GetActorLocation().X;
-	
-	
+
+
 
 	if (BlockLeft <= CurBallPos.X && CurBallPos.X < XMid)
 	{
 
 		isRight = false;
-		
+
 		//왼쪽 
 		//왼쪽 오른쪽인지 일단 먼저 확인하고 위아래 에서 구현할때 bool타입으로 확인하고 그다음 계산을 시작
 	}
@@ -360,12 +367,12 @@ bool Ball::BlockSideCheckLR(Block* _ColBlock )
 	if (XMid <= CurBallPos.X && CurBallPos.X <= BlockRight)
 	{
 		isRight = true;
-	
+
 		//오른쪽
 	}
 
 	return isRight;
-	
+
 
 
 }
@@ -376,23 +383,23 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 	bool isMD = false;
 	Block* thisBlock = _ColBlock;
 	float BlockTop = thisBlock->BlockUP() + thisBlock->GetActorLocation().Y - 2;
-	float BlockBottom = thisBlock->BlockBottom() + thisBlock->GetActorLocation().Y-1 ;
+	float BlockBottom = thisBlock->BlockBottom() + thisBlock->GetActorLocation().Y - 1;
 
 	float YMid = thisBlock->GetActorLocation().Y;
 
 
-	if (BlockTop+2 < CurBallPos.Y && CurBallPos.Y < YMid)
+	if (BlockTop + 2 < CurBallPos.Y && CurBallPos.Y < YMid)
 	{
-		
+
 		isDown = false;
 		MidTopHeight = true;
 		//위 옆면
 	}
-	if (BlockTop+1 > CurBallPos.Y)
+	if (BlockTop + 1 > CurBallPos.Y)
 	{
 		isDown = false;
 		// 진짜 위에
-		
+
 	}
 
 	if (YMid <= CurBallPos.Y && CurBallPos.Y < BlockBottom)
@@ -400,7 +407,7 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 
 		MidHeight = true;
 		isDown = true;
-		
+
 		//아래 여옆면
 	}
 	if (CurBallPos.Y > BlockBottom)
@@ -411,3 +418,14 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 	return isDown;
 }
 
+
+
+void Ball::MoveSurface(FVector _CurBallPos, float _Standard)
+{
+//	if (_CurBallPos.X < _Standard)
+//	{s
+//		_CurBallPos.X = _Standard 
+//	}
+//	
+
+}
