@@ -28,10 +28,12 @@ private:
 	UImageRenderer* HIGH_Text = nullptr;
 	UImageRenderer* SCORE_Text = nullptr;
 	UImageRenderer* Time_Text = nullptr;
+	UImageRenderer* Time_Text1 = nullptr;
 	FVector Middle = { 552 / 2 ,20 };
 	float Time = 0.0f;
 	int TotalTime = 0;
 	string STime = "";
-
+	string STime1 = "";
+	int STimeCounter = 0;
 };
 
