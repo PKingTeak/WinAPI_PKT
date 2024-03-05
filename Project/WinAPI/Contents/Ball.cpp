@@ -5,6 +5,7 @@
 #include <vector>
 #include"Block.h"
 #include"Item.h"
+#include <EngineCore/EngineDebug.h>
 Ball* Ball::MainBall = nullptr;
 Ball::Ball()
 {
@@ -53,6 +54,10 @@ void Ball::GetUserScale()
 
 void Ball::Tick(float _DeltaTime)
 {
+
+	float time = 1 / _DeltaTime;
+	std::string stime = std::to_string(time);
+	UEngineDebug::DebugTextPrint(stime, 24);
 
 	if (false == IsballLive)
 	{

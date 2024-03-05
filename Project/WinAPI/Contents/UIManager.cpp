@@ -29,7 +29,10 @@ void UIManager::BeginPlay()
 	SCORE_Text->SetTransform({ {40,0},{40*2,8*2} });
 	}
 
-
+	{
+		Time_Text = CreateImageRenderer(10);
+		Time_Text1 = CreateImageRenderer(10);
+	}
 
 }
 
@@ -56,18 +59,22 @@ void UIManager::IntToString(float _Deltatime)
 		STimeCounter++;
 		TotalTime = 0;
 	}
+	if (STimeCounter > 9)
+	{
+		Time = 0;
+		STimeCounter = 0;
+	}
 
 	STime = std::to_string(TotalTime);
 	STime1 = std::to_string(STimeCounter);
 }
 void UIManager::TimeUI()
 {
-	Time_Text = CreateImageRenderer(10);
+	
 	Time_Text->SetImage(STime + ".png");
 	Time_Text->SetTransform({ {0,20},{8 * 2,8 * 2} });
 	
 	
-	Time_Text1 = CreateImageRenderer(10);
 	Time_Text1->SetImage(STime1 + ".png");
 	Time_Text1->SetTransform({ {-16,20},{8 * 2,8 * 2} });
 
