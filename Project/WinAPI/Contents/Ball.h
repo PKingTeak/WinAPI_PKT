@@ -56,7 +56,6 @@ protected:
 	
 	
 private:
-	void MoveSurface(FVector _CurBallPos , float _Standard);
 	void BlockRatio(Block* _NewBlock);
 	void Reset();
 	void Move(float _DeltaTime);

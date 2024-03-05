@@ -68,6 +68,7 @@ void Ball::Tick(float _DeltaTime)
 	GameStartCheck();
 	WallCheck();
 	BlockCheck();
+	
 	Move(_DeltaTime);
 	// 내 미래의 위치로 체크하는 법
 	// 충돌하고 나서 체크하는법
@@ -133,6 +134,7 @@ void Ball::Move(float _DeltaTime)
 	BDir.Normalize2D();
 
 	AddActorLocation(BDir * Speed * _DeltaTime);//공이이동한다.
+	isCol = false;
 }
 
 void Ball::WallCheck()
@@ -164,6 +166,7 @@ void Ball::WallCheck()
 
 	else if (CurBallPos.Y >= 480 && CurBallPos.Y < 490)
 	{
+		CurBallPos.Y;
 		PlayerPos();
 		CurBallPos.Y += 480-CurBallPos.Y;
 	}
@@ -223,33 +226,35 @@ void Ball::BlockCheck()
 	std::vector<UCollision*> Result;
 	if (true == BallCollison->CollisionCheck(ColliderOrder::Block, Result))
 	{
-		if (isCol == false)
+		if (isCol == true)
 		{
-
-			UCollision* Collider = Result[0/*몇번째일때*/];
-			AActor* ColAct = Collider->GetOwner();
-			Block* ColBlock = dynamic_cast<Block*>(ColAct);
-			BlockRatio(ColBlock);
-			FVector BlockPos = ColBlock->GetActorLocation();
-			Blocklife = ColBlock->GetLife();
-			BlockType Type = ColBlock->GetBlockType(ColBlock);
-			//isCol = true;
-			//Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
-			if (Blocklife > 0)
+			return;
+		}
+		isCol = true;
+		UCollision* Collider = Result[0/*몇번째일때*/];
+		AActor* ColAct = Collider->GetOwner();
+		Block* ColBlock = dynamic_cast<Block*>(ColAct);
+		BlockRatio(ColBlock);
+		FVector BlockPos = ColBlock->GetActorLocation();
+		Blocklife = ColBlock->GetLife();
+		BlockType Type = ColBlock->GetBlockType(ColBlock);
+		//Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
+		if (Blocklife > 0)
+		{
+			ColBlock->LifeDecrease();
+			if (Type == BlockType::Hard)
 			{
-				ColBlock->LifeDecrease();
-				if (Type == BlockType::Hard)
-				{
-					ColBlock->BlockAniReset(ColBlock);
-					ColBlock->HardBlockAnimation(ColBlock);
+				ColBlock->BlockAniReset(ColBlock);
+				ColBlock->HardBlockAnimation(ColBlock);
 
-				}
-			}
-			else
-			{
-				ColBlock->Destroy();
 			}
 		}
+		else
+		{
+			ColBlock->Destroy();
+		}
+
+
 	}
 
 }
@@ -296,6 +301,7 @@ void Ball::BlockRatio(Block* _NewBlock)
 		{
 			MidHeight = false;
 			Reflect({ 1.0f,0.0f });
+			CurBallPos.Y = _NewBlock->GetBlockScale().Y-1; // 여기서 표면으로 옮겨주는작업
 
 		}
 		else
@@ -419,13 +425,3 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 }
 
 
-
-void Ball::MoveSurface(FVector _CurBallPos, float _Standard)
-{
-//	if (_CurBallPos.X < _Standard)
-//	{s
-//		_CurBallPos.X = _Standard 
-//	}
-//	
-
-}
