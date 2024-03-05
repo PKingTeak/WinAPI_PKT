@@ -29,7 +29,8 @@ private:
 	UImageRenderer* SCORE_Text = nullptr;
 	UImageRenderer* Time_Text = nullptr;
 	FVector Middle = { 552 / 2 ,20 };
-	int Time = 0;
+	float Time = 0.0f;
+	int TotalTime = 0;
 	string STime = "";
 
 };

@@ -45,9 +45,14 @@ void UIManager::IntToString(float _Deltatime)
 {
 	
 	float PlusTime = _Deltatime;
-		//static_cast<int>(_Deltatime);
-	Time += static_cast<int>(PlusTime);
-	STime = std::to_string(Time);
+	Time += PlusTime;
+	if (Time >= 1)
+	{
+		TotalTime += 1;
+		Time -= 1;
+	}
+
+	STime = std::to_string(TotalTime);
 
 }
 void UIManager::TimeUI()
