@@ -3,6 +3,7 @@
 #include"ColliderManager.h"
 #include"Item.h"
 #include<iostream>
+#include"UIManager.h"
 
 
 
@@ -35,14 +36,14 @@ Block::~Block()
 	//Item* NewItem = Item::GetMainItem();
 	//NewItem->SetActorLocation(this->GetActorLocation());
 	//NewItem->SetActive(true, 0.0f);
-
-
+	UIManager* ScoreUI = UIManager::GetUIManager();
+	ScoreUI->ScorePlus(GetBlockScore());
 }
 
 void Block::BeginPlay()
 {
-
-
+	ScoreUI = UIManager::GetUIManager();
+	
 	AActor::BeginPlay();
 
 	
@@ -122,3 +123,10 @@ BlockType Block::GetBlockType(Block* _NewBlock)
 
 	return _NewBlock->Type;
 }
+
+void Block::SetScore(int _BlockScore)
+{
+	BlockScore = _BlockScore;
+}
+
+

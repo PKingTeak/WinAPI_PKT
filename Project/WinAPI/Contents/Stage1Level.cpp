@@ -58,6 +58,7 @@ void Stage1Level::BeginPlay()
 			TestBlock->SetActorLocation(FVector{ 45 + i * 42,120 });
 			TestBlock->SetBlockColor(4);
 			Blocks.push_back(TestBlock);
+			TestBlock->SetScore(90);
 		}
 
 	}

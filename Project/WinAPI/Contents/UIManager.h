@@ -8,6 +8,9 @@ using namespace std;
 // Ό³Έν :
 class UIManager : public AActor
 {
+private:
+	static UIManager* MainUIMananger;
+	
 public:
 	// constrcuter destructer
 	UIManager();
@@ -23,6 +26,8 @@ public:
 	void TimeUI();
 	void ScoreUI();
 	void ScorePlus(int _GameScore);
+
+	static UIManager* GetUIManager();
 protected:
 	void BeginPlay() override;
 	void Tick(float _Deltatime) override;
@@ -34,7 +39,7 @@ private:
 	UImageRenderer* Score_Text= nullptr;
 	UImageRenderer* Score_Texts[4] = { nullptr ,nullptr ,nullptr ,nullptr };
 	
-
+	
 
 	FVector Middle = { 552 / 2 ,20 };
 	float Time = 0.0f;
@@ -44,6 +49,6 @@ private:
 	int STimeCounter = 0;
 	
 	string SScore = "";
-	int TotalScore = 0;
+	int TotalScore =0;
 };
 

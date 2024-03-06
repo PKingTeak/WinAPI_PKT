@@ -2,6 +2,8 @@
 #include <string>
 #include<EnginePlatform/EngineInput.h>
 
+UIManager* UIManager::MainUIMananger = nullptr;
+
 using namespace std;
 UIManager::UIManager()
 {
@@ -14,8 +16,8 @@ UIManager::~UIManager()
 
 void UIManager::BeginPlay()
 {
+	MainUIMananger = this;
 	AActor::BeginPlay();
-
 
 	SetActorLocation({ 300,10 });
 
@@ -55,6 +57,11 @@ void UIManager::Tick(float _DeltaTime)
 	IntToString(_DeltaTime);
 	TimeUI();
 	ScoreUI();
+	if (UEngineInput::IsDown('L'))
+	{
+		ScorePlus(20);
+	}
+
 
 
 
@@ -125,6 +132,10 @@ void UIManager::ScoreUI()
 	}
 
 	
-	int a = 0;
+	
 }
 
+UIManager* UIManager::GetUIManager()
+{
+	return MainUIMananger;
+}
