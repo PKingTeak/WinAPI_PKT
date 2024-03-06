@@ -170,7 +170,7 @@ void Ball::WallCheck()
 
 	else if (CurBallPos.Y >= 530 && CurBallPos.Y < 540)
 	{
-		CurBallPos.Y;
+
 		PlayerPos();
 		CurBallPos.Y += 530-CurBallPos.Y;
 	}
