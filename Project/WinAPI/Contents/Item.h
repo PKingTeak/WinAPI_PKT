@@ -34,6 +34,7 @@ private:
 	FVector ItemScale = {16,8};
 	static UCollision* ItemCollison;
 	bool isLive = false;
+	bool isCol = false;
 
 
 };

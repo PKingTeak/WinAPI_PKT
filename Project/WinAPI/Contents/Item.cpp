@@ -46,6 +46,7 @@ void Item::BeginPlay()
 
 }
 
+
 void Item::SetItemType(int _ItemType)
 {
 	ItemRender->SetImage("Item.png", _ItemType);
@@ -62,7 +63,7 @@ Item* Item::GetMainItem()
 void Item::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
-	
+	PlayerColCheck();
 	if (true == this->IsActive())
 	{
 		AddActorLocation(FVector::Down * _DeltaTime * 100.0f);
@@ -78,10 +79,25 @@ void Item::Tick(float _DeltaTime)
 
 void Item::PlayerColCheck()
 {
-	//float ItemPos = 
+	float ItemPosX = this->GetActorLocation().X;
+	float ItemPosY = this->GetActorLocation().Y;
+	
+	float MinUserX = User::CurPos.X - User::UserScale.X;
+	float MaxUserX = User::CurPos.X + User::UserScale.X;
 
-	User::CurPos.X;
-	User::CurPos.Y;
+
+	if (ItemPosX > MinUserX && ItemPosY < MaxUserX)
+	{
+		if (ItemPosY >= User::CurPos.Y-1 && ItemPosY<User::CurPos.Y+3)
+		{
+
+		isCol = true;
+
+		}
+	}
+	isCol = false;
+
+
 	
 }
 
