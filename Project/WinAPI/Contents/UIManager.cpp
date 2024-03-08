@@ -21,20 +21,24 @@ void UIManager::BeginPlay()
 
 	SetActorLocation({ 300,10 });
 
-	{
-		HIGH_Text = CreateImageRenderer(10);
-		HIGH_Text->SetImage("HIGH.png", 0);
-		HIGH_Text->SetTransform({ {-40,0}, { 32 * 2, 8 * 2} });
-	}
+	
 	{
 		SCORE_Text = CreateImageRenderer(10);
 		SCORE_Text->SetImage("Score.png", 0);
-		SCORE_Text->SetTransform({ {40,0},{40 * 2,8 * 2} });
+		SCORE_Text->SetTransform({ {-100,0},{40 * 2,8 * 2} });
 	}
 
 	{
 		Time_Text = CreateImageRenderer(10);
 		Time_Text1 = CreateImageRenderer(10);
+
+		TimeUI_Text = CreateImageRenderer(10);
+		TimeUI_Text->SetImage("Time_Text.png");
+		TimeUI_Text->SetTransform({ {0,0}, {32 * 2,8 * 2} });
+	}
+
+	{
+
 
 	}
 

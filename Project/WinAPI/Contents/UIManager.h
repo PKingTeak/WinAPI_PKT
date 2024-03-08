@@ -32,8 +32,9 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _Deltatime) override;
 private:
-	UImageRenderer* HIGH_Text = nullptr;
+	
 	UImageRenderer* SCORE_Text = nullptr;
+	UImageRenderer* TimeUI_Text = nullptr;
 	UImageRenderer* Time_Text = nullptr;
 	UImageRenderer* Time_Text1 = nullptr;
 	UImageRenderer* Score_Text= nullptr;
