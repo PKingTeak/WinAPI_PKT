@@ -10,9 +10,9 @@ enum ItemType
 {
 	Slow = 0,
 	Catch = 1,
-	Laser =2,
+	Laser = 2,
 	Enlarge = 3,
-
+	LifeUP = 7
 };
 
 
@@ -34,7 +34,8 @@ void Item::BeginPlay()
 	ItemRender->SetImage("Item.png");
 	ItemRender->SetTransform({ {0,0}, ItemScale*2 });
 	ItemRender->CreateAnimation("ItemAnimation", "Item.png",0, 7, 0.5f, true);
-	ItemRender->ChangeAnimation("ItemAnimation");
+	ItemRender->CreateAnimation("LifeAnimation", "Item.png", 48, 55, 0.5f, true);
+	ItemRender->ChangeAnimation("LifeAnimation");
 
 
 	ItemCollison = CreateCollision(ColliderOrder::Item);
@@ -46,6 +47,14 @@ void Item::BeginPlay()
 
 }
 
+void Item::SetItemType(int _ItemType)
+{
+	ItemRender->SetImage("Item.png", _ItemType);
+	ItemRender->ChangeAnimation("LifeAnimation");
+
+
+}
+
 Item* Item::GetMainItem()
 {
 	return MainItem;
@@ -54,22 +63,19 @@ Item* Item::GetMainItem()
 void Item::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
-	if (true == isLive)
+	
+	if (true == this->IsActive())
 	{
-		
-	AddActorLocation(FVector::Down * _DeltaTime * 100.0f); 
-
+		AddActorLocation(FVector::Down * _DeltaTime * 100.0f);
+		isLive = true;
 	}
+	
+
 
 	//아래로 내려줄것인데 
 	
 
 }
-void ItemType()
-{
-
-}
-
 
 UCollision* Item::GetItemCollison()
 {

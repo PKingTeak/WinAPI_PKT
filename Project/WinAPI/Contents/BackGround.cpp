@@ -22,6 +22,8 @@ void BackGround::BeginPlay()
 
 	
 }
+
+
 void BackGround::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);

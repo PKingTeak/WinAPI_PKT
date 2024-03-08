@@ -35,9 +35,9 @@ Block::Block(int _Color)
 }
 Block::~Block()
 {
-	//Item* NewItem = Item::GetMainItem();
-	//NewItem->SetActorLocation(this->GetActorLocation());
-	//NewItem->SetActive(true, 0.0f);
+	Item* NewItem = Item::GetMainItem();
+	NewItem->SetActorLocation(this->GetActorLocation());
+	NewItem->SetActive(true);
 	UIManager* ScoreUI = UIManager::GetUIManager();
 	ScoreUI->ScorePlus(GetBlockScore());
 }

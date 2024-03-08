@@ -27,10 +27,12 @@
     <ClCompile Include="Block.cpp">
       <Filter>Obejct</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp" />
     <ClCompile Include="BlockMaker.cpp" />
     <ClCompile Include="UIManager.cpp">
       <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Obejct</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -60,10 +62,12 @@
     <ClInclude Include="Block.h">
       <Filter>Obejct</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h" />
     <ClInclude Include="BlockMaker.h" />
     <ClInclude Include="UIManager.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Obejct</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
