@@ -1,6 +1,7 @@
 #include "UIManager.h"
 #include <string>
 #include<EnginePlatform/EngineInput.h>
+#include"User.h"
 
 UIManager* UIManager::MainUIMananger = nullptr;
 
@@ -46,12 +47,28 @@ void UIManager::BeginPlay()
 
 	{
 		//Score_Text = CreateImageRenderer(10);
-		for (int i = 0; i <= 5; i++)
+		for (int i = 0; i <= 3; i++)
 		{
 			Score_Texts[i] = CreateImageRenderer(10);
 			Score_Texts[i]->SetImage("0.png");
 		}
-		int a = 0;
+	
+	}
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			UserLife[i] = CreateImageRenderer(20);
+			UserLife[i]->SetImage("UI_PlayerLife.png");
+			UserLife[i]->SetTransform({ {-260+32 * i,608},{16 * 2,8 * 2} });
+			
+			if (i >= LifeCounter)
+			{
+				UserLife[i]->SetActive(false);
+			}
+			
+		}
+		
+			
 	}
 }
 
@@ -63,14 +80,21 @@ void UIManager::Tick(float _DeltaTime)
 	TimeUI();
 	ScoreUI();
 	
+	
+
+
 	if (UEngineInput::IsDown('L'))
 	{
+		
 		ScorePlus(20);
 	}
 
 	
 
 }
+
+
+
 
 void UIManager::IntToString(float _Deltatime)
 {
@@ -109,6 +133,16 @@ void UIManager::TimeUI()
 
 }
 
+void UIManager::PlayerLifeUI(const int _Life)
+{
+	if (_Life < 0)
+	{
+		return;
+	}
+
+	UserLife[_Life]->SetActive(false);
+}
+
 void UIManager::ScorePlus(int _GameScore)
 {
 
@@ -136,7 +170,6 @@ void UIManager::ScoreUI()
 	
 	
 }
-
 
 
 UIManager* UIManager::GetUIManager()

@@ -46,7 +46,7 @@ void User::BeginPlay()
 	this->SetActive(true, 1.0f);
 	CheckPlayerState(this);
 
-
+	
 
 }
 UCollision* User::GetUserCollider()
@@ -106,9 +106,10 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 
 void User::PlayerDie(User* _Player)
 {
+	
+	UIManager::GetUIManager()->UIManager::PlayerLifeUI(Life);
 	Life -= 1;
 	_Player->SetPlayerState(PlayerState::Dead, _Player);
-	//_Player->SetPlayerState(PlayerState::Dead, _Player);
 	PlayerState nowState = GetPlayerState(_Player);
 	CheckPlayerState(_Player);
 	if (isDead == true)

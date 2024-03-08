@@ -1,7 +1,7 @@
 #pragma once
 #include <EngineCore/Actor.h>
 #include"Stage1BackGround.h"
-
+#include"UIManager.h"
 
 enum PlayerState
 {
@@ -67,7 +67,8 @@ protected:
 
 private:
 	void PlayerAnimationReset(User* _Player);
-	UImageRenderer* PlayerRenderer;
+	UImageRenderer* PlayerRenderer = nullptr;
+	UIManager* UIControl = UIManager::GetUIManager();
 	PlayerState NowState = PlayerState::Start;
 	float time = 0.0f;
 	int Life = 2;
