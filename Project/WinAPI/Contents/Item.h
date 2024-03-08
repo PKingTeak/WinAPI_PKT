@@ -29,7 +29,7 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _detaTime) override;
 private:
-	
+	void PlayerColCheck();
 	UImageRenderer* ItemRender = nullptr;
 	FVector ItemScale = {16,8};
 	static UCollision* ItemCollison;

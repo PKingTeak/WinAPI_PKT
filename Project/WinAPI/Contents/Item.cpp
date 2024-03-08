@@ -9,8 +9,6 @@ UCollision* Item::ItemCollison = nullptr;
 enum ItemType
 {
 	Slow = 0,
-	Catch = 1,
-	Laser = 2,
 	Enlarge = 3,
 	LifeUP = 7
 };
@@ -35,6 +33,7 @@ void Item::BeginPlay()
 	ItemRender->SetTransform({ {0,0}, ItemScale*2 });
 	ItemRender->CreateAnimation("ItemAnimation", "Item.png",0, 7, 0.5f, true);
 	ItemRender->CreateAnimation("LifeAnimation", "Item.png", 48, 55, 0.5f, true);
+	ItemRender->CreateAnimation("EnlargeAnimation", "Item.png", 24, 31, true);
 	ItemRender->ChangeAnimation("LifeAnimation");
 
 
@@ -75,6 +74,15 @@ void Item::Tick(float _DeltaTime)
 	//아래로 내려줄것인데 
 	
 
+}
+
+void Item::PlayerColCheck()
+{
+	//float ItemPos = 
+
+	User::CurPos.X;
+	User::CurPos.Y;
+	
 }
 
 UCollision* Item::GetItemCollison()
