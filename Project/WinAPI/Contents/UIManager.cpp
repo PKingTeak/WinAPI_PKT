@@ -61,7 +61,7 @@ void UIManager::BeginPlay()
 			UserLife[i]->SetImage("UI_PlayerLife.png");
 			UserLife[i]->SetTransform({ {-260+32 * i,608},{16 * 2,8 * 2} });
 			
-			if (i >= LifeCounter)
+			if (i > LifeCounter)
 			{
 				UserLife[i]->SetActive(false);
 			}
@@ -135,12 +135,13 @@ void UIManager::TimeUI()
 
 void UIManager::PlayerLifeUI(const int _Life)
 {
-	if (_Life < 0)
+	LifeCounter = _Life;
+	if (LifeCounter < 0)
 	{
 		return;
 	}
 
-	UserLife[_Life]->SetActive(false);
+	UserLife[LifeCounter]->SetActive(false);
 }
 
 void UIManager::ScorePlus(int _GameScore)
