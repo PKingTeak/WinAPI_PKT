@@ -15,7 +15,6 @@ FVector User::UserScale = {};
 User* User::MainUser = nullptr;
 UCollision* User::PlayerCollider = nullptr;
 
-
 User::User()
 {
 }
@@ -26,6 +25,7 @@ User::~User()
 
 void User::BeginPlay()
 {
+	
 	MainUser = this;
 	AActor::BeginPlay(); //Actor에서 상속받아와 BeginePlay()를 실행시켜준다 하지만 지금은 비어있다.
 	UserScale = { 60,14 };
@@ -42,8 +42,11 @@ void User::BeginPlay()
 	PlayerRenderer->CreateAnimation("PlayerDead", "Player_Dead.png", 0, 3, 0.1f, false);
 	//변수 보는방법 
 
+	
 	this->SetActive(true, 1.0f);
 	CheckPlayerState(this);
+
+
 
 }
 UCollision* User::GetUserCollider()
@@ -136,16 +139,18 @@ void User::CheckPlayerState(User* _Player)
 {
 	bool isEnd;
 	PlayerState nowState;
+	UIManager* UIContorl = UIManager::GetUIManager();
 	
 	switch (NowState)
 	{
 	case Start:
 	
 
+		
 		if (true == isStartAniEnd)
 		{
 			SetPlayerState(PlayerState::Idle, _Player);
-
+			
 		}
 
 		if (this->IsActive() == true)
@@ -153,9 +158,12 @@ void User::CheckPlayerState(User* _Player)
 			PlayerRenderer->ChangeAnimation("PlayerStart");
 			isEnd = PlayerRenderer->IsCurAnimationEnd(); // true라도 나옴 그럼 애니메이션은 끝이 난것인데
 			isStartAniEnd = isEnd;
+				
+			
 			//Dead 에서 time 0으로 초기화 해주면 딜레이 생기고 Start애니메이션 될듯 하다.
 			if (true == isDead)
 			{
+				UIContorl->Ready_Text->SetActive(true);
 				isDead = false;
 			}
 		}
@@ -163,6 +171,7 @@ void User::CheckPlayerState(User* _Player)
 		nowState = _Player->GetPlayerState(_Player);
 		break;
 	case Idle:
+		UIContorl->Ready_Text->SetActive(false);
 		PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 		break;
 	case PEnlarge:
@@ -202,50 +211,3 @@ void User::PlayerAnimationReset(User* _Player)
 	_Player->PlayerRenderer->AnimationReset();
 }
 
-
-/*
-void 레이저()
-
-
-
-if(Input(' ');
-
-void User::AutoShot(float _DeltaTime)
- {
-	if (true == Isballlive)
-	{
-		return;
-	}
-	time += _DeltaTime;
-	if (time >= 2)
-	{
-
-		Ball* NewBall = GetWorld()->SpawnActor<Ball>(); //여기서 공이 생성됨
-		NewBall->Move(CurPos);
-		NewBall->SetActorLocation({ CurPos.X,CurPos.Y - 10 });//플레이어의 판위에서 생성
-
-		NewBall->DirCheck();
-		Isballlive = true;
-		time = 0;
-		//공이 사라지면 다시 생기게 할것이다.
-
-	}
-
-//
-// 레이저 아이템 먹었을때 스페이스바를 누르면 만들 함수
-// 	if (time >= 2)
-// 	{
-// 		//총알이 계속 나간다 .
-// 	}
- }
-
-
-
-{
-
- ABullet* NewBullet = GetWorld()->SpawnActor<ABullet>();
- NewBullet->SetActorLocation(GetActorLocation());
- NewBullet->SetDir(FVector::Up);
- time = 0;
-}
-*/

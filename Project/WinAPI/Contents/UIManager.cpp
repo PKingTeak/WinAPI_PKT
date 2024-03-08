@@ -41,7 +41,7 @@ void UIManager::BeginPlay()
 		Ready_Text = CreateImageRenderer(10);
 		Ready_Text->SetImage("Ready.png");
 		Ready_Text->SetTransform({ {0,450}, {40 * 2,8 * 2} });
-		
+	
 	}
 
 	{
@@ -67,9 +67,8 @@ void UIManager::Tick(float _DeltaTime)
 	{
 		ScorePlus(20);
 	}
+
 	
-
-
 
 }
 
@@ -137,6 +136,7 @@ void UIManager::ScoreUI()
 	
 	
 }
+
 
 UIManager* UIManager::GetUIManager()
 {

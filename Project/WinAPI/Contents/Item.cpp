@@ -13,8 +13,6 @@ enum ItemType
 	Laser =2,
 	Enlarge = 3,
 
-
-
 };
 
 

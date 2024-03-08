@@ -26,9 +26,13 @@ public:
 	void TimeUI();
 	void ScoreUI();
 	void ScorePlus(int _GameScore);
+	void SetReadyText(bool _State);
+
 
 	static UIManager* GetUIManager();
 	UImageRenderer* Ready_Text = nullptr;
+	
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _Deltatime) override;
@@ -40,7 +44,6 @@ private:
 	UImageRenderer* Time_Text1 = nullptr;
 	UImageRenderer* Score_Text= nullptr;
 	UImageRenderer* Score_Texts[4] = { nullptr ,nullptr ,nullptr ,nullptr };
-	
 
 	FVector Middle = { 552 / 2 ,20 };
 	float Time = 0.0f;
