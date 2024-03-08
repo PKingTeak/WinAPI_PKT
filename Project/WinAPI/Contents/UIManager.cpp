@@ -39,7 +39,6 @@ void UIManager::BeginPlay()
 	}
 
 	{
-		ScorePlus(1501);
 		//Score_Text = CreateImageRenderer(10);
 		for (int i = 0; i <= 5; i++)
 		{

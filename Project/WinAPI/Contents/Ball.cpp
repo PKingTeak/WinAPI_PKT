@@ -160,10 +160,10 @@ void Ball::WallCheck()
 		CurBallPos.X = 30;
 
 	}
-	else if (CurBallPos.Y <= 50)
+	else if (CurBallPos.Y <= 80)
 	{
 		N = { 0,1 };
-		CurBallPos.Y = 50;
+		CurBallPos.Y = 80;
 
 	}
 

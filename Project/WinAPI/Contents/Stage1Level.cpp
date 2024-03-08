@@ -72,6 +72,7 @@ void Stage1Level::BeginPlay()
 			TestBlock = SpawnActor<Block>();
 			TestBlock->SetActorLocation(FVector{ 45 + i * 42,120 +24 });
 			TestBlock->SetBlockColor(7);
+			TestBlock->SetScore(120);
 			Blocks.push_back(TestBlock);
 		}
 	
@@ -85,6 +86,7 @@ void Stage1Level::BeginPlay()
 			TestBlock = SpawnActor<Block>();
 			TestBlock->SetActorLocation(FVector{ 45 + i * 42,120 +24*2 });
 			TestBlock->SetBlockColor(5);
+			TestBlock->SetScore(100);
 			Blocks.push_back(TestBlock);
 		}
 	
@@ -98,6 +100,7 @@ void Stage1Level::BeginPlay()
 			TestBlock = SpawnActor<Block>();
 			TestBlock->SetActorLocation(FVector{ 45 + i * 42,120 + 24 * 3 });
 			TestBlock->SetBlockColor(6);
+			TestBlock->SetScore(110);
 			Blocks.push_back(TestBlock);
 		}
 	}
@@ -111,6 +114,7 @@ void Stage1Level::BeginPlay()
 			TestBlock = SpawnActor<Block>();
 			TestBlock->SetActorLocation(FVector{ 45 + i * 42,120 + 24 * 4 });
 			TestBlock->SetBlockColor(3);
+			TestBlock->SetScore(80);
 			Blocks.push_back(TestBlock);
 		}
 	}
