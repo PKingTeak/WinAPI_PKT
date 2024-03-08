@@ -124,14 +124,11 @@ void UIManager::ScoreUI()
 	{
 
 
-		str = SScore.substr(i, 1); //1500
-		str.append(".png");
+		str = SScore.substr(i, 1); //1500 문자 하나씩 뽑을려고 만든 지역변수
+		str.append(".png"); //뽑은 거에 추가로 .png붙여서 setimage할거다
 
-		//Score_Text->SetImage(str);
-		//Score_Text->SetTransform({ {-100 + i * 8,20}, {8 * 2,8 * 2} });
-
-		Score_Texts[i]->SetImage(str);
-		Score_Texts[i]->SetTransform({ {-100 + i * 16,20}, {8 * 2,8 * 2} });
+		Score_Texts[i]->SetImage(str); //하나씩 출력
+		Score_Texts[i]->SetTransform({ {-120 + i * 16,20}, {8 * 2,8 * 2} });
 	}
 
 	
