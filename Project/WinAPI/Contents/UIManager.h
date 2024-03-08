@@ -44,6 +44,7 @@ private:
 	UImageRenderer* Time_Text1 = nullptr;
 	UImageRenderer* Score_Text= nullptr;
 	UImageRenderer* Score_Texts[4] = { nullptr ,nullptr ,nullptr ,nullptr };
+	//UImageRenderer* UserLife[4] = { nullptr, };
 
 	FVector Middle = { 552 / 2 ,20 };
 	float Time = 0.0f;

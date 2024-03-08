@@ -163,7 +163,7 @@ void User::CheckPlayerState(User* _Player)
 			//Dead 에서 time 0으로 초기화 해주면 딜레이 생기고 Start애니메이션 될듯 하다.
 			if (true == isDead)
 			{
-				UIContorl->Ready_Text->SetActive(true);
+				
 				isDead = false;
 			}
 		}
@@ -175,15 +175,15 @@ void User::CheckPlayerState(User* _Player)
 		PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 		break;
 	case PEnlarge:
+
 		break;
 	case Dead:
 		if (true == isDead)
 		{
+			UIContorl->Ready_Text->SetActive(true);
 			NowState = Start;
 			PlayerAnimationReset(_Player);
 		}
-		// PlayerAnimationReset(_Player); 만약에 랜더러안에 애니메이션이 존재할 경우 지워줘야 한다.
-   //	PlayerAnimationReset(_Player);
 		PlayerRenderer->ChangeAnimation("PlayerDead");
 		isEnd = PlayerRenderer->IsCurAnimationEnd();
 		isDead = isEnd;
