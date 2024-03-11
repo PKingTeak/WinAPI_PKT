@@ -29,14 +29,14 @@ void Item::BeginPlay()
 	SetActorLocation({ 200,100 });
 	UImageRenderer* ItemRender = CreateImageRenderer();
 	UEngineResourcesManager::GetInst().CuttingImage("Item.png", 8, 8);
+	ItemRender->SetTransform({ {0,0}, ItemScale * 2 });
 	ItemRender->SetImage("Item.png");
-	ItemRender->SetTransform({ {0,0}, ItemScale*2 });
-	ItemRender->CreateAnimation("SLowItemAnimation", "Item.png",0, 7, 0.5f, true);
+	ItemRender->CreateAnimation("SLowItemAnimation", "Item.png", 0, 7, 0.5f, true);
 	ItemRender->CreateAnimation("LifeAnimation", "Item.png", 48, 55, 0.5f, true);
 	ItemRender->CreateAnimation("EnlargeAnimation", "Item.png", 24, 31, true);
 	SpawnItem();
+	
 	ItemRender->ChangeAnimation(ItemName);
-
 	ItemCollison = CreateCollision(ColliderOrder::Item);
 	ItemCollison->SetColType(ECollisionType::Rect);
 	
@@ -45,37 +45,10 @@ void Item::BeginPlay()
 	
 
 }
-void Item::SpawnItem()
-{
-	int Num = DropItem();
-	switch (Num)
-	{
-	case 1 : 
-		ItemName = "SLowItemAnimation";
-
-		break;
-
-	case 2:
-		ItemName = "EnlargeAnimation";
-		break;
-
-	case 3:
-		ItemName ="LifeAnimation";
-		break;
-	default:
-		break;
-	}
-	
-}
 
 
-void Item::SetItemType(int _ItemType)
-{
-	ItemRender->SetImage("Item.png", _ItemType);
-	ItemRender->ChangeAnimation("LifeAnimation");
 
 
-}
 
 Item* Item::GetMainItem()
 {
@@ -99,6 +72,30 @@ void Item::Tick(float _DeltaTime)
 
 }
 
+void Item::SpawnItem()
+{
+	
+	int Num = ChangeItem();
+	switch (Num)
+	{
+	case 1:
+		ItemName = "SLowItemAnimation";
+		break;
+
+	case 2:
+		ItemName = "EnlargeAnimation";
+		break;
+
+	case 3:
+		ItemName = "LifeAnimation";
+		break;
+	default:
+		break;
+	}
+
+}
+
+
 void Item::PlayerColCheck()
 {
 	float ItemPosX = this->GetActorLocation().X;
@@ -115,8 +112,10 @@ void Item::PlayerColCheck()
 		
 		isCol = true;
 		ItemCounter++;
-
-		this->Destroy(); 
+		SetActorLocation({ 1200, 1200 });
+		
+		ChangeItem();
+		
 
 		}
 	}
@@ -125,10 +124,11 @@ void Item::PlayerColCheck()
 
 	
 }
-int Item::DropItem()
+int Item::ChangeItem()
 {
-	UEngineRandom Random = UEngineRandom();
-	int RandomNum = Random.RandomInt(1, 3);
+	
+	RandomNum = UEngineRandom::MainRandom.RandomInt(1, 3);
+	PreNum =  RandomNum;
 	return RandomNum;
 
 }

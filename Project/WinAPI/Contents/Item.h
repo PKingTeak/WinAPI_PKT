@@ -25,14 +25,15 @@ public:
 	static UCollision* GetItemCollison();
 	static Item* GetMainItem();
 	
-	void SetItemType(int _ItmeType);
 protected:
 	void BeginPlay() override;
 	void Tick(float _detaTime) override;
 private:
-	int DropItem();
+	int ChangeItem();
 	void PlayerColCheck();
 	UImageRenderer* ItemRender = nullptr;
+	UImageRenderer* LifeRender = nullptr;
+	UImageRenderer* EnlargeRender = nullptr;
 	FVector ItemScale = {16,8};
 	static UCollision* ItemCollison;
 	bool isLive = false;
@@ -40,6 +41,8 @@ private:
 	int ItemCounter = 0;
 	int MaxItemCounter = 2;
 	std::string ItemName = "";
+	int RandomNum = 0;
+	int PreNum = 0;
 
 };
 

@@ -36,19 +36,21 @@ Block::Block(int _Color)
 Block::~Block()
 {
 	Item* NewItem = Item::GetMainItem();
+
 	NewItem->SetActorLocation(this->GetActorLocation());
+	NewItem->SpawnItem();
 	NewItem->SetActive(true);
-	UIManager* ScoreUI = UIManager::GetUIManager();
-	ScoreUI->ScorePlus(GetBlockScore());
+
+
 }
 
 void Block::BeginPlay()
 {
 	ScoreUI = UIManager::GetUIManager();
-	
+
 	AActor::BeginPlay();
 
-	
+
 
 	BlockRender = CreateImageRenderer();
 	BlockRender->SetImage("NewBlock.png", MINT);
