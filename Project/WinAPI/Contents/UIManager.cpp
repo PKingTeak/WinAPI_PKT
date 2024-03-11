@@ -46,6 +46,13 @@ void UIManager::BeginPlay()
 	}
 
 	{
+		GameOver_Text = CreateImageRenderer(10);
+		GameOver_Text->SetImage("GameOver.png");
+		GameOver_Text->SetTransform({ {0,250} ,{64 * 4,16 * 4} });
+		GameOver_Text->SetActive(false);
+	}
+
+	{
 		//Score_Text = CreateImageRenderer(10);
 		for (int i = 0; i <= 3; i++)
 		{
@@ -79,7 +86,10 @@ void UIManager::Tick(float _DeltaTime)
 	IntToString(_DeltaTime);
 	TimeUI();
 	ScoreUI();
-	
+	if (User::GetMainUser()->CheckGameOver() == true)
+	{
+		GameOver_Text->SetActive(true);
+	}
 	
 
 
