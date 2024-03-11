@@ -88,7 +88,7 @@ void Item::SpawnItem(std::string_view _ItemName)
 void Item::ChangeItemAnimation()
 {
 	
-	int Num = ChangeItem();
+	int Num = 3;
 	//ChangeItem();
 	switch (Num)
 	{

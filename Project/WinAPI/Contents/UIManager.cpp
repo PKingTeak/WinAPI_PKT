@@ -133,7 +133,7 @@ void UIManager::TimeUI()
 
 }
 
-void UIManager::PlayerLifeUI(const int _Life)
+void UIManager::PlayerLifeMinusUI(const int _Life)
 {
 	LifeCounter = _Life;
 	if (LifeCounter < 0)
@@ -144,6 +144,15 @@ void UIManager::PlayerLifeUI(const int _Life)
 	UserLife[LifeCounter]->SetActive(false);
 }
 
+void UIManager::PlayerLifePlusUI(const int _Life)
+{
+	LifeCounter = _Life;
+	if (LifeCounter > 5)
+	{
+		return;
+	}
+	UserLife[LifeCounter]->SetActive(true);
+}
 void UIManager::ScorePlus(int _GameScore)
 {
 

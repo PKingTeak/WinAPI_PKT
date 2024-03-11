@@ -108,7 +108,7 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 void User::PlayerDie(User* _Player)
 {
 	
-	UIManager::GetUIManager()->UIManager::PlayerLifeUI(Life);
+	UIManager::GetUIManager()->UIManager::PlayerLifeMinusUI(Life);
 	Life -= 1;
 	_Player->SetPlayerState(PlayerState::Dead, _Player);
 	PlayerState nowState = GetPlayerState(_Player);
@@ -130,7 +130,7 @@ void User::PlayerLifePlus()
 	{
 		Life = 5;
 	}
-//	UIManager::GetUIManager()->UIManager::PlayerLifeUI(Life);
+	UIManager::GetUIManager()->UIManager::PlayerLifePlusUI(Life);
 
 }
 

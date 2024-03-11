@@ -26,7 +26,8 @@ public:
 	void TimeUI();
 	void ScoreUI();
 	void ScorePlus(int _GameScore);
-	void PlayerLifeUI(int _Life);
+	void PlayerLifeMinusUI(const int _Life);
+	void PlayerLifePlusUI(const int _Life);
 
 
 	static UIManager* GetUIManager();
