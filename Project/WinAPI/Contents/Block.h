@@ -105,7 +105,7 @@ private:
 	UImageRenderer* BlockRender = nullptr;
 	FVector BlockScale = { 44, 24 };
 	UCollision* BlockCollision = nullptr;
-	int life = 0;
+	int Blocklife = 0;
 	BlockType Type = BlockType::Normal;
 	int BlockScore = 0;
 };

@@ -7,6 +7,7 @@
 #include <EngineCore/EngineResourcesManager.h>
 #include<EngineBase/EngineFile.h>
 #include<EngineBase/EngineDirectory.h>
+#include<EnginePlatform/EngineInput.h>
 #include"UIManager.h"
 
 
@@ -26,6 +27,7 @@ void Stage1Level::BeginPlay()
 	Ball* NewBall = SpawnActor<Ball>(); // °ø»ý¼º
 	Stage1Map* Stage1 = SpawnActor<Stage1Map>();
 	Stage1->SetMapImage("Stage1_BackGround.png");
+	
 	UIManager* StageUI = SpawnActor<UIManager>();
 	
 	{
@@ -120,5 +122,6 @@ void Stage1Level::BeginPlay()
 void Stage1Level::Tick(float _DeltaTime)
 {
 	ULevel::Tick(_DeltaTime);
+
 
 }

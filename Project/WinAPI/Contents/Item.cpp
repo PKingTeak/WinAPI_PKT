@@ -130,12 +130,12 @@ void Item::PlayerColCheck()
 			if (ItemName == "EnlargeAnimation")
 			{
 			User::GetMainUser()->SetPlayerState(PlayerState::PEnlarge, User::GetMainUser());
-		
 			this->Destroy();
 			}
 			
 			if (ItemName == "LifeAnimation")
 			{
+				User::GetMainUser()->SetPlayerState(PlayerState::Idle, User::GetMainUser());
 				User::GetMainUser()->PlayerLifePlus();
 				isSlow = false;
 				this->Destroy();
@@ -143,7 +143,7 @@ void Item::PlayerColCheck()
 
 			if (ItemName == "SLowItemAnimation")
 			{
-				
+				User::GetMainUser()->SetPlayerState(PlayerState::Idle, User::GetMainUser());
 				NewBall->SetSpeed(200.0f);
 				isSlow = true;
 				this->Destroy();

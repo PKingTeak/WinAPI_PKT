@@ -1,5 +1,5 @@
 #include "Stage1BackGround.h"
-
+#include<EnginePlatform/EngineInput.h>
 Stage1Map::Stage1Map()
 {
 
@@ -31,11 +31,21 @@ void Stage1Map::BeginPlay()
 }
 
 
+void Stage1Map::GameOverMapImage()
+{
+	SetMapImage("Stage1_GameOver.png");
+}
+
+
 void Stage1Map::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+	if (UEngineInput::IsDown('O'))
+	{
+		GameOverMapImage();
 
-	
+	}
+
 
 
 }

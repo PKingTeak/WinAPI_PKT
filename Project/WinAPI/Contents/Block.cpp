@@ -37,7 +37,7 @@ Block::~Block()
 {
 	int SpawnNum = ItemSpawnpercentage();
 	
-	if (SpawnNum == 2 || SpawnNum == 5)
+	if (SpawnNum == 2 || SpawnNum == 5 || SpawnNum == 8 )
 	{
 	ULevel* Stage1Level = GetWorld(); //해당 레벨 가져오기
 	Item* NewItem = Stage1Level->SpawnActor<Item>();
@@ -83,8 +83,8 @@ int Block::ItemSpawnpercentage()
 
 int Block::LifeDecrease()
 {
-	life -= 1;
-	return life;
+	Blocklife -= 1;
+	return Blocklife;
 }
 
 
@@ -96,18 +96,18 @@ void Block::Tick(float _Deltatime)
 }
 void Block::SetLife(int _Count)
 {
-	life = _Count;
+	Blocklife = _Count;
 }
 
 
 int Block::GetLife()
 {
-	return life;
+	return Blocklife;
 }
 
 void Block::BlockLife(int _Count)
 {
-	life = _Count;
+	Blocklife = _Count;
 }
 
 

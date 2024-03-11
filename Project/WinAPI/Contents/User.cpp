@@ -109,7 +109,7 @@ void User::PlayerDie(User* _Player)
 {
 	
 	UIManager::GetUIManager()->UIManager::PlayerLifeMinusUI(Life);
-	Life--;
+	User::Life--;
 	_Player->SetPlayerState(PlayerState::Dead, _Player);
 	PlayerState nowState = GetPlayerState(_Player);
 	CheckPlayerState(_Player);
@@ -184,6 +184,7 @@ void User::CheckPlayerState(User* _Player)
 		nowState = _Player->GetPlayerState(_Player);
 		break;
 	case Idle:
+		PlayerRenderer->SetTransform({ { 0,0 },{ 68 ,16} });
 		UIContorl->Ready_Text->SetActive(false);
 		PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 		break;
