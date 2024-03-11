@@ -109,7 +109,7 @@ void User::PlayerDie(User* _Player)
 {
 	
 	UIManager::GetUIManager()->UIManager::PlayerLifeMinusUI(Life);
-	Life -= 1;
+	Life--;
 	_Player->SetPlayerState(PlayerState::Dead, _Player);
 	PlayerState nowState = GetPlayerState(_Player);
 	CheckPlayerState(_Player);

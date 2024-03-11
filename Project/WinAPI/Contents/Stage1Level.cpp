@@ -42,9 +42,8 @@ void Stage1Level::BeginPlay()
 			TestBlock = SpawnActor<Block>();
 			TestBlock->SetBlockType(BlockType::Hard, TestBlock);
 			int Blocklife = TestBlock->GetLife();
-			//TestBlock->SetBlockColor(0);
 			BlockType thisBlockType = TestBlock->GetBlockType(TestBlock);
-			TestBlock->SetActorLocation(FVector{ 45 + i * 42, 300 });
+			TestBlock->SetActorLocation(FVector{ 45 + i * 42, 100 });
 			Blocks.push_back(TestBlock);
 
 

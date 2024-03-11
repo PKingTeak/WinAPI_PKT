@@ -147,7 +147,7 @@ void UIManager::PlayerLifeMinusUI(const int _Life)
 void UIManager::PlayerLifePlusUI(const int _Life)
 {
 	LifeCounter = _Life;
-	if (LifeCounter > 5)
+	if (LifeCounter >= 4)
 	{
 		return;
 	}

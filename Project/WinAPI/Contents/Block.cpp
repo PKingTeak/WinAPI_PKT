@@ -37,14 +37,15 @@ Block::~Block()
 {
 	int SpawnNum = ItemSpawnpercentage();
 	
+	if (SpawnNum == 2 || SpawnNum == 5)
+	{
 	ULevel* Stage1Level = GetWorld(); //해당 레벨 가져오기
 	Item* NewItem = Stage1Level->SpawnActor<Item>();
 	NewItem->SetActorLocation(this->GetActorLocation()); //위치 
 	NewItem->SetActive(true);
 	
-	//if (SpawnNum == 2 || SpawnNum == 5)
-	//{ 확률
-	//}
+	}
+	ScoreUI->ScorePlus(GetBlockScore());
 
 
 }
