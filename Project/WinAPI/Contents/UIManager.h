@@ -50,7 +50,7 @@ private:
 	UImageRenderer* Score_Texts[4] = { nullptr ,nullptr ,nullptr ,nullptr };
 	UImageRenderer* UserLife[4] = { nullptr,nullptr,nullptr,nullptr };
 	UImageRenderer* GameOver_Text = nullptr;
-
+	UImageRenderer* ThankYou_Text = nullptr;
 	FVector Middle = { 552 / 2 ,20 };
 	float Time = 0.0f;
 	int LifeCounter = 2;
