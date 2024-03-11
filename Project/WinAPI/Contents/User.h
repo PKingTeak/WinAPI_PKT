@@ -2,6 +2,7 @@
 #include <EngineCore/Actor.h>
 #include"Stage1BackGround.h"
 #include"UIManager.h"
+#include"User.h"
 
 enum PlayerState
 {
@@ -44,6 +45,7 @@ public:
 	static FVector UserScale;
 	static User* GetMainUser(); //다른곳에서 속성을 가져오기 get
 	static UCollision* GetUserCollider();
+	
 
 	void PlayerStart(User* _Player);
 
@@ -55,12 +57,14 @@ public:
 	void CheckPlayerState(User* _Player);
 	void PlayerDie(User* _Player);
 	void PlayerLifePlus();
-	
+	static bool CheckGameOver();
+
 	bool GetisDead()
 	{
 		return isDead;
 	}
 
+	static bool isGameOver;
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

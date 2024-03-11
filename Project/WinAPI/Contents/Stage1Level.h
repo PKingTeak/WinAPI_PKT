@@ -13,7 +13,6 @@ public:
 	Stage1Level(Stage1Level&& _Other) noexcept = delete;
 	Stage1Level& operator=(const Stage1Level& _Other) = delete;
 	Stage1Level& operator=(Stage1Level&& _Other) noexcept = delete;
-
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

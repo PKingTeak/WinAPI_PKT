@@ -14,7 +14,7 @@ FVector User::CurPos = {};
 FVector User::UserScale = {};
 User* User::MainUser = nullptr;
 UCollision* User::PlayerCollider = nullptr;
-
+bool User::isGameOver = false;
 User::User()
 {
 }
@@ -29,7 +29,6 @@ void User::BeginPlay()
 	MainUser = this;
 	AActor::BeginPlay(); //Actor에서 상속받아와 BeginePlay()를 실행시켜준다 하지만 지금은 비어있다.
 	UserScale = { 60,14 };
-
 	//랜더러를 가져오기
 	SetActorLocation({ 300,530 }); //원래 위치 480
 	CurPos = GetActorLocation();
@@ -119,8 +118,7 @@ void User::PlayerDie(User* _Player)
 	}
 	if (Life < 0)
 	{
-		//GameOver() UI 작업;
-		//Player 다시 재생성 안할것
+		isGameOver = true;
 	}
 }
 void User::PlayerLifePlus()
@@ -227,3 +225,7 @@ void User::PlayerAnimationReset(User* _Player)
 	_Player->PlayerRenderer->AnimationReset();
 }
 
+bool User::CheckGameOver()
+{
+	return isGameOver;
+}

@@ -18,7 +18,7 @@ public:
 	void SetMapImage(std::string_view _MapImageName);
 	//void SetColMapImage(std::string_view _MapImageName);
 	
-	void GameOverMapImage();
+	 void GameOverMapImage();
 	
 	
 protected:
