@@ -79,7 +79,7 @@ void Ball::Tick(float _DeltaTime)
 	// 충돌하고 나서 체크하는법
 
 
-	
+
 
 }
 
@@ -157,15 +157,17 @@ void Ball::WallCheck()
 	CurBallPos = GetTransform().GetPosition();
 	bool PlayerDead = false;
 
-	if (CurBallPos.X >= 524)
+	if (CurBallPos.X > 524)
 	{
 		N = { -1,0 };
+		BallAdjustwithWall(524.0f, true);
 		CurBallPos.X = 524;
 
 	}
 	else if (CurBallPos.X <= 30)
 	{
 		N = { 1,0 };
+		BallAdjustwithWall(30.0f, true);
 		CurBallPos.X = 30;
 
 	}
@@ -181,7 +183,7 @@ void Ball::WallCheck()
 	{
 
 		PlayerPos();
-		CurBallPos.Y += 530-CurBallPos.Y;
+		//	CurBallPos.Y += 530-CurBallPos.Y;
 	}
 	else if (CurBallPos.Y >= 650 && CurBallPos.Y <= 750)
 	{
@@ -200,7 +202,6 @@ void Ball::WallCheck()
 	if (false == N.IsZeroVector2D())
 	{
 		Reflect(N);
-		int a = 0;
 
 	}
 }
@@ -314,7 +315,7 @@ void Ball::BlockRatio(Block* _NewBlock)
 		{
 			MidHeight = false;
 			Reflect({ 1.0f,0.0f });
-			CurBallPos.Y = _NewBlock->GetBlockScale().Y-1; // 여기서 표면으로 옮겨주는작업
+			CurBallPos.Y = _NewBlock->GetBlockScale().Y - 1; // 여기서 표면으로 옮겨주는작업
 
 		}
 		else
@@ -438,4 +439,22 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 }
 
 
+void Ball::BallAdjustwithWall(float _Pos, bool isX)
+{
+	float MovePos = 0;
+	if (isX == true)
+	{
+		if (CurBallPos.X-1 < 30)
+		{
+		CurBallPos.X = 30;
+		}
 
+		if (CurBallPos.X+1 > 520)
+		{
+			CurBallPos.X = 520;
+		}
+
+
+	}
+
+}

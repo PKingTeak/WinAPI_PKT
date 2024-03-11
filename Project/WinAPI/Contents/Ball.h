@@ -63,6 +63,8 @@ protected:
 	
 	
 private:
+	void BallAdjustwithWall(float _Pos , bool isX);
+	void BallAdjustWhthPlayer(FVector _PlayerPos);
 	void BlockRatio(Block* _NewBlock);
 	void Reset();
 	void Move(float _DeltaTime);
