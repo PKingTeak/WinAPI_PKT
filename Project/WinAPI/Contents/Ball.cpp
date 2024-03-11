@@ -174,6 +174,7 @@ void Ball::WallCheck()
 	else if (CurBallPos.Y <= 80)
 	{
 		N = { 0,1 };
+		BallAdjustwithWall(80, false);
 		CurBallPos.Y = 80;
 
 	}
@@ -455,6 +456,11 @@ void Ball::BallAdjustwithWall(float _Pos, bool isX)
 		}
 
 
+	}	
+
+	if (CurBallPos.Y - 1 < 80)
+	{
+		CurBallPos.Y = 80;
 	}
 
 }
