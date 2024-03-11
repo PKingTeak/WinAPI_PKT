@@ -37,7 +37,7 @@ Block::~Block()
 {
 	int SpawnNum = ItemSpawnpercentage();
 	
-	ULevel* Stage1Level = GetWorld();
+	ULevel* Stage1Level = GetWorld(); //해당 레벨 가져오기
 	Item* NewItem = Stage1Level->SpawnActor<Item>();
 	NewItem->SetActorLocation(this->GetActorLocation()); //위치 
 	NewItem->SetActive(true);

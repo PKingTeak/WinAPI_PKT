@@ -4,9 +4,10 @@
 #include <EnginePlatform/EngineInput.h>
 #include <vector>
 #include"Block.h"
-#include"Item.h"
 #include <EngineCore/EngineDebug.h>
+
 Ball* Ball::MainBall = nullptr;
+
 Ball::Ball()
 {
 
@@ -82,8 +83,17 @@ void Ball::Tick(float _DeltaTime)
 
 }
 
+Ball* Ball::GetMainBall()
+{
+	return MainBall;
+}
 
 
+void Ball::SetSpeed(float _Speed = 300.0f)
+{
+	Speed = _Speed;
+
+}
 
 
 UCollision* Ball::GetCollision()
@@ -136,7 +146,6 @@ void Ball::GameStartCheck()
 void Ball::Move(float _DeltaTime)
 {
 	BDir.Normalize2D();
-
 	AddActorLocation(BDir * Speed * _DeltaTime);//공이이동한다.
 	isCol = false;
 }

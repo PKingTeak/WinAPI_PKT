@@ -54,15 +54,8 @@ public:
 	PlayerState GetPlayerState(User* _Player);
 	void CheckPlayerState(User* _Player);
 	void PlayerDie(User* _Player);
-	void PlayerLifePlus()
-	{
-		Life++;
-		if (Life > 5)
-		{
-			Life = 5;
-		}
-
-	}
+	void PlayerLifePlus();
+	
 	bool GetisDead()
 	{
 		return isDead;

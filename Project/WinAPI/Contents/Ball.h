@@ -4,12 +4,17 @@
 #include"ColliderManager.h"
 #include"Block.h"
 #include<EngineBase/EngineMath.h>
+
+
+
 class Ball : public AActor
 {
-	friend Block;
-private: 
-	static Ball* MainBall;;
+private:
+	static Ball* MainBall;
+
+
 public:
+	friend Block;
 	// constrcuter destructer
 	Ball();
 	~Ball();
@@ -42,6 +47,8 @@ public:
 	void Reflect(FVector _CurBallPos);
 	void GetUserScale();
 
+	void SetSpeed(float _Speed);
+	static Ball* GetMainBall();
 	UCollision* GetCollision();
 //static UCollision* GetBallCollision();
 

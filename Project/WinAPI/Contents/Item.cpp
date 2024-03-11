@@ -3,6 +3,7 @@
 #include<EngineBase/EngineMath.h>
 #include"ColliderManager.h"
 #include<EngineBase/EngineRandom.h>
+#include"Ball.h"
 Item* Item::MainItem = nullptr;
 UCollision* Item::ItemCollison = nullptr;
 
@@ -44,7 +45,7 @@ void Item::BeginPlay()
 
 
 	
-
+	
 }
 
 
@@ -87,7 +88,7 @@ void Item::SpawnItem(std::string_view _ItemName)
 void Item::ChangeItemAnimation()
 {
 	
-	int Num = 2;
+	int Num = ChangeItem();
 	//ChangeItem();
 	switch (Num)
 	{
@@ -117,6 +118,8 @@ void Item::PlayerColCheck()
 	float MinUserX = User::CurPos.X - User::CurPos.X;
 	float MaxUserX = User::CurPos.X + User::CurPos.X;
 
+	
+	bool isCol = false;
 
 	if (ItemPosX > MinUserX && ItemPosY < MaxUserX)
 	{
@@ -130,11 +133,28 @@ void Item::PlayerColCheck()
 			
 			if (ItemName == "LifeAnimation")
 			{
-			//User::GetMainUser()->
+				User::GetMainUser()->PlayerLifePlus();
+				this->Destroy();
+			}
+
+			if (ItemName == "SLowItemAnimation")
+			{
+				Ball* NewBall = Ball::GetMainBall();
+				NewBall->SetSpeed(200.0f);
+				this->Destroy();
+			}
+			else
+			{
+				Ball* NewBall = Ball::GetMainBall();
+				NewBall->SetSpeed(300.0f);
 			}
 
 		}
+
 	}
+
+	
+
 	
 
 	

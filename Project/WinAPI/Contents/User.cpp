@@ -123,6 +123,16 @@ void User::PlayerDie(User* _Player)
 		//Player 다시 재생성 안할것
 	}
 }
+void User::PlayerLifePlus()
+{
+	Life++;
+	if (Life >= 5)
+	{
+		Life = 5;
+	}
+//	UIManager::GetUIManager()->UIManager::PlayerLifeUI(Life);
+
+}
 
 void User::PlayerStart(User* _Player)
 {

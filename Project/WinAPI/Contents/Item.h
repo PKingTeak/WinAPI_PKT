@@ -2,6 +2,7 @@
 #include<EngineCore/Actor.h>
 #include<EngineCore/EngineResourcesManager.h>
 #include"ArkanoidCore.h"
+#include "Ball.h"
 // Ό³Έν :
 class Item :public AActor
 {
@@ -25,6 +26,7 @@ public:
 	static UCollision* GetItemCollison();
 	static Item* GetMainItem();
 	UImageRenderer* ItemRender = nullptr;
+	
 	
 protected:
 	void BeginPlay() override;
