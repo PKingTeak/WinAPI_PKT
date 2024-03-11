@@ -4,6 +4,7 @@
 #include"ColliderManager.h"
 #include<EngineBase/EngineRandom.h>
 #include"Ball.h"
+#include <EngineCore/EngineDebug.h>
 Item* Item::MainItem = nullptr;
 UCollision* Item::ItemCollison = nullptr;
 
@@ -61,11 +62,17 @@ void Item::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 	PlayerColCheck();
+
+	FVector CurPos = GetActorLocation();
+	std::string CurstringX = std::to_string(CurPos.X);
+	std::string CurStringY = std::to_string(CurPos.Y);
+	UEngineDebug::DebugTextPrint(CurstringX, 24);
+	UEngineDebug::DebugTextPrint(CurstringX, 20);
+	
+	
 	if (true != this->IsActive())
 	{
 		this->ChangeItemAnimation();
-		
-	
 	}
 	AddActorLocation(FVector::Down * _DeltaTime * 100.0f);
 	
@@ -77,11 +84,6 @@ void Item::Tick(float _DeltaTime)
 	//아래로 내려줄것인데 
 	
 
-}
-void Item::SpawnItem(std::string_view _ItemName)
-{
-
-	
 }
 
 
@@ -115,13 +117,13 @@ void Item::PlayerColCheck()
 	float ItemPosX = this->GetActorLocation().X;
 	float ItemPosY = this->GetActorLocation().Y;
 	
-	float MinUserX = User::CurPos.X - User::CurPos.X;
-	float MaxUserX = User::CurPos.X + User::CurPos.X;
+	float MinUserX = User::CurPos.X - User::UserScale.X;
+	float MaxUserX = User::CurPos.X + User::UserScale.X;
 
 	
-	bool isCol = false;
+	
 
-	if (ItemPosX > MinUserX && ItemPosY < MaxUserX)
+	if (ItemPosX > MinUserX && ItemPosX < MaxUserX+1)
 	{
 		if (ItemPosY >= User::CurPos.Y-1 && ItemPosY<User::CurPos.Y+3)
 		{
@@ -148,11 +150,12 @@ void Item::PlayerColCheck()
 				Ball* NewBall = Ball::GetMainBall();
 				NewBall->SetSpeed(300.0f);
 			}
-
+			int a = 0;
 		}
 
 	}
-
+	bool isCol = false;
+	
 	
 
 	

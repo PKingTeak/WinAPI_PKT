@@ -24,11 +24,7 @@ void Stage1Level::BeginPlay()
 
 	User* user = SpawnActor<User>(); //플레이어 생성
 	Ball* NewBall = SpawnActor<Ball>(); // 공생성
-	//Block* NewBlock = SpawnActor<Block>();
 	Stage1Map* Stage1 = SpawnActor<Stage1Map>();
-	//Item* NewItem = SpawnActor<Item>();
-	//NewItem->SetActorLocation({ 1200,1200 }); //아이템 위치 이동시킨후 일단 다른곳에 생성
-	//NewItem->SetActive(false);
 	Stage1->SetMapImage("Stage1_BackGround.png");
 	UIManager* StageUI = SpawnActor<UIManager>();
 	

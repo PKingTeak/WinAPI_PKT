@@ -22,7 +22,6 @@ public:
 	
 	
 	void ChangeItemAnimation();
-	void SpawnItem(std::string_view _ItemName);
 	static UCollision* GetItemCollison();
 	static Item* GetMainItem();
 	UImageRenderer* ItemRender = nullptr;
