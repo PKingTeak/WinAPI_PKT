@@ -20,10 +20,11 @@ public:
 	Item& operator=(Item&& _Other) noexcept = delete;
 	
 	
-	void SpawnItem();
-
+	void ChangeItemAnimation();
+	void SpawnItem(std::string_view _ItemName);
 	static UCollision* GetItemCollison();
 	static Item* GetMainItem();
+	UImageRenderer* ItemRender = nullptr;
 	
 protected:
 	void BeginPlay() override;
@@ -31,16 +32,13 @@ protected:
 private:
 	int ChangeItem();
 	void PlayerColCheck();
-	UImageRenderer* ItemRender = nullptr;
-	UImageRenderer* LifeRender = nullptr;
-	UImageRenderer* EnlargeRender = nullptr;
 	FVector ItemScale = {16,8};
 	static UCollision* ItemCollison;
 	bool isLive = false;
 	bool isCol = false;
+	std::string ItemName = "";
 	int ItemCounter = 0;
 	int MaxItemCounter = 2;
-	std::string ItemName = "";
 	int RandomNum = 0;
 	int PreNum = 0;
 

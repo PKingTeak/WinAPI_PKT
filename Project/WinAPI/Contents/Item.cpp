@@ -16,10 +16,12 @@ enum ItemType
 
 Item::Item()
 {
+
 }
 
 Item::~Item()
 {
+	this->Destroy();
 }
 
 void Item::BeginPlay()
@@ -34,8 +36,7 @@ void Item::BeginPlay()
 	ItemRender->CreateAnimation("SLowItemAnimation", "Item.png", 0, 7, 0.5f, true);
 	ItemRender->CreateAnimation("LifeAnimation", "Item.png", 48, 55, 0.5f, true);
 	ItemRender->CreateAnimation("EnlargeAnimation", "Item.png", 24, 31, true);
-	SpawnItem();
-	
+	ChangeItemAnimation();
 	ItemRender->ChangeAnimation(ItemName);
 	ItemCollison = CreateCollision(ColliderOrder::Item);
 	ItemCollison->SetColType(ECollisionType::Rect);
@@ -59,20 +60,27 @@ void Item::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 	PlayerColCheck();
-	if (true == this->IsActive())
+	if (true != this->IsActive())
 	{
-		AddActorLocation(FVector::Down * _DeltaTime * 100.0f);
-		isLive = true;
-	}
+		this->ChangeItemAnimation();
+		
 	
-
+	}
+	AddActorLocation(FVector::Down * _DeltaTime * 100.0f);
+	isLive = true;
 
 	//아래로 내려줄것인데 
 	
 
 }
+void Item::SpawnItem(std::string_view _ItemName)
+{
 
-void Item::SpawnItem()
+	
+}
+
+
+void Item::ChangeItemAnimation()
 {
 	
 	int Num = ChangeItem();
@@ -113,8 +121,6 @@ void Item::PlayerColCheck()
 		isCol = true;
 		ItemCounter++;
 		SetActorLocation({ 1200, 1200 });
-		
-		ChangeItem();
 		
 
 		}

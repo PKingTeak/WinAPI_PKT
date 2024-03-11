@@ -35,10 +35,9 @@ Block::Block(int _Color)
 }
 Block::~Block()
 {
-	Item* NewItem = Item::GetMainItem();
-
-	NewItem->SetActorLocation(this->GetActorLocation());
-	NewItem->SpawnItem();
+	ULevel* Stage1Level = GetWorld();
+	Item* NewItem = Stage1Level->SpawnActor<Item>();
+	NewItem->SetActorLocation(this->GetActorLocation()); //À§Ä¡ 
 	NewItem->SetActive(true);
 
 
