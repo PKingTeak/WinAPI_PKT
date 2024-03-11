@@ -4,6 +4,7 @@
 #include"Item.h"
 #include<iostream>
 #include"UIManager.h"
+#include<EngineBase/EngineRandom.h>
 
 
 
@@ -24,7 +25,6 @@ enum Blocks
 
 
 
-
 Block::Block()
 {
 
@@ -35,10 +35,14 @@ Block::Block(int _Color)
 }
 Block::~Block()
 {
+	int SpawnNum = ItemSpawnpercentage();
+	if (SpawnNum == 2)
+	{
 	ULevel* Stage1Level = GetWorld();
 	Item* NewItem = Stage1Level->SpawnActor<Item>();
 	NewItem->SetActorLocation(this->GetActorLocation()); //À§Ä¡ 
 	NewItem->SetActive(true);
+	}
 
 
 }
@@ -61,6 +65,14 @@ void Block::BeginPlay()
 	BlockCollision->SetScale(BlockScale);
 
 
+
+}
+
+
+int Block::ItemSpawnpercentage()
+{
+	return UEngineRandom::MainRandom.RandomInt(1, 10);
+	
 
 }
 

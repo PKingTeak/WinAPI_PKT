@@ -100,7 +100,7 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
-	
+	int ItemSpawnpercentage();
 	UIManager* ScoreUI = nullptr;
 	UImageRenderer* BlockRender = nullptr;
 	FVector BlockScale = { 44, 24 };
