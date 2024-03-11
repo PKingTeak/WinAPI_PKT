@@ -59,6 +59,7 @@ void ArkanoidCore::BeginPlay()
 	//이미지 로드
 	UEngineResourcesManager::GetInst().CuttingImage("Player_Idle.png", 1, 6);
 	UEngineResourcesManager::GetInst().CuttingImage("Player_Start.png", 1, 5);
+	UEngineResourcesManager::GetInst().CuttingImage("Player_Enlarge.png",1, 6);
 	UEngineResourcesManager::GetInst().CuttingImage("Player_Dead.png", 4, 1);
 
 	UEngineResourcesManager::GetInst().CuttingImage("NewBlock.png", 4, 2);

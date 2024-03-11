@@ -34,11 +34,7 @@ private:
 	void PlayerColCheck();
 	FVector ItemScale = {16,8};
 	static UCollision* ItemCollison;
-	bool isLive = false;
-	bool isCol = false;
 	std::string ItemName = "";
-	int ItemCounter = 0;
-	int MaxItemCounter = 2;
 	int RandomNum = 0;
 	int PreNum = 0;
 

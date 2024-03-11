@@ -36,13 +36,15 @@ Block::Block(int _Color)
 Block::~Block()
 {
 	int SpawnNum = ItemSpawnpercentage();
-	if (SpawnNum == 2)
-	{
+	
 	ULevel* Stage1Level = GetWorld();
 	Item* NewItem = Stage1Level->SpawnActor<Item>();
 	NewItem->SetActorLocation(this->GetActorLocation()); //À§Ä¡ 
 	NewItem->SetActive(true);
-	}
+	
+	//if (SpawnNum == 2 || SpawnNum == 5)
+	//{ È®·ü
+	//}
 
 
 }

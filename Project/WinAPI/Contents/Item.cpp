@@ -67,8 +67,12 @@ void Item::Tick(float _DeltaTime)
 	
 	}
 	AddActorLocation(FVector::Down * _DeltaTime * 100.0f);
-	isLive = true;
+	
 
+	if (this->GetActorLocation().Y > 650)
+	{
+		this->Destroy();
+	}
 	//아래로 내려줄것인데 
 	
 
@@ -83,7 +87,8 @@ void Item::SpawnItem(std::string_view _ItemName)
 void Item::ChangeItemAnimation()
 {
 	
-	int Num = ChangeItem();
+	int Num = 2;
+	//ChangeItem();
 	switch (Num)
 	{
 	case 1:
@@ -117,16 +122,20 @@ void Item::PlayerColCheck()
 	{
 		if (ItemPosY >= User::CurPos.Y-1 && ItemPosY<User::CurPos.Y+3)
 		{
-		
-		isCol = true;
-		ItemCounter++;
-		SetActorLocation({ 1200, 1200 });
-		
+			if (ItemName == "EnlargeAnimation")
+			{
+			User::GetMainUser()->SetPlayerState(PlayerState::PEnlarge, User::GetMainUser());
+			this->Destroy();
+			}
+			
+			if (ItemName == "LifeAnimation")
+			{
+			//User::GetMainUser()->
+			}
 
 		}
 	}
-	isCol = false;
-
+	
 
 	
 }

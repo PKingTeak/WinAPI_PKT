@@ -39,6 +39,7 @@ void User::BeginPlay()
 	PlayerRenderer->SetTransform({ { 0,0 },{ 68,16} });
 	PlayerRenderer->CreateAnimation("PlayerIdleAnimation", "Player_Idle.png", 0, 5, 0.1f, true);
 	PlayerRenderer->CreateAnimation("PlayerStart", "Player_Start.png", 0, 4, 0.1f, false);
+	PlayerRenderer->CreateAnimation("PlayerEnlarge","Player_Enlarge.png",0,5,0.1f,true);
 	PlayerRenderer->CreateAnimation("PlayerDead", "Player_Dead.png", 0, 3, 0.1f, false);
 	//변수 보는방법 
 
@@ -156,6 +157,7 @@ void User::CheckPlayerState(User* _Player)
 
 		if (this->IsActive() == true)
 		{
+			PlayerRenderer->SetTransform({ { 0,0 },{ 68 ,16} });
 			PlayerRenderer->ChangeAnimation("PlayerStart");
 			isEnd = PlayerRenderer->IsCurAnimationEnd(); // true라도 나옴 그럼 애니메이션은 끝이 난것인데
 			isStartAniEnd = isEnd;
@@ -176,7 +178,9 @@ void User::CheckPlayerState(User* _Player)
 		PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 		break;
 	case PEnlarge:
-
+		UserScale = UserScale * 2;
+		PlayerRenderer->SetTransform({ { 0,0 },{ 68+20,16} });
+		PlayerRenderer->ChangeAnimation("PlayerEnlarge");
 		break;
 	case Dead:
 		if (true == isDead)
