@@ -38,6 +38,7 @@ private:
 	std::string ItemName = "";
 	int RandomNum = 0;
 	int PreNum = 0;
+	bool isSlow = false;
 
 };
 

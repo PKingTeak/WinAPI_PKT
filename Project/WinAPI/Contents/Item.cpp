@@ -120,7 +120,7 @@ void Item::PlayerColCheck()
 	float MinUserX = User::CurPos.X - User::UserScale.X;
 	float MaxUserX = User::CurPos.X + User::UserScale.X;
 
-	
+	Ball* NewBall = Ball::GetMainBall();
 	
 
 	if (ItemPosX > MinUserX && ItemPosX < MaxUserX+1)
@@ -130,27 +130,32 @@ void Item::PlayerColCheck()
 			if (ItemName == "EnlargeAnimation")
 			{
 			User::GetMainUser()->SetPlayerState(PlayerState::PEnlarge, User::GetMainUser());
+		
 			this->Destroy();
 			}
 			
 			if (ItemName == "LifeAnimation")
 			{
 				User::GetMainUser()->PlayerLifePlus();
+				isSlow = false;
 				this->Destroy();
 			}
 
 			if (ItemName == "SLowItemAnimation")
 			{
-				Ball* NewBall = Ball::GetMainBall();
+				
 				NewBall->SetSpeed(200.0f);
+				isSlow = true;
 				this->Destroy();
 			}
-			else
+			
+			if (isSlow == false)
 			{
-				Ball* NewBall = Ball::GetMainBall();
 				NewBall->SetSpeed(300.0f);
 			}
-			int a = 0;
+			
+
+			
 		}
 
 	}
