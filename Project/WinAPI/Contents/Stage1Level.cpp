@@ -118,7 +118,6 @@ void Stage1Level::BeginPlay()
 }
 
 
-
 void Stage1Level::Tick(float _DeltaTime)
 {
 	ULevel::Tick(_DeltaTime);

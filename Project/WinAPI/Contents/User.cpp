@@ -119,14 +119,15 @@ void User::PlayerDie(User* _Player)
 	if (Life < 0)
 	{
 		isGameOver = true;
+		GetWorld()->SetAllTimeScale(0.0f);
 	}
 }
 void User::PlayerLifePlus()
 {
 	Life++;
-	if (Life >= 5)
+	if (Life >= 3)
 	{
-		Life = 5;
+		Life = 3;
 	}
 	UIManager::GetUIManager()->UIManager::PlayerLifePlusUI(Life);
 
