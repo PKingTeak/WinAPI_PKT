@@ -33,7 +33,7 @@ void Ball::BeginPlay()
 
 	BallCollison = CreateCollision(ColliderOrder::Ball);
 	BallCollison->SetColType(ECollisionType::CirCle);
-	BallCollison->SetScale({BallSize*2});
+	BallCollison->SetScale({BallSize});
 	this->SetActive(true, 1.0f);
 
 
@@ -305,7 +305,7 @@ void Ball::BlockRatio(Block* _NewBlock)
 	{
 		if (true == MidTopHeight)
 		{
-			MidHeight = false;
+			MidTopHeight = false;
 			if (BDir.X > 0)
 			{
 				Reflect({ -1.0f, 0.0f });
@@ -319,7 +319,7 @@ void Ball::BlockRatio(Block* _NewBlock)
 		}
 		else
 		{
-			Reflect({ 0.0f,-1.0f });
+			Reflect({ 0.0f,-1.0f });//
 		}
 
 		//
@@ -383,8 +383,8 @@ bool Ball::BlockSideCheckLR(Block* _ColBlock)
 	bool isRight = false;
 
 	Block* thisBlock = _ColBlock;
-	float BlockLeft = thisBlock->BlockLeft() + thisBlock->GetActorLocation().X - 1;
-	float BlockRight = thisBlock->BlockRight() + thisBlock->GetActorLocation().X - 1;
+	float BlockLeft = thisBlock->GetActorLocation().X - 44;
+	float BlockRight = thisBlock->GetActorLocation().X + 44;
 
 	//각각 1씩 더해준 이유는 float 의 오차를 없애기 위해서 더해줬습니다. 
 
@@ -429,12 +429,13 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 	{
 
 		isDown = false;
-		MidTopHeight = true;
+		MidTopHeight = true; //위에서 가운데 까지
 		//위 옆면
 	}
-	if (BlockTop + 1 > CurBallPos.Y)
+	if (BlockTop - 1 > CurBallPos.Y)
 	{
 		isDown = false;
+		MidTopHeight = false;
 		// 진짜 위에
 
 	}
@@ -442,7 +443,7 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 	if (YMid <= CurBallPos.Y && CurBallPos.Y < BlockBottom)
 	{
 
-		MidHeight = true;
+		MidHeight = true; //가운데에서 아래까지
 		isDown = true;
 
 		//아래 여옆면
