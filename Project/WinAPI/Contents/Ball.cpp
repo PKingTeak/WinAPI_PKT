@@ -32,8 +32,8 @@ void Ball::BeginPlay()
 	
 
 	BallCollison = CreateCollision(ColliderOrder::Ball);
-	BallCollison->SetScale({ 2,2 });
 	BallCollison->SetColType(ECollisionType::CirCle);
+	BallCollison->SetScale({BallSize*2});
 	this->SetActive(true, 1.0f);
 
 
@@ -254,7 +254,6 @@ void Ball::BlockCheck()
 		Blocklife = ColBlock->GetLife();
 		BlockType Type = ColBlock->GetBlockType(ColBlock);
 		
-		//Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
 		if (Blocklife > 0)
 		{
 			ColBlock->LifeDecrease();
@@ -283,9 +282,11 @@ void Ball::Reflect(FVector Normal)
 {
 	FVector N = Normal;
 	FVector N2 = N * 2;
-	float X = BDir.X;
-	float Y = BDir.Y;
-	float T = (-BDir.X) * N.X + (-BDir.Y) * N.Y; //(-P * n) <여기가 이상하다.
+	
+	float X = BDir.X * -1;
+	float Y = BDir.Y * -1;//0.7
+	float T = X * N.X + Y * N.Y; //(-P * n) <여기가 이상하다.
+	BDir.Normalize2D();
 	BDir = BDir + (N2 * T); //R = P+2n(-P내적n)
 }
 
@@ -305,14 +306,23 @@ void Ball::BlockRatio(Block* _NewBlock)
 		if (true == MidTopHeight)
 		{
 			MidHeight = false;
-			Reflect({ -1.0f,0.0f });
+			if (BDir.X > 0)
+			{
+				Reflect({ -1.0f, 0.0f });
+			}
+			else
+			{
+			Reflect({ 0.0f, -1.0f });
+
+			}
+			
 		}
 		else
 		{
-			Reflect({ 0.0,-1.0f });
+			Reflect({ 0.0f,-1.0f });
 		}
 
-		//N
+		//
 
 	}
 	if (true == R && true == D)
@@ -337,6 +347,7 @@ void Ball::BlockRatio(Block* _NewBlock)
 		{
 			MidHeight = false;
 			Reflect({ 1.0f,0.0f });
+			//여기도 이상함
 
 		}
 		else
@@ -414,7 +425,7 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 	float YMid = thisBlock->GetActorLocation().Y;
 
 
-	if (BlockTop + 2 < CurBallPos.Y && CurBallPos.Y < YMid)
+	if (BlockTop + 1 < CurBallPos.Y && CurBallPos.Y < YMid)
 	{
 
 		isDown = false;

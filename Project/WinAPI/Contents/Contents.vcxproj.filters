@@ -40,6 +40,9 @@
     <ClCompile Include="EndingLevel.cpp">
       <Filter>Level\Ending</Filter>
     </ClCompile>
+    <ClCompile Include="DebugLevel.cpp">
+      <Filter>Level\DebugLevel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArkanoidCore.h" />
@@ -81,6 +84,9 @@
     <ClInclude Include="EndingLevel.h">
       <Filter>Level\Ending</Filter>
     </ClInclude>
+    <ClInclude Include="DebugLevel.h">
+      <Filter>Level\DebugLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Obejct">
@@ -97,6 +103,9 @@
     </Filter>
     <Filter Include="Level\Ending">
       <UniqueIdentifier>{f0c6c7f3-a291-4db1-a555-03c2df0d45c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\DebugLevel">
+      <UniqueIdentifier>{709c6976-9c5f-485d-aa94-dbe40c157371}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

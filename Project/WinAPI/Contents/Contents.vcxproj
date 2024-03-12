@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DebugLevel.cpp" />
     <ClCompile Include="EndingBackGround.cpp" />
     <ClCompile Include="EndingLevel.cpp" />
     <ClCompile Include="UIManager.cpp">
@@ -198,6 +199,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DebugLevel.h" />
     <ClInclude Include="EndingBackGround.h" />
     <ClInclude Include="EndingLevel.h" />
     <ClInclude Include="UIManager.h">
