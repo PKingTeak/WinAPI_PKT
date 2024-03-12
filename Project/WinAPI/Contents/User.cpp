@@ -112,6 +112,7 @@ void User::PlayerDie(User* _Player)
 	User::Life--;
 	_Player->SetPlayerState(PlayerState::Dead, _Player);
 	PlayerState nowState = GetPlayerState(_Player);
+	
 	CheckPlayerState(_Player);
 	if (isDead == true)
 	{
@@ -202,6 +203,7 @@ void User::CheckPlayerState(User* _Player)
 		{
 			UIContorl->Ready_Text->SetActive(true);
 			NowState = Start;
+			SetActorLocation({ 300,530 });
 			PlayerAnimationReset(_Player);
 		}
 		PlayerRenderer->ChangeAnimation("PlayerDead");
