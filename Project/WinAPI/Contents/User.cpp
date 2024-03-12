@@ -108,6 +108,7 @@ void User::PlayerDie(User* _Player)
 {
 	
 	UIManager::GetUIManager()->UIManager::PlayerLifeMinusUI(Life);
+	Ball::GetMainBall()->SetSpeed(300.0f);
 	User::Life--;
 	_Player->SetPlayerState(PlayerState::Dead, _Player);
 	PlayerState nowState = GetPlayerState(_Player);
@@ -121,6 +122,7 @@ void User::PlayerDie(User* _Player)
 		isGameOver = true;
 		GetWorld()->SetAllTimeScale(0.0f);
 	}
+	
 }
 void User::PlayerLifePlus()
 {
