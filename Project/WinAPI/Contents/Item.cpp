@@ -5,6 +5,7 @@
 #include<EngineBase/EngineRandom.h>
 #include"Ball.h"
 #include <EngineCore/EngineDebug.h>
+#include<EnginePlatform/EngineSound.h>
 Item* Item::MainItem = nullptr;
 UCollision* Item::ItemCollison = nullptr;
 
@@ -140,6 +141,7 @@ void Item::PlayerColCheck()
 			{
 				User::GetMainUser()->SetPlayerState(PlayerState::Idle, User::GetMainUser());
 				User::GetMainUser()->PlayerLifePlus();
+				UEngineSound::SoundPlay("LifeUp.wav");
 				isSlow = false;
 				this->Destroy();
 			}
