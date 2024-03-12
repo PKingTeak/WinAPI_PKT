@@ -37,9 +37,9 @@ void User::BeginPlay()
 	PlayerRenderer->SetImage("Player_Start.png");
 	PlayerRenderer->SetTransform({ { 0,0 },{ 68,16} });
 	PlayerRenderer->CreateAnimation("PlayerIdleAnimation", "Player_Idle.png", 0, 5, 0.1f, true);
-	PlayerRenderer->CreateAnimation("PlayerStart", "Player_Start.png", 0, 4, 0.1f, false);
+	PlayerRenderer->CreateAnimation("PlayerStart", "Player_Start.png", 0, 4, 0.12f, false);
 	PlayerRenderer->CreateAnimation("PlayerEnlarge","Player_Enlarge.png",0,5,0.1f,true);
-	PlayerRenderer->CreateAnimation("PlayerDead", "Player_Dead.png", 0, 3, 0.1f, false);
+	PlayerRenderer->CreateAnimation("PlayerDead", "Player_Dead.png", 0, 3, 0.12f, false);
 	//변수 보는방법 
 
 	
@@ -162,9 +162,12 @@ void User::CheckPlayerState(User* _Player)
 		
 		if (true == isStartAniEnd)
 		{
+			isEnd = PlayerRenderer->IsCurAnimationEnd();
 			SetPlayerState(PlayerState::Idle, _Player);
-			
+			isStartAniEnd = false;
 		}
+		else
+		{
 
 		if (this->IsActive() == true)
 		{
@@ -177,11 +180,11 @@ void User::CheckPlayerState(User* _Player)
 			//Dead 에서 time 0으로 초기화 해주면 딜레이 생기고 Start애니메이션 될듯 하다.
 			if (true == isDead)
 			{
-				
 				isDead = false;
 			}
 		}
 		
+		}
 		nowState = _Player->GetPlayerState(_Player);
 		break;
 	case Idle:
