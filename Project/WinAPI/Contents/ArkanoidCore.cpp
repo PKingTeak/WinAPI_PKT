@@ -7,6 +7,7 @@
 #include<EnginePlatform/EngineSound.h>
 #include"UIManager.h"
 #include<EngineBase/EngineDirectory.h>
+#include"EndingLevel.h"
 
 
 FVector ArkanoidCore::ScreenSize = { 552,602 }; //Static을 이용하여 만들어서 구현하는 곳에 초기화 
@@ -64,12 +65,12 @@ void ArkanoidCore::BeginPlay()
 
 	UEngineResourcesManager::GetInst().CuttingImage("NewBlock.png", 4, 2);
 	UEngineResourcesManager::GetInst().CuttingImage("OtherBlock.png", 6, 2);
-
+	
 	//UI
 	CreateLevel<TitleLevel>("TitleLevel");
 	CreateLevel<Stage1Level>("Stage1Level");
-
-	ChangeLevel("Stage1Level");
+	CreateLevel<EndingLevel>("EndingLevel");
+	ChangeLevel("EndingLevel");
 
 
 }

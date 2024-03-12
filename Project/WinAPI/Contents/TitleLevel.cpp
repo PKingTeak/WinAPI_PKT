@@ -16,7 +16,7 @@ void TitleLevel::BeginPlay()
 {
 	ULevel::BeginPlay();
 	BackGround* Background = SpawnActor<BackGround>();
-	UEngineSound::SoundPlay("Sound1.wav");
+	//UEngineSound::SoundPlay("Sound1.wav");
 
 
 

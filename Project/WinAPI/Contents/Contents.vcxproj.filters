@@ -34,8 +34,11 @@
     <ClCompile Include="Item.cpp">
       <Filter>Obejct</Filter>
     </ClCompile>
+    <ClCompile Include="EndingBackGround.cpp">
+      <Filter>Level\Ending</Filter>
+    </ClCompile>
     <ClCompile Include="EndingLevel.cpp">
-      <Filter>Level</Filter>
+      <Filter>Level\Ending</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -72,8 +75,11 @@
     <ClInclude Include="Item.h">
       <Filter>Obejct</Filter>
     </ClInclude>
+    <ClInclude Include="EndingBackGround.h">
+      <Filter>Level\Ending</Filter>
+    </ClInclude>
     <ClInclude Include="EndingLevel.h">
-      <Filter>Level</Filter>
+      <Filter>Level\Ending</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +94,9 @@
     </Filter>
     <Filter Include="UI">
       <UniqueIdentifier>{55d82d69-73f3-44cd-b869-4b363e139116}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Ending">
+      <UniqueIdentifier>{f0c6c7f3-a291-4db1-a555-03c2df0d45c5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

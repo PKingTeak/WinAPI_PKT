@@ -3,6 +3,7 @@
 #include<EngineCore/ImageRenderer.h>
 #include<EngineCore/EngineResourcesManager.h>
 #include<string>
+#include"EndingBackGround.h"
 
 using namespace std;
 // Ό³Έν :
@@ -32,8 +33,8 @@ public:
 
 	static UIManager* GetUIManager();
 
+	void EndScoreText();
 	
-
 	UImageRenderer* Ready_Text = nullptr;
 	
 
@@ -57,8 +58,8 @@ private:
 	int TotalTime = 0;
 	string STime = "";
 	string STime1 = "";
+	int TotalScore = 0;
 	int STimeCounter = 0;
 	string SScore = "";
-	int TotalScore =0;
 };
 

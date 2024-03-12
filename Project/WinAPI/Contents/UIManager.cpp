@@ -200,6 +200,7 @@ void UIManager::ScoreUI()
 }
 
 
+
 UIManager* UIManager::GetUIManager()
 {
 	return MainUIMananger;

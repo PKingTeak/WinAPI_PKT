@@ -20,6 +20,7 @@ public:
 	
 	 void GameOverMapImage();
 	
+	 FVector EndingScreenSize = {};
 	
 protected:
 	
@@ -29,7 +30,8 @@ protected:
 private:
 	UImageRenderer* MapRenderer = nullptr;
 	UImageRenderer* GameOverRenderer = nullptr;
-
+	
+	
 	
 	
 };
