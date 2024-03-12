@@ -221,7 +221,6 @@ void Ball::PlayerPos()
 			BDir.X += Pos.X;
 			BDir.Normalize2D();
 			UEngineSound::SoundPlay("BallCrashPlayer.wav");
-
 		}
 
 	}
@@ -242,7 +241,7 @@ void Ball::BlockCheck()
 	std::vector<UCollision*> Result;
 	if (true == BallCollison->CollisionCheck(ColliderOrder::Block, Result))
 	{
-		UEngineSound::SoundPlay("BlockCrashBall.wav");
+		
 		if (isCol == true)
 		{
 			return;
@@ -254,21 +253,26 @@ void Ball::BlockCheck()
 		BlockRatio(ColBlock);
 		Blocklife = ColBlock->GetLife();
 		BlockType Type = ColBlock->GetBlockType(ColBlock);
+		
 		//Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
 		if (Blocklife > 0)
 		{
 			ColBlock->LifeDecrease();
 			if (Type == BlockType::Hard)
 			{
+				UEngineSound::SoundPlay("Blockprotected.wav");
 				ColBlock->BlockAniReset(ColBlock);
 				ColBlock->HardBlockAnimation(ColBlock);
+				return;
 
 			}
 		}
+		
 		else
 		{
 			ColBlock->Destroy();
 		}
+		UEngineSound::SoundPlay("BlockCrashBall.wav");
 
 
 	}
