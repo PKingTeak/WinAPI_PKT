@@ -82,7 +82,10 @@ void Item::Tick(float _DeltaTime)
 		this->Destroy();
 	}
 	//아래로 내려줄것인데 
-	
+	if (User::GetMainUser()->GetisDead() == true)
+	{
+		this->Destroy();
+	}
 
 }
 

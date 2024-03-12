@@ -34,6 +34,9 @@
     <ClCompile Include="Item.cpp">
       <Filter>Obejct</Filter>
     </ClCompile>
+    <ClCompile Include="EndingLevel.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArkanoidCore.h" />
@@ -68,6 +71,9 @@
     </ClInclude>
     <ClInclude Include="Item.h">
       <Filter>Obejct</Filter>
+    </ClInclude>
+    <ClInclude Include="EndingLevel.h">
+      <Filter>Level</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

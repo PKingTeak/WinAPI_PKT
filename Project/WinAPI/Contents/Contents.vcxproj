@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EndingLevel.cpp" />
     <ClCompile Include="UIManager.cpp">
       <SubType>
       </SubType>
@@ -196,6 +197,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EndingLevel.h" />
     <ClInclude Include="UIManager.h">
       <SubType>
       </SubType>
