@@ -172,7 +172,7 @@ void User::CheckPlayerState(User* _Player)
 			PlayerRenderer->ChangeAnimation("PlayerStart");
 			isEnd = PlayerRenderer->IsCurAnimationEnd(); // true라도 나옴 그럼 애니메이션은 끝이 난것인데
 			isStartAniEnd = isEnd;
-				
+			//	
 			
 			//Dead 에서 time 0으로 초기화 해주면 딜레이 생기고 Start애니메이션 될듯 하다.
 			if (true == isDead)
