@@ -190,12 +190,13 @@ void User::CheckPlayerState(User* _Player)
 		break;
 	case Idle:
 		PlayerRenderer->SetTransform({ { 0,0 },{ 68 ,16} });
+		UserScale = { 60,14 };
 		UIContorl->Ready_Text->SetActive(false);
 		PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 		break;
 	case PEnlarge:
-		UserScale = UserScale * 2;
-		PlayerRenderer->SetTransform({ { 0,0 },{ 68+20,16} });
+		UserScale.X = UserScale.X * 2;
+		PlayerRenderer->SetTransform({ { 0,0 },{ 68+20,16} }); //Å©±â Á¶±× ´Ã¾î¾ßµÊ
 		PlayerRenderer->ChangeAnimation("PlayerEnlarge");
 		break;
 	case Dead:

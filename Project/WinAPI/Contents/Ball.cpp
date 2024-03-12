@@ -5,7 +5,7 @@
 #include <vector>
 #include"Block.h"
 #include <EngineCore/EngineDebug.h>
-
+#include<EnginePlatform/EngineSound.h>
 Ball* Ball::MainBall = nullptr;
 
 Ball::Ball()
@@ -29,8 +29,7 @@ void Ball::BeginPlay()
 	BallRender->SetScale(BallSize * 2);
 	GetUserScale();
 	SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
-
-
+	
 
 	BallCollison = CreateCollision(ColliderOrder::Ball);
 	BallCollison->SetScale({ 2,2 });
@@ -221,6 +220,8 @@ void Ball::PlayerPos()
 			Pos.X /= User::UserScale.hX(); //유저 x에서 중점을 기준으로 부딪친 곳을 나눠서 
 			BDir.X += Pos.X;
 			BDir.Normalize2D();
+			UEngineSound::SoundPlay("BallCrashPlayer.wav");
+
 		}
 
 	}
@@ -241,6 +242,7 @@ void Ball::BlockCheck()
 	std::vector<UCollision*> Result;
 	if (true == BallCollison->CollisionCheck(ColliderOrder::Block, Result))
 	{
+		UEngineSound::SoundPlay("BlockCrashBall.wav");
 		if (isCol == true)
 		{
 			return;
@@ -250,7 +252,6 @@ void Ball::BlockCheck()
 		AActor* ColAct = Collider->GetOwner();
 		Block* ColBlock = dynamic_cast<Block*>(ColAct);
 		BlockRatio(ColBlock);
-		FVector BlockPos = ColBlock->GetActorLocation();
 		Blocklife = ColBlock->GetLife();
 		BlockType Type = ColBlock->GetBlockType(ColBlock);
 		//Result[0]->Destroy(); //임시로 사용중 CollManager에서 총괄로 관리할것
