@@ -27,7 +27,9 @@ void EndingBackGround::BeginPlay()
 	EndingCredit = CreateImageRenderer();
 	EndingCredit->SetImage("EndingCredit.png");
 	EndingCredit->SetTransform({ { EndingScreenSize.X / 2+20, EndingScreenSize.Y / 2 + 150 }, {528,150} });
-
+	RankImage = CreateImageRenderer();
+	RankImage->SetImage("SRank.png");
+	RankImage->SetTransform({ { EndingScreenSize.X / 2 , EndingScreenSize.Y / 2 + 160 }, {208,50} });
 	
 
 }
