@@ -46,6 +46,12 @@ Block::~Block()
 	
 	}
 	ScoreUI->ScorePlus(GetBlockScore());
+	if (BlockCounter > 0)
+	{
+	BlockCounter--;
+
+	}
+	
 
 
 }
@@ -147,4 +153,12 @@ void Block::SetScore(int _BlockScore)
 	BlockScore = _BlockScore;
 }
 
+void Block::SetBlockCounter(int _BlockCounter)
+{
+	BlockCounter += _BlockCounter;
+}
 
+int Block::GetBlockCounter()
+{
+	return BlockCounter;
+}

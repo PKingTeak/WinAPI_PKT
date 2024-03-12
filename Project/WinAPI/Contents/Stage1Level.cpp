@@ -10,7 +10,7 @@
 #include<EnginePlatform/EngineInput.h>
 #include"UIManager.h"
 
-
+int Block::BlockCounter = 0;
 
 Stage1Level::Stage1Level()
 {
@@ -43,6 +43,7 @@ void Stage1Level::BeginPlay()
 			BlockType thisBlockType = TestBlock->GetBlockType(TestBlock);
 			TestBlock->SetActorLocation(FVector{ 45 + i * 42, 100 });
 			Blocks.push_back(TestBlock);
+			TestBlock->SetBlockCounter(1);
 
 
 		}
@@ -56,6 +57,7 @@ void Stage1Level::BeginPlay()
 			TestBlock->SetBlockColor(4);
 			Blocks.push_back(TestBlock);
 			TestBlock->SetScore(90);
+			TestBlock->SetBlockCounter(1);
 		}
 
 	}
@@ -71,6 +73,7 @@ void Stage1Level::BeginPlay()
 			TestBlock->SetBlockColor(7);
 			TestBlock->SetScore(120);
 			Blocks.push_back(TestBlock);
+			TestBlock->SetBlockCounter(1);
 		}
 	
 	}
@@ -85,6 +88,7 @@ void Stage1Level::BeginPlay()
 			TestBlock->SetBlockColor(5);
 			TestBlock->SetScore(100);
 			Blocks.push_back(TestBlock);
+			TestBlock->SetBlockCounter(1);
 		}
 	
 	}
@@ -99,6 +103,7 @@ void Stage1Level::BeginPlay()
 			TestBlock->SetBlockColor(6);
 			TestBlock->SetScore(110);
 			Blocks.push_back(TestBlock);
+			TestBlock->SetBlockCounter(1);
 		}
 	}
 
@@ -113,6 +118,8 @@ void Stage1Level::BeginPlay()
 			TestBlock->SetBlockColor(3);
 			TestBlock->SetScore(80);
 			Blocks.push_back(TestBlock);
+			TestBlock->SetBlockCounter(1);
+		
 		}
 	}
 }
@@ -121,6 +128,9 @@ void Stage1Level::BeginPlay()
 void Stage1Level::Tick(float _DeltaTime)
 {
 	ULevel::Tick(_DeltaTime);
-
-
+	int Blocks = Block::BlockCounter;
+	if (Blocks <= 0)
+	{
+		GEngine->ChangeLevel("EndingLevel");
+	}
 }

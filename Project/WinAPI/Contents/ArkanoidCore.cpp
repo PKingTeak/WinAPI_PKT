@@ -70,7 +70,7 @@ void ArkanoidCore::BeginPlay()
 	CreateLevel<TitleLevel>("TitleLevel");
 	CreateLevel<Stage1Level>("Stage1Level");
 	CreateLevel<EndingLevel>("EndingLevel");
-	ChangeLevel("EndingLevel");
+	ChangeLevel("Stage1Level");
 
 
 }

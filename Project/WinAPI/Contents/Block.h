@@ -15,6 +15,8 @@ enum class BlockType
 class Block : public AActor
 {
 
+	
+
 public:
 	Block();
 	Block(int _Color);
@@ -26,6 +28,7 @@ public:
 	Block& operator=(const Block& _Other) = delete;
 	Block& operator=(Block&& _Other) noexcept = delete;
 
+	static int BlockCounter;
 
 	FVector GetBlockPos()
 	{
@@ -96,6 +99,9 @@ public:
 		return BlockScore;
 	}
 	void SetScore(int _BlockScore);
+	void SetBlockCounter(int _BlockCounter);
+	int GetBlockCounter();
+	
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -108,5 +114,6 @@ private:
 	int Blocklife = 0;
 	BlockType Type = BlockType::Normal;
 	int BlockScore = 0;
+	
 };
 
