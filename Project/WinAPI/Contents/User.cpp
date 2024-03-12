@@ -5,6 +5,7 @@
 #include <EngineBase/EngineMath.h>
 #include "ArkanoidCore.h"
 #include "UIManager.h"
+#include<EnginePlatform/EngineSound.h>
 
 
 #include <vector>
@@ -174,6 +175,7 @@ void User::CheckPlayerState(User* _Player)
 		if (this->IsActive() == true)
 		{
 			PlayerRenderer->SetTransform({ { 0,0 },{ 68 ,16} });
+			UEngineSound::SoundPlay("PlayerStart.wav");
 			PlayerRenderer->ChangeAnimation("PlayerStart");
 			isEnd = PlayerRenderer->IsCurAnimationEnd(); // true라도 나옴 그럼 애니메이션은 끝이 난것인데
 			isStartAniEnd = isEnd;
@@ -209,6 +211,7 @@ void User::CheckPlayerState(User* _Player)
 			PlayerAnimationReset(_Player);
 		}
 		PlayerRenderer->ChangeAnimation("PlayerDead");
+		UEngineSound::SoundPlay("PlayerDead.wav");
 		isEnd = PlayerRenderer->IsCurAnimationEnd();
 		isDead = isEnd;
 		break;

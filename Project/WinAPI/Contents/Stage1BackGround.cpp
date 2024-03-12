@@ -1,6 +1,7 @@
 #include "Stage1BackGround.h"
 #include<EnginePlatform/EngineInput.h>
 #include"User.h"
+#include<EnginePlatform/EngineSound.h>
 Stage1Map::Stage1Map()
 {
 
@@ -35,6 +36,9 @@ void Stage1Map::BeginPlay()
 void Stage1Map::GameOverMapImage()
 {
 	SetMapImage("Stage1_GameOver.png");
+	UEngineSound::SoundPlay("GamOver.wav");
+	
+	
 }
 
 
