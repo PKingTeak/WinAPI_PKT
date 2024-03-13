@@ -77,10 +77,6 @@ void Ball::Tick(float _DeltaTime)
 	{
 		SetActorLocation({ User::CurPos.X,User::CurPos.Y -10 });
 	}
-	else if (true == IsballLive)
-	{
-	}
-
 
 	if (UEngineInput::IsDown('R'))
 	{
@@ -99,7 +95,6 @@ void Ball::Tick(float _DeltaTime)
 
 
 
-
 }
 
 Ball* Ball::GetMainBall()
@@ -108,7 +103,7 @@ Ball* Ball::GetMainBall()
 }
 
 
-void Ball::SetSpeed(float _Speed = 300.0f)
+void Ball::SetSpeed(float _Speed)
 {
 	Speed = _Speed;
 
@@ -164,6 +159,7 @@ void Ball::GameStartCheck()
 
 void Ball::Move(float _DeltaTime)
 {
+	Item* CurItem = Item::GetMainItem();
 	BDir.Normalize2D();
 	AddActorLocation(BDir * Speed * _DeltaTime);//공이이동한다.
 
@@ -263,15 +259,11 @@ void Ball::BlockCheck()
 	int Blocklife = 0;
 	float checkY = CurBallPos.Y;
 	std::vector<UCollision*> Result;
-	isCol = true;
+
 	if (true == BallCollison->CollisionCheck(ColliderOrder::Block, Result))
 	{
 
-		//if (isCol == true)
-		//{
-		//	return;
-		//}
-	//	isCol = true;
+		
 		UCollision* Collider = Result[0/*몇번째일때*/];
 		AActor* ColAct = Collider->GetOwner();
 		Block* ColBlock = dynamic_cast<Block*>(ColAct);
@@ -313,7 +305,7 @@ void Ball::Reflect(FVector Normal)
 	float T = X * N.X + Y * N.Y; //(-P * n) <여기가 이상하다.
 	BDir.Normalize2D();
 	BDir = BDir + (N2 * T); //R = P+2n(-P내적n)
-	isCol = false;
+
 }
 
 

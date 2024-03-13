@@ -95,7 +95,6 @@ void Item::ChangeItemAnimation()
 {
 	
 	int Num = ChangeItem();
-	//ChangeItem();
 	switch (Num)
 	{
 	case 1:
@@ -148,24 +147,19 @@ void Item::PlayerColCheck()
 
 			if (ItemName == "SLowItemAnimation")
 			{
+				Ball::GetMainBall()->SetSpeed(150.0f);
 				User::GetMainUser()->SetPlayerState(PlayerState::Idle, User::GetMainUser());
-				NewBall->SetSpeed(200.0f);
 				isSlow = true;
 				this->Destroy();
 			}
-			
-			if (isSlow == false)
-			{
-				NewBall->SetSpeed(300.0f);
-			}
-			
 
 			
-		}
-
-	}
-	bool isCol = false;
 	
+		}
+		
+	}
+	
+
 	
 
 	
@@ -187,5 +181,9 @@ UCollision* Item::GetItemCollison()
 
 }
 
+bool Item::GetisSlow()
+{
+	return isSlow;
+}
 
 

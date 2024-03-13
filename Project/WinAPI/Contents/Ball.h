@@ -38,12 +38,8 @@ public:
 
 	*/
 	void SetPos(FVector _CurPos);
-	void StartPos(FVector _StartPos);
-
 	void WallCheck();
-	void UserCheck();
 	void BlockCheck();
-
 	void Reflect(FVector _CurBallPos);
 	void GetUserScale();
 

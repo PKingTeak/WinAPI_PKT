@@ -43,7 +43,6 @@ public:
 	static FVector CurPos;
 	static FVector UserScale;
 	static User* GetMainUser(); //다른곳에서 속성을 가져오기 get
-	static UCollision* GetUserCollider();
 	
 
 	void PlayerStart(User* _Player);

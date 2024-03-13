@@ -7,15 +7,19 @@ DebugLevel::DebugLevel()
 {}
 DebugLevel::~DebugLevel()
 {}
+	
+	
 
+/*
 
-void DebugLevel::BeginPlay()
+//void DebugLevel::BeginPlay()
+ 
 {
-	ULevel::BeginPlay();
-	Ball* TestBall = SpawnActor<Ball>();
-	TestBall->SetSpeed(150.0f);
-	User::GetMainUser()->CurPos = { 300,300 };
-	TestBall->SetActorLocation({ 300,300 });
+	//ULevel::BeginPlay();
+	//Ball* TestBall = SpawnActor<Ball>();
+	//TestBall->SetSpeed(150.0f);
+	//User::GetMainUser()->CurPos = { 300,300 };
+	//TestBall->SetActorLocation({ 300,300 });
 //	Block* NewBlock1 = SpawnActor<Block>();
 //	NewBlock1->SetActorLocation({ 310, 250 });
 //	Block* NewBlock2 = SpawnActor<Block>();
@@ -45,3 +49,4 @@ void DebugLevel::Tick(float _DeltaTime)
 {
 	ULevel::Tick(_DeltaTime);
 }
+*/

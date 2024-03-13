@@ -25,6 +25,10 @@ public:
 	static UCollision* GetItemCollison();
 	static Item* GetMainItem();
 	UImageRenderer* ItemRender = nullptr;
+
+	bool GetisSlow();
+	bool isSlow = false;
+	
 	
 	
 protected:
@@ -38,7 +42,7 @@ private:
 	std::string ItemName = "";
 	int RandomNum = 0;
 	int PreNum = 0;
-	bool isSlow = false;
+	
 
 };
 
