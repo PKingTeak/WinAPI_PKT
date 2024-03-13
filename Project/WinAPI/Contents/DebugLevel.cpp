@@ -13,7 +13,7 @@ void DebugLevel::BeginPlay()
 {
 	ULevel::BeginPlay();
 	Ball* TestBall = SpawnActor<Ball>();
-	TestBall->SetSpeed(50.0f);
+	TestBall->SetSpeed(150.0f);
 	User::GetMainUser()->CurPos = { 300,300 };
 	TestBall->SetActorLocation({ 300,300 });
 //	Block* NewBlock1 = SpawnActor<Block>();
