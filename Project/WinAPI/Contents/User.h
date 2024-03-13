@@ -21,7 +21,6 @@ class User : public AActor
 
 private:
 	static User* MainUser;
-	static UCollision* PlayerCollider;
 public:
 	// constrcuter destructer
 	User();

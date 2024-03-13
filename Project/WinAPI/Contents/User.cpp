@@ -15,7 +15,6 @@
 FVector User::CurPos = {};
 FVector User::UserScale = {};
 User* User::MainUser = nullptr;
-UCollision* User::PlayerCollider = nullptr;
 bool User::isGameOver = false;
 User::User()
 {
@@ -51,10 +50,7 @@ void User::BeginPlay()
 	
 
 }
-UCollision* User::GetUserCollider()
-{
-	return PlayerCollider;
-}
+
 User* User::GetMainUser()
 {
 
