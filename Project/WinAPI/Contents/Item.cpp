@@ -133,6 +133,7 @@ void Item::PlayerColCheck()
 			if (ItemName == "EnlargeAnimation")
 			{
 			User::GetMainUser()->SetPlayerState(PlayerState::PEnlarge, User::GetMainUser());
+			NewBall->SetSpeed(300.0f);
 			this->Destroy();
 			}
 			
@@ -141,15 +142,14 @@ void Item::PlayerColCheck()
 				User::GetMainUser()->SetPlayerState(PlayerState::Idle, User::GetMainUser());
 				User::GetMainUser()->PlayerLifePlus();
 				UEngineSound::SoundPlay("LifeUp.wav");
-				isSlow = false;
+				NewBall->SetSpeed(300.0f);
 				this->Destroy();
 			}
 
 			if (ItemName == "SLowItemAnimation")
 			{
-				Ball::GetMainBall()->SetSpeed(150.0f);
+				NewBall->SetSpeed(150.0f);
 				User::GetMainUser()->SetPlayerState(PlayerState::Idle, User::GetMainUser());
-				isSlow = true;
 				this->Destroy();
 			}
 
