@@ -73,7 +73,7 @@ private:
 	UImageRenderer* BallRender = nullptr;
 	FVector CurBallPos = {};
 	FVector BDir = {0.5f,-0.5f};
-	FVector BallSize = { 10,8 };
+	FVector BallSize = { 10,10 };
 	UCollision* BallCollison = nullptr;
 	bool IsballLive = false;
 	float Speed = 300.0f;
@@ -81,5 +81,6 @@ private:
 	bool isDown = false;
 	bool MidHeight = false;
 	bool MidTopHeight = false;
+	bool isBottom = false;
 	bool isCol = false;
 };

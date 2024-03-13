@@ -16,31 +16,28 @@ void DebugLevel::BeginPlay()
 	TestBall->SetSpeed(50.0f);
 	User::GetMainUser()->CurPos = { 300,300 };
 	TestBall->SetActorLocation({ 300,300 });
-	//Block* NewBlock1 = SpawnActor<Block>();
-	//NewBlock1->SetActorLocation({ 340, 50 });
-	//Block* NewBlock2 = SpawnActor<Block>();
-	//NewBlock2->SetActorLocation({ 280, 500 });
+//	Block* NewBlock1 = SpawnActor<Block>();
+//	NewBlock1->SetActorLocation({ 310, 250 });
+//	Block* NewBlock2 = SpawnActor<Block>();
+//	NewBlock2->SetActorLocation({ 290, 400 });
  
 
-	{
+{
 
-		std::vector<Block*> Blocks;
-		for (int j = 0; j < 20; j++)
+	std::vector<Block*> Blocks;
+	for (int j = 0; j < 20; j++)
+	{
+		for (int i = 0; i < 30; i++)
 		{
-			for (int i = 0; i < 30; i++)
-			{
-				Block* NewBlock1 = SpawnActor<Block>();
-				NewBlock1->SetActorLocation(FVector{ 45 + i * 42,120 + 50 * j });
-				NewBlock1->SetBlockColor(4);
-				Blocks.push_back(NewBlock1);
-			}
-	
-	
+			Block* NewBlock1 = SpawnActor<Block>();
+			NewBlock1->SetActorLocation(FVector{ 45 + i * 42,120 + 50 * j });
+			NewBlock1->SetBlockColor(4);
+			Blocks.push_back(NewBlock1);
 		}
-	
-	//
+
 
 	}
+}
 
 }
 

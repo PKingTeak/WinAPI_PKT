@@ -26,7 +26,7 @@ void Ball::BeginPlay()
 	BallRender = CreateImageRenderer(0);
 	UEngineResourcesManager::GetInst().CuttingImage("Ball.png", 1, 1);
 	BallRender->SetImage("Ball.png");
-	BallRender->SetScale(BallSize * 2);
+	BallRender->SetScale(BallSize);
 	GetUserScale();
 	SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
 	
@@ -237,7 +237,7 @@ void Ball::Reset()
 void Ball::BlockCheck()
 {
 	int Blocklife = 0;
-
+	float checkY =	CurBallPos.Y;
 	std::vector<UCollision*> Result;
 	if (true == BallCollison->CollisionCheck(ColliderOrder::Block, Result))
 	{
@@ -275,7 +275,7 @@ void Ball::BlockCheck()
 
 
 	}
-
+	int a = 0;
 }
 
 void Ball::Reflect(FVector Normal)
@@ -306,37 +306,59 @@ void Ball::BlockRatio(Block* _NewBlock)
 		if (true == MidTopHeight)
 		{
 			MidTopHeight = false;
-			if (BDir.X > 0)
-			{
+			
 				Reflect({ -1.0f, 0.0f });
-			}
-			else
-			{
+			
+
+
+		}
+		else if (false == MidTopHeight)
+		{
+			float CheckX = CurBallPos.X;
+			float CheckXB = BDir.X;
 			Reflect({ 0.0f, -1.0f });
 
-			}
-			
-		}
-		else
-		{
-			Reflect({ 0.0f,-1.0f });//
-		}
 
-		//
+
+		}
+		else if (true == MidHeight)
+		{
+
+			Reflect({ -1.0f,0.0f });
+
+		}
+		else if (false == MidHeight)
+		{
+			Reflect({ 0.0f,1.0f });
+		}
+		
+
+
 
 	}
 	if (true == R && true == D)
 	{
+		float CheckX = BDir.X;
+		float CheckY = BDir.Y;
 		if (true == MidHeight)
 		{
 			MidHeight = false;
+			//Reflect({ 0.0f,1.0f });
 			Reflect({ 1.0f,0.0f });
-			CurBallPos.Y = _NewBlock->GetBlockScale().Y - 1; // 여기서 표면으로 옮겨주는작업
+			return;
 
 		}
-		else
+
+		else if(false == MidHeight && false == isBottom)
 		{
-			Reflect({ 0.0f,-1.0f });
+			
+			Reflect({ 0.0f,1.0f });
+			//여기 조건문 추가
+		}
+		if (false == MidHeight && true == isBottom)
+		{
+			Reflect({ 0.0f,1.0f });
+			return;
 		}
 		//오른쪽 아래
 	}
@@ -360,15 +382,24 @@ void Ball::BlockRatio(Block* _NewBlock)
 	}
 	if (false == R && true == D)
 	{
+		float CheckX = BDir.X;
+		float CheckY = BDir.Y;
+
 		if (true == MidHeight)
 		{
 			MidHeight = false;
 			Reflect({ -1.0f,0.0f });
 
 		}
-		else
+		else if (false == MidHeight)
 		{
 			Reflect({ 0.0f,1.0f });
+			//Reflect({ -1.0f,0.0f });
+		}
+		else
+		{
+			
+			//여기
 		}
 		// 여기서 값이 y가 -가 붙어서 나와야 하는데 지금 양수로 나온다. 그래서 꺾여서 나가기 때문에 값이 이상하다
 	   // X값은 잘나옴
@@ -419,20 +450,20 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 	bool isDown = false;
 	bool isMD = false;
 	Block* thisBlock = _ColBlock;
-	float BlockTop = thisBlock->BlockUP() + thisBlock->GetActorLocation().Y - 2;
-	float BlockBottom = thisBlock->BlockBottom() + thisBlock->GetActorLocation().Y - 1;
+	float BlockTop =  thisBlock->GetActorLocation().Y - thisBlock->GetBlockScale().Y/2 ;
+	float BlockBottom =  thisBlock->GetActorLocation().Y + thisBlock->GetBlockScale().Y/2;
 
 	float YMid = thisBlock->GetActorLocation().Y;
+	float BallYCheck = CurBallPos.Y;
 
-
-	if (BlockTop + 1 < CurBallPos.Y && CurBallPos.Y < YMid)
+	if (BlockTop < CurBallPos.Y && CurBallPos.Y < YMid)
 	{
 
 		isDown = false;
 		MidTopHeight = true; //위에서 가운데 까지
 		//위 옆면
 	}
-	if (BlockTop - 1 > CurBallPos.Y)
+	if (BlockTop > CurBallPos.Y)
 	{
 		isDown = false;
 		MidTopHeight = false;
@@ -451,7 +482,7 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 	if (CurBallPos.Y > BlockBottom)
 	{
 		isDown = true;
-		MidTopHeight = false;
+		isBottom = true;
 	}
 	return isDown;
 }
