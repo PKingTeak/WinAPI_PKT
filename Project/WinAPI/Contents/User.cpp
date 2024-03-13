@@ -196,8 +196,8 @@ void User::CheckPlayerState(User* _Player)
 		PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 		break;
 	case PEnlarge:
-		UserScale.X = UserScale.X * 2;
-		PlayerRenderer->SetTransform({ { 0,0 },{ 68+20,16} }); //Å©±â Á¶±× ´Ã¾î¾ßµÊ
+		UserScale.X = 120;
+		PlayerRenderer->SetTransform({ { 0,0 },{ 88,16} }); //Å©±â Á¶±× ´Ã¾î¾ßµÊ
 		PlayerRenderer->ChangeAnimation("PlayerEnlarge");
 		break;
 	case Dead:
