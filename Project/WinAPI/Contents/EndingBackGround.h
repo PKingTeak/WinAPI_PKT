@@ -27,7 +27,6 @@ private:
 	FVector EndingScreenSize = ArkanoidCore::GetScreenSize();
 	UImageRenderer* EndingImage = nullptr;
 	UImageRenderer* EndingTitle = nullptr;
-	UImageRenderer* EndingCredit = nullptr;
 	UImageRenderer* RankImage = nullptr;
 	
 		
