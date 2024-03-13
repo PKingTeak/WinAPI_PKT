@@ -28,7 +28,7 @@ void Ball::BeginPlay()
 	BallRender->SetImage("Ball.png");
 	BallRender->SetScale(BallSize);
 	GetUserScale();
-	//SetActorLocation({ User::CurPos.X,User::CurPos.Y });
+	SetActorLocation({ User::CurPos.X,User::CurPos.Y -10});
 
 	BallCollison = CreateCollision(ColliderOrder::Ball);
 	BallCollison->SetColType(ECollisionType::CirCle);
@@ -53,14 +53,32 @@ void Ball::GetUserScale()
 
 void Ball::Tick(float _DeltaTime)
 {
+	
+	if (abs(BDir.Y) <= 0.3f)
+	{
+		if (0 < BDir.Y)
+		{
+			BDir.Y = 0.3f;
+		}
+		else {
+			BDir.Y = -0.3f;
+		}
+		BDir.Normalize2D();
+		//이로직이면 일자로 튕기는 일은 없어진다.
+	}
 
 	float time = 1 / _DeltaTime;
 	std::string stime = std::to_string(time);
 	UEngineDebug::DebugTextPrint(stime, 24);
 
+
+
 	if (false == IsballLive)
 	{
 		SetActorLocation({ User::CurPos.X,User::CurPos.Y -10 });
+	}
+	else if (true == IsballLive)
+	{
 	}
 
 
@@ -68,6 +86,9 @@ void Ball::Tick(float _DeltaTime)
 	{
 		Reset();
 	}
+
+	
+
 	AActor::Tick(_DeltaTime);
 	GameStartCheck();
 	WallCheck();
@@ -208,15 +229,7 @@ void Ball::PlayerPos()
 {
 	float ULeft = User::CurPos.X - 30;
 	float URight = User::CurPos.X + 30;
-	float UHeightT = User::CurPos.Y-1;
-	float UHeightD = User::CurPos.Y + 1;
-
-	if (UHeightT <= CurBallPos.Y && UHeightD >= CurBallPos.Y)
-	{
-		BallAdjustwithPlayer(User::CurPos.Y);
-		CurBallPos.Y;
-	}
-
+	
 
 	if (CurBallPos.X >= ULeft && CurBallPos.X <= URight)
 	{
