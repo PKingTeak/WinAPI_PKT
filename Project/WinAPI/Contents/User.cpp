@@ -73,14 +73,16 @@ void User::Tick(float _DeltaTime) //델타타임은 현재 시간이다 프레임마다 시간을 �
 	{
 		MovePos = FVector::Left * 500.0f * _DeltaTime;
 		NextPos += MovePos;
-
+		
 	}
 
 	if (true == UEngineInput::IsPress('D'))
 	{
 		MovePos = FVector::Right * 500.0f * _DeltaTime;
 		NextPos += MovePos;
+		
 	}
+
 
 
 

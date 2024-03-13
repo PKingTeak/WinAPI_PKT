@@ -53,6 +53,10 @@ public:
 //static UCollision* GetBallCollision();
 
 	Block* NewBlock = nullptr;
+	void SetBallCol(bool _isCol)
+	{
+		isCol = _isCol;
+	}
 	
 	bool BlockSideCheckLR(Block* _ColBlock );
 	bool BlockSideCheckUD(Block* _ColBlock  );
@@ -63,8 +67,8 @@ protected:
 	
 	
 private:
+	void BallAdjustwithPlayer(float _Pos);
 	void BallAdjustwithWall(float _Pos , bool isX);
-	void BallAdjustWhthPlayer(FVector _PlayerPos);
 	void BlockRatio(Block* _NewBlock);
 	void Reset();
 	void Move(float _DeltaTime);
@@ -83,4 +87,5 @@ private:
 	bool MidTopHeight = false;
 	bool isBottom = false;
 	bool isCol = false;
+
 };

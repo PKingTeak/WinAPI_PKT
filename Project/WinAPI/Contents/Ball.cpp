@@ -28,12 +28,11 @@ void Ball::BeginPlay()
 	BallRender->SetImage("Ball.png");
 	BallRender->SetScale(BallSize);
 	GetUserScale();
-	SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
-	
+	//SetActorLocation({ User::CurPos.X,User::CurPos.Y });
 
 	BallCollison = CreateCollision(ColliderOrder::Ball);
 	BallCollison->SetColType(ECollisionType::CirCle);
-	BallCollison->SetScale({BallSize});
+	BallCollison->SetScale({ BallSize });
 	this->SetActive(true, 1.0f);
 
 
@@ -61,7 +60,7 @@ void Ball::Tick(float _DeltaTime)
 
 	if (false == IsballLive)
 	{
-		SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
+		SetActorLocation({ User::CurPos.X,User::CurPos.Y -10 });
 	}
 
 
@@ -112,7 +111,7 @@ void Ball::GameStartCheck()
 
 	if (true == UEngineInput::IsDown('A'))
 	{
-		BDir = FVector(-1.0f, -1.0f);
+		BDir = FVector(-1.0f, 0.0f);
 		BDir.Normalize2D();
 	}
 	else if (true == UEngineInput::IsDown('D'))
@@ -146,7 +145,7 @@ void Ball::Move(float _DeltaTime)
 {
 	BDir.Normalize2D();
 	AddActorLocation(BDir * Speed * _DeltaTime);//공이이동한다.
-	isCol = false;
+
 }
 
 void Ball::WallCheck()
@@ -209,6 +208,14 @@ void Ball::PlayerPos()
 {
 	float ULeft = User::CurPos.X - 30;
 	float URight = User::CurPos.X + 30;
+	float UHeightT = User::CurPos.Y-1;
+	float UHeightD = User::CurPos.Y + 1;
+
+	if (UHeightT <= CurBallPos.Y && UHeightD >= CurBallPos.Y)
+	{
+		BallAdjustwithPlayer(User::CurPos.Y);
+		CurBallPos.Y;
+	}
 
 
 	if (CurBallPos.X >= ULeft && CurBallPos.X <= URight)
@@ -223,7 +230,10 @@ void Ball::PlayerPos()
 			UEngineSound::SoundPlay("BallCrashPlayer.wav");
 		}
 
+
+
 	}
+
 
 }
 void Ball::Reset()
@@ -237,23 +247,24 @@ void Ball::Reset()
 void Ball::BlockCheck()
 {
 	int Blocklife = 0;
-	float checkY =	CurBallPos.Y;
+	float checkY = CurBallPos.Y;
 	std::vector<UCollision*> Result;
+	isCol = true;
 	if (true == BallCollison->CollisionCheck(ColliderOrder::Block, Result))
 	{
-		
-		if (isCol == true)
-		{
-			return;
-		}
-		isCol = true;
+
+		//if (isCol == true)
+		//{
+		//	return;
+		//}
+	//	isCol = true;
 		UCollision* Collider = Result[0/*몇번째일때*/];
 		AActor* ColAct = Collider->GetOwner();
 		Block* ColBlock = dynamic_cast<Block*>(ColAct);
 		BlockRatio(ColBlock);
 		Blocklife = ColBlock->GetLife();
 		BlockType Type = ColBlock->GetBlockType(ColBlock);
-		
+
 		if (Blocklife > 0)
 		{
 			ColBlock->LifeDecrease();
@@ -266,7 +277,7 @@ void Ball::BlockCheck()
 
 			}
 		}
-		
+
 		else
 		{
 			ColBlock->Destroy();
@@ -275,19 +286,20 @@ void Ball::BlockCheck()
 
 
 	}
-	int a = 0;
+
 }
 
 void Ball::Reflect(FVector Normal)
 {
 	FVector N = Normal;
 	FVector N2 = N * 2;
-	
+
 	float X = BDir.X * -1;
 	float Y = BDir.Y * -1;//0.7
 	float T = X * N.X + Y * N.Y; //(-P * n) <여기가 이상하다.
 	BDir.Normalize2D();
 	BDir = BDir + (N2 * T); //R = P+2n(-P내적n)
+	isCol = false;
 }
 
 
@@ -306,9 +318,9 @@ void Ball::BlockRatio(Block* _NewBlock)
 		if (true == MidTopHeight)
 		{
 			MidTopHeight = false;
-			
-				Reflect({ -1.0f, 0.0f });
-			
+
+			Reflect({ -1.0f, 0.0f });
+
 
 
 		}
@@ -331,7 +343,7 @@ void Ball::BlockRatio(Block* _NewBlock)
 		{
 			Reflect({ 0.0f,1.0f });
 		}
-		
+
 
 
 
@@ -349,9 +361,9 @@ void Ball::BlockRatio(Block* _NewBlock)
 
 		}
 
-		else if(false == MidHeight && false == isBottom)
+		else if (false == MidHeight && false == isBottom)
 		{
-			
+
 			Reflect({ 0.0f,1.0f });
 			//여기 조건문 추가
 		}
@@ -398,7 +410,7 @@ void Ball::BlockRatio(Block* _NewBlock)
 		}
 		else
 		{
-			
+
 			//여기
 		}
 		// 여기서 값이 y가 -가 붙어서 나와야 하는데 지금 양수로 나온다. 그래서 꺾여서 나가기 때문에 값이 이상하다
@@ -450,8 +462,8 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 	bool isDown = false;
 	bool isMD = false;
 	Block* thisBlock = _ColBlock;
-	float BlockTop =  thisBlock->GetActorLocation().Y - thisBlock->GetBlockScale().Y/2 ;
-	float BlockBottom =  thisBlock->GetActorLocation().Y + thisBlock->GetBlockScale().Y/2;
+	float BlockTop = thisBlock->GetActorLocation().Y - thisBlock->GetBlockScale().Y / 2;
+	float BlockBottom = thisBlock->GetActorLocation().Y + thisBlock->GetBlockScale().Y / 2;
 
 	float YMid = thisBlock->GetActorLocation().Y;
 	float BallYCheck = CurBallPos.Y;
@@ -493,22 +505,31 @@ void Ball::BallAdjustwithWall(float _Pos, bool isX)
 	float MovePos = 0;
 	if (isX == true)
 	{
-		if (CurBallPos.X-1 < 30)
+		if (CurBallPos.X - 1 < 30)
 		{
-		CurBallPos.X = 30;
+			CurBallPos.X = 30;
 		}
 
-		if (CurBallPos.X+1 > 520)
+		if (CurBallPos.X + 1 > 520)
 		{
 			CurBallPos.X = 520;
 		}
 
 
-	}	
+	}
 
 	if (CurBallPos.Y - 1 < 80)
 	{
 		CurBallPos.Y = 80;
+	}
+
+}
+
+void Ball::BallAdjustwithPlayer(float _Pos)
+{
+	if (User::CurPos.Y == CurBallPos.Y)
+	{
+		SetActorLocation({ User::CurPos.X,User::CurPos.Y - 10 });
 	}
 
 }
