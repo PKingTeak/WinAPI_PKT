@@ -27,16 +27,22 @@ void EndingBackGround::BeginPlay()
 
 	PlayTitle = CreateImageRenderer();
 	PlayTitle->SetImage("Playing.png");
-	PlayTitle->SetTransform({ {EndingScreenSize.X / 2 + 120 / 2,EndingScreenSize.Y / 2 + 100},{56 * 2,8 * 2} });
+	PlayTitle->SetTransform({ {EndingScreenSize.X / 2 + 120 / 2,EndingScreenSize.Y / 2 + 200},{56 * 2,8 * 2} });
 	
 	ThankTitle = CreateImageRenderer();
 	ThankTitle->SetImage("ThankYou.png");
-	ThankTitle->SetTransform({ {EndingScreenSize.X / 2 -140 / 2,EndingScreenSize.Y / 2 + 100},{56 * 2,8 * 2} });
+	ThankTitle->SetTransform({ {EndingScreenSize.X / 2 -140 / 2,EndingScreenSize.Y / 2 + 200},{56 * 2,8 * 2} });
 	
+	
+	DemoTitle = CreateImageRenderer();
+	DemoTitle->SetImage("Demo.png");
+	DemoTitle->SetTransform({ {EndingScreenSize.X / 2 ,EndingScreenSize.Y / 2 + 250},{32 * 3,8 * 3} });
+
+
 	
 	RankImage = CreateImageRenderer();
 	RankImage->SetImage("SRank.png");
-	RankImage->SetTransform({ { EndingScreenSize.X / 2 , EndingScreenSize.Y / 2 + 160 }, {208,50} });
+	RankImage->SetTransform({ { EndingScreenSize.X / 2 , EndingScreenSize.Y / 2 + 100 }, {208,50} });
 	
 
 }
