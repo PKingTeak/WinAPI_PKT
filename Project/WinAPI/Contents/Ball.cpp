@@ -33,6 +33,8 @@ void Ball::BeginPlay()
 	BallCollison = CreateCollision(ColliderOrder::Ball);
 	BallCollison->SetColType(ECollisionType::CirCle);
 	BallCollison->SetScale({ BallSize });
+	
+	
 	this->SetActive(true, 1.0f);
 
 
@@ -86,10 +88,11 @@ void Ball::Tick(float _DeltaTime)
 	
 
 	AActor::Tick(_DeltaTime);
+	Move(_DeltaTime);
 	GameStartCheck();
 	WallCheck();
 	BlockCheck();
-	Move(_DeltaTime);
+	
 	// 내 미래의 위치로 체크하는 법
 	// 충돌하고 나서 체크하는법
 
@@ -171,7 +174,7 @@ void Ball::WallCheck()
 	FVector N = FVector::Zero;
 	CurBallPos = GetTransform().GetPosition();
 	bool PlayerDead = false;
-
+	
 	if (CurBallPos.X > 524)
 	{
 		N = { -1,0 };
@@ -237,7 +240,7 @@ void Ball::PlayerPos()
 			BDir.X += Pos.X;
 			BDir.Normalize2D();
 			UEngineSound::SoundPlay("BallCrashPlayer.wav");
-			CurBallPos.Y = User::CurPos.Y;
+			CurBallPos.Y = User::CurPos.Y-1;
 		}
 
 
@@ -508,26 +511,27 @@ bool Ball::BlockSideCheckUD(Block* _ColBlock)
 
 void Ball::BallAdjustwithWall(float _Pos, bool isX)
 {
-	float MovePos = 0;
+	PreBallpos = CurBallPos;
 	if (isX == true)
 	{
-		if (CurBallPos.X - 1 < 30)
+		if (PreBallpos.X - 1 < 30)
 		{
-			CurBallPos.X = 30;
+			PreBallpos.X = 30;
 		}
 
-		if (CurBallPos.X + 1 > 520)
+		if (PreBallpos.X + 1 > 520)
 		{
-			CurBallPos.X = 520;
+			PreBallpos.X = 520;
 		}
 
 
 	}
 
-	if (CurBallPos.Y - 1 < 80)
+	if (PreBallpos.Y - 1 < 80)
 	{
-		CurBallPos.Y = 80;
+		PreBallpos.Y = 80;
 	}
+	CurBallPos = PreBallpos;
 
 }
 
@@ -539,3 +543,4 @@ void Ball::BallAdjustwithPlayer(float _Pos)
 	}
 
 }
+

@@ -68,8 +68,10 @@ private:
 	void Move(float _DeltaTime);
 	void GameStartCheck();
 	void PlayerPos();
+	void PreMove();
 	UImageRenderer* BallRender = nullptr;
 	FVector CurBallPos = {};
+	FVector PreBallpos = {};
 	FVector BDir = {0.5f,-0.5f};
 	FVector BallSize = { 10,10 };
 	UCollision* BallCollison = nullptr;
