@@ -32,6 +32,7 @@ void UIManager::BeginPlay()
 	{
 		Time_Text = CreateImageRenderer(10);
 		Time_Text1 = CreateImageRenderer(10);
+		Time_Text2 = CreateImageRenderer(10);
 
 		TimeUI_Text = CreateImageRenderer(10);
 		TimeUI_Text->SetImage("Time_Text.png");
@@ -133,21 +134,30 @@ void UIManager::IntToString(float _Deltatime)
 	{
 		Time = 0;
 		STimeCounter = 0;
+		STimeCounter2++;
 	}
-
+	if (STimeCounter2 > 9)
+	{
+		STimeCounter2 = 0;
+	}
+	
 	STime = std::to_string(TotalTime);
 	STime1 = std::to_string(STimeCounter);
+	STime2 = std::to_string(STimeCounter2);
 }
 void UIManager::TimeUI()
 {
 
 	Time_Text->SetImage(STime + ".png");
-	Time_Text->SetTransform({ {0,20},{8 * 2,8 * 2} });
+	Time_Text->SetTransform({ {20,20},{8 * 2,8 * 2} });
 
 
 	Time_Text1->SetImage(STime1 + ".png");
-	Time_Text1->SetTransform({ {-16,20},{8 * 2,8 * 2} });
+	Time_Text1->SetTransform({ {4,20},{8 * 2,8 * 2} });
 
+
+	Time_Text2->SetImage(STime2 + ".png");
+	Time_Text2->SetTransform({ {-12,20},{8 * 2,8 * 2} });
 
 }
 

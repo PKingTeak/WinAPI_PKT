@@ -47,6 +47,7 @@ private:
 	UImageRenderer* TimeUI_Text = nullptr;
 	UImageRenderer* Time_Text = nullptr;
 	UImageRenderer* Time_Text1 = nullptr;
+	UImageRenderer* Time_Text2 = nullptr;
 	UImageRenderer* Score_Text= nullptr;
 	UImageRenderer* Score_Texts[4] = { nullptr ,nullptr ,nullptr ,nullptr };
 	UImageRenderer* UserLife[4] = { nullptr,nullptr,nullptr,nullptr };
@@ -58,8 +59,10 @@ private:
 	int TotalTime = 0;
 	string STime = "";
 	string STime1 = "";
+	string STime2 = "";
 	int TotalScore = 0;
 	int STimeCounter = 0;
+	int STimeCounter2 = 0;
 	string SScore = "";
 };
 

@@ -191,7 +191,7 @@ void User::CheckPlayerState(User* _Player)
 		break;
 	case Idle:
 		PlayerRenderer->SetTransform({ { 0,0 },{ 68 ,16} });
-		UserScale = { 60,14 };
+		UserScale = { 60,16 };
 		UIContorl->Ready_Text->SetActive(false);
 		PlayerRenderer->ChangeAnimation("PlayerIdleAnimation");
 		break;
