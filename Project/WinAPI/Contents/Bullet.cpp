@@ -28,8 +28,3 @@ void ABullet::Tick(float _DeltaTime)
 {
 	AddActorLocation(Dir * Speed * _DeltaTime);
 }
-
-//	HDC WindowDC = GEngine->MainWindow.GetWindowDC();
-//	FTransform Trans = GetTransform();
-//	Rectangle(WindowDC, Trans.iLeft(), Trans.iTop(), Trans.iRight(), Trans.iBottom());
-//이제 필요가 없다 이유는 내부에 숨겼기 때문에 사용할 필요가 없어졌다.

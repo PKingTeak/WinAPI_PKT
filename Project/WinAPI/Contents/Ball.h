@@ -11,8 +11,6 @@ class Ball : public AActor
 {
 private:
 	static Ball* MainBall;
-
-
 public:
 	friend Block;
 	// constrcuter destructer
