@@ -210,13 +210,13 @@ void Stage1Level::StageChange()
 	{
 
 		Block* TestBlock;
-		std::vector<Block*> Blocks;
+		//std::vector<Block*> Blocks;
 		for (int i = 0; i < 11; i++)
 		{
 			TestBlock = SpawnActor<Block>();
 			TestBlock->SetBlockType(BlockType::Hard, TestBlock);
 			TestBlock->SetActorLocation(FVector{ 45 + i * 42,400 });
-			Blocks.push_back(TestBlock);
+			DBlock.push_back(TestBlock);
 
 
 		}
@@ -226,7 +226,7 @@ void Stage1Level::StageChange()
 	{
 
 		Block* TestBlock;
-		std::vector<Block*> Blocks;
+		//std::vector<Block*> Blocks;
 
 		FVector BlockScale = { 42, 24 };
 		FVector StartPos = { 45 , 400 - 42 };
@@ -240,7 +240,7 @@ void Stage1Level::StageChange()
 				TestBlock = SpawnActor<Block>();
 				TestBlock->SetBlockType(BlockType::Normal, TestBlock);
 				TestBlock->SetActorLocation(StartPos);
-				Blocks.push_back(TestBlock);
+				DBlock.push_back(TestBlock);
 				TestBlock->SetBlockColor(ColorCount);
 				TestBlock->SetBlockCounter(1);
 				StartPos.Y -= BlockScale.Y;
@@ -258,7 +258,7 @@ void Stage1Level::StageChange()
 		}
 
 	}
-	//DBlock.clear();
+	
 	change = false;
 	BStageChange = true;
 }
