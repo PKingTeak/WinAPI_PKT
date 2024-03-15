@@ -170,7 +170,13 @@ void Stage1Level::Tick(float _DeltaTime)
 	int Blockcount = Block::BlockCounter;
 	if (Blockcount <= 0 || UEngineInput::IsDown('Q'))
 	{
+		
+		if (BStageChange == true)
+		{
 
+			GEngine->ChangeLevel("EndingLevel");
+
+		}
 		for (size_t i = 0; i < DBlock.size(); i++)
 		{
 			if (DBlock[i] == nullptr)
@@ -186,18 +192,10 @@ void Stage1Level::Tick(float _DeltaTime)
 		}
 
 		DBlock.clear();
-
-
-
-
 		StageChange();
-		if (BStageChange == true)
-		{
 
-			GEngine->ChangeLevel("EndingLevel");
 
-		}
-
+		
 
 
 	}
@@ -262,5 +260,5 @@ void Stage1Level::StageChange()
 	}
 	//DBlock.clear();
 	change = false;
-	//BStageChange = true;
+	BStageChange = true;
 }
