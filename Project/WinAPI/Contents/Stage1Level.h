@@ -2,6 +2,7 @@
 #include <EngineCore/Level.h>
 #include<vector>
 #include"Block.h"
+#include"Ball.h"
 // Ό³Έν :
 class Stage1Level : public ULevel
 {
@@ -25,6 +26,7 @@ private:
 	bool change = false;
 	bool BStageChange = false;
 	std::vector<Block*> DBlock;
+	Ball* NewBall = nullptr;
 	
 };
 

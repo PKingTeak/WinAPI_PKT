@@ -54,6 +54,7 @@ public:
 	
 	bool BlockSideCheckLR(Block* _ColBlock );
 	bool BlockSideCheckUD(Block* _ColBlock  );
+	void Reset();
 	//void YLReflect();
 protected:
 	void BeginPlay() override;
@@ -64,7 +65,7 @@ private:
 	void BallAdjustwithPlayer(float _Pos);
 	void BallAdjustwithWall(float _Pos , bool isX);
 	void BlockRatio(Block* _NewBlock);
-	void Reset();
+	
 	void Move(float _DeltaTime);
 	void GameStartCheck();
 	void PlayerPos();

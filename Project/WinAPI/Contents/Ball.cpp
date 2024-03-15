@@ -6,6 +6,7 @@
 #include"Block.h"
 #include <EngineCore/EngineDebug.h>
 #include<EnginePlatform/EngineSound.h>
+#include"Stage1Level.h"
 Ball* Ball::MainBall = nullptr;
 
 Ball::Ball()

@@ -58,10 +58,7 @@ Block::~Block()
 		}
 
 	}
-	else
-	{
-		int a = 0;
-	}
+	
 }
 
 

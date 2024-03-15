@@ -27,7 +27,7 @@ void Stage1Level::BeginPlay()
 	ULevel::BeginPlay();
 
 	User* user = SpawnActor<User>(); //플레이어 생성
-	Ball* NewBall = SpawnActor<Ball>(); // 공생성
+	NewBall = SpawnActor<Ball>(); // 공생성
 	Stage1Map* Stage1 = SpawnActor<Stage1Map>();
 	Stage1->SetMapImage("Stage1_BackGround.png");
 
@@ -146,6 +146,25 @@ void Stage1Level::Tick(float _DeltaTime)
 		// 하지만 다음부터는 나와야 하기 땜누에 블록을 만들고 난후 모든 블록의 설정은 ischeat을 꺼준다.
 	}
 
+	for (size_t i = 0; i < DBlock.size(); i++)
+	{
+		if (DBlock[i] == nullptr)
+		{
+			continue;
+			//nullptr일경우 뛰어 넘고 진행
+		}
+
+
+		if (DBlock[i]->IsDestroy())
+		{
+			DBlock[i] = nullptr;
+			continue;
+			//포인터로 그곳을 지웠다고 해서 포인터가 nullptr이 되는것이 아니니까
+			//그 포인터도 nullptr 로 해줘야된다 <- 이거 까먹지말것
+		}
+
+	}
+
 
 	ULevel::Tick(_DeltaTime);
 	int Blockcount = Block::BlockCounter;
@@ -154,9 +173,23 @@ void Stage1Level::Tick(float _DeltaTime)
 
 		for (size_t i = 0; i < DBlock.size(); i++)
 		{
+			if (DBlock[i] == nullptr)
+			{
+				continue;
+				//nullptr일경우 뛰어 넘고 진행
+			}
+			
+			DBlock[i]->Destroy(false);
 			isCheat = true;
-			DBlock[i]->Destroy();
+			NewBall->Reset();
+		
 		}
+
+		DBlock.clear();
+
+
+
+
 		StageChange();
 		if (BStageChange == true)
 		{
@@ -169,7 +202,7 @@ void Stage1Level::Tick(float _DeltaTime)
 
 	}
 
-	
+
 
 }
 
@@ -227,5 +260,7 @@ void Stage1Level::StageChange()
 		}
 
 	}
+	//DBlock.clear();
 	change = false;
+	//BStageChange = true;
 }
