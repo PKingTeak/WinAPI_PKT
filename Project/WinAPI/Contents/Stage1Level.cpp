@@ -131,7 +131,7 @@ void Stage1Level::Tick(float _DeltaTime)
 	int Blocks = Block::BlockCounter;
 	if (Blocks <= 0 || UEngineInput::IsDown('Q'))
 	{
-		GEngine->ChangeLevel("EndingLevel");
+		GEngine->ChangeLevel("Stage2Level");
 
 	}
 

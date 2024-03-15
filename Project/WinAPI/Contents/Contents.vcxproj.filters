@@ -43,6 +43,12 @@
     <ClCompile Include="DebugLevel.cpp">
       <Filter>Level\DebugLevel</Filter>
     </ClCompile>
+    <ClCompile Include="Stage2Level.cpp">
+      <Filter>Level\Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage2.cpp">
+      <Filter>Level\Stage2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArkanoidCore.h" />
@@ -87,6 +93,12 @@
     <ClInclude Include="DebugLevel.h">
       <Filter>Level\DebugLevel</Filter>
     </ClInclude>
+    <ClInclude Include="Stage2Level.h">
+      <Filter>Level\Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage2.h">
+      <Filter>Level\Stage2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Obejct">
@@ -106,6 +118,9 @@
     </Filter>
     <Filter Include="Level\DebugLevel">
       <UniqueIdentifier>{709c6976-9c5f-485d-aa94-dbe40c157371}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level\Stage2">
+      <UniqueIdentifier>{90e6528c-3c0d-447b-8709-5b9435fb86d9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

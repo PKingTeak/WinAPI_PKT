@@ -109,7 +109,7 @@ private:
 	int ItemSpawnpercentage();
 	UIManager* ScoreUI = nullptr;
 	UImageRenderer* BlockRender = nullptr;
-	FVector BlockScale = { 44, 24 };
+	FVector BlockScale = { 42, 24 };
 	UCollision* BlockCollision = nullptr;
 	int Blocklife = 0;
 	BlockType Type = BlockType::Normal;
