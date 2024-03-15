@@ -5,6 +5,7 @@
 #include<iostream>
 #include"UIManager.h"
 #include<EngineBase/EngineRandom.h>
+#include"Stage1Level.h"
 
 
 
@@ -35,23 +36,31 @@ Block::Block(int _Color)
 }
 Block::~Block()
 {
-
-	
-	int SpawnNum = ItemSpawnpercentage();
-
-	if (SpawnNum == 2 || SpawnNum == 5 || SpawnNum == 8)
+	if (Stage1Level::isCheat == false)
 	{
-		ULevel* Stage1Level = GetWorld(); //해당 레벨 가져오기
-		Item* NewItem = Stage1Level->SpawnActor<Item>();
-		NewItem->SetActorLocation(this->GetActorLocation()); //위치 
-		NewItem->SetActive(true);
+
+
+		int SpawnNum = ItemSpawnpercentage();
+
+		if (SpawnNum == 2 || SpawnNum == 5 || SpawnNum == 8)
+		{
+			ULevel* Stage1Level = GetWorld(); //해당 레벨 가져오기
+			Item* NewItem = Stage1Level->SpawnActor<Item>();
+			NewItem->SetActorLocation(this->GetActorLocation()); //위치 
+			NewItem->SetActive(true);
+
+		}
+		ScoreUI->ScorePlus(GetBlockScore());
+		if (BlockCounter > 0)
+		{
+			BlockCounter--;
+
+		}
 
 	}
-	ScoreUI->ScorePlus(GetBlockScore());
-	if (BlockCounter > 0)
+	else
 	{
-		BlockCounter--;
-
+		int a = 0;
 	}
 }
 

@@ -17,11 +17,11 @@ UIManager::~UIManager()
 
 void UIManager::BeginPlay()
 {
-	MainUIMananger = this;
+	
 	AActor::BeginPlay();
 
 	SetActorLocation({ 300,10 });
-
+	MainUIMananger = this;
 	
 	{
 		SCORE_Text = CreateImageRenderer(10);
@@ -85,6 +85,7 @@ void UIManager::BeginPlay()
 		
 			
 	}
+	
 }
 
 

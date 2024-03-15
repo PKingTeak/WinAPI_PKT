@@ -9,8 +9,11 @@
 #include<EngineBase/EngineDirectory.h>
 #include<EnginePlatform/EngineInput.h>
 #include"UIManager.h"
+#include"Stage2Level.h"
+#include<vector>
 
 int Block::BlockCounter = 0;
+bool Stage1Level::isCheat = false;
 
 Stage1Level::Stage1Level()
 {
@@ -27,9 +30,10 @@ void Stage1Level::BeginPlay()
 	Ball* NewBall = SpawnActor<Ball>(); // 공생성
 	Stage1Map* Stage1 = SpawnActor<Stage1Map>();
 	Stage1->SetMapImage("Stage1_BackGround.png");
-	
+
 	UIManager* StageUI = SpawnActor<UIManager>();
-	
+
+
 	{
 		//Test
 		Block* TestBlock;
@@ -44,7 +48,7 @@ void Stage1Level::BeginPlay()
 			TestBlock->SetActorLocation(FVector{ 45 + i * 42, 100 });
 			Blocks.push_back(TestBlock);
 			TestBlock->SetBlockCounter(1);
-
+			DBlock.push_back(TestBlock);
 
 		}
 
@@ -58,6 +62,7 @@ void Stage1Level::BeginPlay()
 			Blocks.push_back(TestBlock);
 			TestBlock->SetScore(90);
 			TestBlock->SetBlockCounter(1);
+			DBlock.push_back(TestBlock);
 		}
 
 	}
@@ -69,13 +74,14 @@ void Stage1Level::BeginPlay()
 		for (int i = 0; i < 12; i++)
 		{
 			TestBlock = SpawnActor<Block>();
-			TestBlock->SetActorLocation(FVector{ 45 + i * 42,120 +24 });
+			TestBlock->SetActorLocation(FVector{ 45 + i * 42,120 + 24 });
 			TestBlock->SetBlockColor(7);
 			TestBlock->SetScore(120);
 			Blocks.push_back(TestBlock);
 			TestBlock->SetBlockCounter(1);
+			DBlock.push_back(TestBlock);
 		}
-	
+
 	}
 	{
 		Block* TestBlock;
@@ -84,13 +90,14 @@ void Stage1Level::BeginPlay()
 		for (int i = 0; i < 12; i++)
 		{
 			TestBlock = SpawnActor<Block>();
-			TestBlock->SetActorLocation(FVector{ 45 + i * 42,120 +24*2 });
+			TestBlock->SetActorLocation(FVector{ 45 + i * 42,120 + 24 * 2 });
 			TestBlock->SetBlockColor(5);
 			TestBlock->SetScore(100);
 			Blocks.push_back(TestBlock);
 			TestBlock->SetBlockCounter(1);
+			DBlock.push_back(TestBlock);
 		}
-	
+
 	}
 	{
 		Block* TestBlock;
@@ -104,6 +111,7 @@ void Stage1Level::BeginPlay()
 			TestBlock->SetScore(110);
 			Blocks.push_back(TestBlock);
 			TestBlock->SetBlockCounter(1);
+			DBlock.push_back(TestBlock);
 		}
 	}
 
@@ -119,20 +127,105 @@ void Stage1Level::BeginPlay()
 			TestBlock->SetScore(80);
 			Blocks.push_back(TestBlock);
 			TestBlock->SetBlockCounter(1);
-		
+			DBlock.push_back(TestBlock);
 		}
 	}
+
+
 }
+
 
 
 void Stage1Level::Tick(float _DeltaTime)
 {
-	ULevel::Tick(_DeltaTime);
-	int Blocks = Block::BlockCounter;
-	if (Blocks <= 0 || UEngineInput::IsDown('Q'))
+
+	if (change == false)
 	{
-		GEngine->ChangeLevel("Stage2Level");
+		isCheat = false; // 틱이 끝나고 소멸자를 호출하는 구조이기때문에 
+		// 다음 틱이 실행될때 destory 를 한건 아이템이 안나옴
+		// 하지만 다음부터는 나와야 하기 땜누에 블록을 만들고 난후 모든 블록의 설정은 ischeat을 꺼준다.
+	}
+
+
+	ULevel::Tick(_DeltaTime);
+	int Blockcount = Block::BlockCounter;
+	if (Blockcount <= 0 || UEngineInput::IsDown('Q'))
+	{
+
+		for (size_t i = 0; i < DBlock.size(); i++)
+		{
+			isCheat = true;
+			DBlock[i]->Destroy();
+		}
+		StageChange();
+		if (BStageChange == true)
+		{
+
+			GEngine->ChangeLevel("EndingLevel");
+
+		}
+
+
 
 	}
 
+	
+
+}
+
+void Stage1Level::StageChange()
+{
+	change = true;
+	{
+
+		Block* TestBlock;
+		std::vector<Block*> Blocks;
+		for (int i = 0; i < 11; i++)
+		{
+			TestBlock = SpawnActor<Block>();
+			TestBlock->SetBlockType(BlockType::Hard, TestBlock);
+			TestBlock->SetActorLocation(FVector{ 45 + i * 42,400 });
+			Blocks.push_back(TestBlock);
+
+
+		}
+
+	}
+
+	{
+
+		Block* TestBlock;
+		std::vector<Block*> Blocks;
+
+		FVector BlockScale = { 42, 24 };
+		FVector StartPos = { 45 , 400 - 42 };
+		int Count = 11;
+		int ColorCount = 0;
+		for (int i = 0; i < 11; i++)
+		{
+
+			for (size_t i = 0; i < Count; i++)
+			{
+				TestBlock = SpawnActor<Block>();
+				TestBlock->SetBlockType(BlockType::Normal, TestBlock);
+				TestBlock->SetActorLocation(StartPos);
+				Blocks.push_back(TestBlock);
+				TestBlock->SetBlockColor(ColorCount);
+				TestBlock->SetBlockCounter(1);
+				StartPos.Y -= BlockScale.Y;
+
+			}
+			Count -= 1;
+			ColorCount += 1;
+			if (ColorCount > 6)
+			{
+				ColorCount = 0;
+			}
+			StartPos.X += BlockScale.X;
+			StartPos.Y = 400 - 42; // 다시 처음부터 쌓아 올려야된다.
+
+		}
+
+	}
+	change = false;
 }

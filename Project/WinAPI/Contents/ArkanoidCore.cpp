@@ -4,12 +4,15 @@
 #include "TitleLevel.h"
 #include <EngineBase/EngineFile.h>
 #include <EngineCore/EngineResourcesManager.h>
+#include<EngineCore/Level.h>
 #include<EnginePlatform/EngineSound.h>
 #include"UIManager.h"
 #include<EngineBase/EngineDirectory.h>
 #include"EndingLevel.h"
 #include"DebugLevel.h"
 #include"Stage2Level.h"
+
+
 
 FVector ArkanoidCore::ScreenSize = { 552,602 }; //Static을 이용하여 만들어서 구현하는 곳에 초기화 
 
@@ -71,10 +74,9 @@ void ArkanoidCore::BeginPlay()
 	CreateLevel<TitleLevel>("TitleLevel");
 	CreateLevel<Stage1Level>("Stage1Level");
 	CreateLevel<EndingLevel>("EndingLevel");
-	CreateLevel<Stage2Level> ("Stage2Level");
+	//CreateLevel<Stage2Level>("Stage2Level");
 	//CreateLevel<DebugLevel>("DebugLevel");
 	ChangeLevel("TitleLevel");
-
 
 }
 

@@ -36,6 +36,7 @@ public:
 	void EndScoreText();
 	
 	UImageRenderer* Ready_Text = nullptr;
+	int TotalScore = 0;
 	
 
 protected:
@@ -60,7 +61,7 @@ private:
 	string STime = "";
 	string STime1 = "";
 	string STime2 = "";
-	int TotalScore = 0;
+	
 	int STimeCounter = 0;
 	int STimeCounter2 = 0;
 	string SScore = "";

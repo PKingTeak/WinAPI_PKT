@@ -23,8 +23,8 @@ void Stage2Level::BeginPlay()
 
 	User* user = SpawnActor<User>(); //플레이어 생성
 	Ball* NewBall = SpawnActor<Ball>(); // 공생성
-	Stage1Map* Stage1 = SpawnActor<Stage1Map>();
-	Stage1->SetMapImage("Stage1_BackGround.png");
+	Stage1Map* Stage2 = SpawnActor<Stage1Map>();
+	Stage2->SetMapImage("Stage1_BackGround.png");
 	UIManager* StageUI = SpawnActor<UIManager>();
 	Block* TestBlock;
 	std::vector<Block*> Blocks;
@@ -91,6 +91,7 @@ void Stage2Level::BeginPlay()
 
 
 }
+
 
 
 void Stage2Level::Tick(float _DeltaTime)
