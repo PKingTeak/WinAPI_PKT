@@ -190,7 +190,7 @@ void Ball::WallCheck()
 		CurBallPos.X = 30;
 
 	}
-	else if (CurBallPos.Y <= 80)
+	else if (CurBallPos.Y-1 <= 80)
 	{
 		N = { 0,1 };
 		BallAdjustwithWall(80, false);

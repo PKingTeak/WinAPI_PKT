@@ -167,10 +167,10 @@ void Stage1Level::Tick(float _DeltaTime)
 
 
 	ULevel::Tick(_DeltaTime);
-	int Blockcount = Block::BlockCounter;
+	int Blockcount = Block::BlockCounter; //값들어오는지 확인 1스테이지 블록 72 2스테이지 77
 	if (Blockcount <= 0 || UEngineInput::IsDown('Q'))
 	{
-		
+		Blockcount;
 		if (BStageChange == true)
 		{
 
@@ -207,8 +207,8 @@ void Stage1Level::Tick(float _DeltaTime)
 void Stage1Level::StageChange()
 {
 	change = true;
+	Block::BlockCounter = 0;
 	{
-
 		Block* TestBlock;
 		//std::vector<Block*> Blocks;
 		for (int i = 0; i < 11; i++)
@@ -216,6 +216,7 @@ void Stage1Level::StageChange()
 			TestBlock = SpawnActor<Block>();
 			TestBlock->SetBlockType(BlockType::Hard, TestBlock);
 			TestBlock->SetActorLocation(FVector{ 45 + i * 42,400 });
+			TestBlock->SetBlockCounter(1);
 			DBlock.push_back(TestBlock);
 
 
